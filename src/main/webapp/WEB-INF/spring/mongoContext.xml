@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
+        
+	<!-- mongo -->
+	<mongo:mongo-client id="mongo" host="localhost"
+		port="27017">
+		<mongo:client-options connections-per-host="8"
+			threads-allowed-to-block-for-connection-multiplier="4"
+			connect-timeout="1000" max-wait-time="1500" socket-keep-alive="false"
+			socket-timeout="1500" />
+	</mongo:mongo-client>
+
+	<bean id="mongoTemplate"
+		class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="dbtest" />
+	</bean><!-- db랑 연결해주는 객체의 권한 -->
+        
+</beans>
+        

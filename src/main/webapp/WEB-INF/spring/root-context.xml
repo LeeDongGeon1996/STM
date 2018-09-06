@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/spring/mysql.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="${mysql.driverClassName}"></property>
+		<property name="url" value="${mysql.url}"></property>
+		<property name="username" value="${mysql.username}"></property>
+		<property name="password" value="${mysql.password}"></property>
+	</bean>
+
+	<!-- DAO -->
+	<bean id="memberInfoDAO" class="kw.comso.dao.impl.MemberInfoDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	
+	<bean id="questionDAO" class="kw.comso.dao.impl.QuestionDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	
+	<bean id="memberRelationDAO" class="kw.comso.dao.impl.MemberRelationDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	
+	<bean id="testPaperDAO" class="kw.comso.dao.impl.TestPaperDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+
+	<!-- Services -->
+	<bean id="memberService"
+		class="kw.comso.service.impl.MemberServiceImpl">
+		<property name="memberInfoDAO" ref="memberInfoDAO"></property>
+		<property name="memberRelationDAO" ref="memberRelationDAO"></property>
+		
+	</bean>
+
+</beans>
