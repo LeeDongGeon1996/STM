@@ -1,7 +1,5 @@
 package kw.comso.dto;
 
-import java.util.Calendar;
-
 //이름. id(이메일) , pw, 권한, 생년월일, {{지역}},{{전화번호}})
 
 public class MemberInfoVO {

@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import kw.comso.dao.MemberInfoDAO;
 import kw.comso.dao.MemberRelationDAO;
-import kw.comso.dao.impl.MemberRelationDAOImpl;
 import kw.comso.dto.MemberInfoVO;
-import kw.comso.dto.MemberRelationVO;
 import kw.comso.service.MemberService;
 
 public class MemberServiceImpl implements MemberService {

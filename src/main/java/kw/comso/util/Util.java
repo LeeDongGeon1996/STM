@@ -2,11 +2,12 @@ package kw.comso.util;
 
 public class Util {
 
-	public static int createID(String value) {
+	public static Long createID(String value) {
 		
 		String code = String.valueOf(value.hashCode());
 		String unique = String.valueOf(System.currentTimeMillis());
 		
-		return Integer.parseInt(code + "@" + unique);
+		//System.out.println(Integer.parseInt(code + "@" + unique));
+		return Long.parseLong(code + "@" + unique);
 	}
 }

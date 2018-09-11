@@ -1,7 +1,7 @@
 package kw.comso.dto;
 
 public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
-	private int questionIDNum; // 각 문제의 고유번호
+	private Long questionIDNum; // 각 문제의 고유번호
 	private int mulORSub;
 	// 이 문제가 객관식인지 주관식인지 선택하는 곳 (0, 1)로 구분하기? 추후에 정하자, mul-multiple=객관식,
 	// sub-subjective=주관식
@@ -13,7 +13,7 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	
 	
 	// setter
-	public void setQuestionIDNum(int questionIDNum) {
+	public void setQuestionIDNum(Long questionIDNum) {
 		this.questionIDNum = questionIDNum;
 	}
 	public void setMulORSub(int mulORSub) {
@@ -33,7 +33,7 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	}
 	
 	// getter
-	public int getQuestionIDNum() {
+	public Long getQuestionIDNum() {
 		return this.questionIDNum;
 	}
 	public int getMulORSub() {

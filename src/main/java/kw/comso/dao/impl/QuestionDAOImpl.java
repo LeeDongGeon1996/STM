@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import kw.comso.dao.QuestionDAO;
 import kw.comso.dto.QuestionVO;
-import kw.comso.dto.QuestionVO;
 
 public class QuestionDAOImpl implements QuestionDAO {
 
@@ -47,7 +46,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	@Override
 	public boolean removeQuestion(QuestionVO question) {
-		this.mongoTemplate.remove(question, TABLE_NAME);
+		this.mongoTemplate.remove(question);
 
 		return true;
 	}
@@ -96,14 +95,15 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 		return found;
 	}
-	
-	public ArrayList<QuestionVO> findWithRegex(String key, String regex){
-		
+
+	public ArrayList<QuestionVO> findWithRegex(String key, String regex) {
+
 		Query query = new Query();
 		query.addCriteria(Criteria.where(key).regex(regex));
-		
-		ArrayList<QuestionVO> found = (ArrayList<QuestionVO>) this.mongoTemplate.find(query, QuestionVO.class, TABLE_NAME);
-	
+
+		ArrayList<QuestionVO> found = (ArrayList<QuestionVO>) this.mongoTemplate.find(query, QuestionVO.class,
+				TABLE_NAME);
+
 		return found;
 	}
 
