@@ -25,18 +25,20 @@
 	</bean>
 
 	<!-- DAO -->
-	<bean id="memberInfoDAO" class="kw.comso.dao.impl.MemberInfoDAOImpl">
+	<bean id="memberInfoDAO"
+		class="kw.comso.dao.impl.MemberInfoDAOImpl">
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
-	
+
 	<bean id="questionDAO" class="kw.comso.dao.impl.QuestionDAOImpl">
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
-	
-	<bean id="memberRelationDAO" class="kw.comso.dao.impl.MemberRelationDAOImpl">
+
+	<bean id="memberRelationDAO"
+		class="kw.comso.dao.impl.MemberRelationDAOImpl">
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
-	
+
 	<bean id="testPaperDAO" class="kw.comso.dao.impl.TestPaperDAOImpl">
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
@@ -46,7 +48,12 @@
 		class="kw.comso.service.impl.MemberServiceImpl">
 		<property name="memberInfoDAO" ref="memberInfoDAO"></property>
 		<property name="memberRelationDAO" ref="memberRelationDAO"></property>
-		
+	</bean>
+
+	<bean id="QuestionService"
+		class="kw.comso.service.impl.QuestionServiceImpl">
+		<property name="questionDAO" ref="questionDAO"></property>
+		<property name="testPaperDAO" ref="testPaperDAO"></property>
 	</bean>
 
 </beans>
