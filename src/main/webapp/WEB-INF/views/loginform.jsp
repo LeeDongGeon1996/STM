@@ -27,7 +27,7 @@
          <!--왼쪽 이미지 박스-->
          <h1>
             Site info 
-                <small>ST2M</small>
+                <small>ST2M</small> 
          </h1>
          <img src="">
       </div>

@@ -31,7 +31,7 @@ public class MemberController {
 		// Model¿¡ VO°´Ã¼ Àü´Þ
 		modelMap.addAttribute("infoVO", infoVO);
 
-		return "signupform";
+		return "logintest";
 	}
 
 	@RequestMapping(value = "/getinfo", method = { RequestMethod.POST, RequestMethod.GET })
