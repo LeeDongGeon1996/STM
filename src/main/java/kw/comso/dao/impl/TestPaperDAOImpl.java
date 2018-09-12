@@ -9,8 +9,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 import kw.comso.dao.TestPaperDAO;
-import kw.comso.dto.QuestionVO;
-import kw.comso.dto.TestPaperVO;
 import kw.comso.dto.TestPaperVO;
 
 public class TestPaperDAOImpl implements TestPaperDAO {
@@ -48,7 +46,7 @@ public class TestPaperDAOImpl implements TestPaperDAO {
 
 	@Override
 	public boolean removeTestPaper(TestPaperVO testPaper) {
-		this.mongoTemplate.remove(testPaper, TABLE_NAME);
+		this.mongoTemplate.remove(testPaper);
 
 		return true;
 	}
@@ -89,11 +87,12 @@ public class TestPaperDAOImpl implements TestPaperDAO {
 	public ArrayList<TestPaperVO> findAll(String key, Object value) {
 		return findAll(key, value, null);
 	}
-	
+
 	public ArrayList<TestPaperVO> findAll() {
-		ArrayList<TestPaperVO> found = (ArrayList<TestPaperVO>) this.mongoTemplate.findAll(TestPaperVO.class, TABLE_NAME);
+		ArrayList<TestPaperVO> found = (ArrayList<TestPaperVO>) this.mongoTemplate.findAll(TestPaperVO.class,
+				TABLE_NAME);
 
 		return found;
 	}
-	
+
 }

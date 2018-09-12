@@ -11,7 +11,7 @@ public interface QuestionService {
 	ArrayList<QuestionVO> getQuestion(String memberID);
 	ArrayList<QuestionVO> getTestPaper(int testPaperID);
 	boolean registerQuestion(String memberID, QuestionVO question);
-	boolean deleteQuestion(int questionID);
+	boolean deleteQuestion(Long questionID);
 	boolean registerTestPaper(String memberID, TestPaperVO testPaper);
-	boolean deleteTestPaper(TestPaperVO testPaper);
+	boolean deleteTestPaper(Long testPaperID);
 }

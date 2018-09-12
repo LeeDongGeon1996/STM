@@ -8,10 +8,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import com.mongodb.WriteResult;
-
 import kw.comso.dao.MemberRelationDAO;
-import kw.comso.dto.MemberRelationVO;
 import kw.comso.dto.MemberRelationVO;
 
 public class MemberRelationDAOImpl implements MemberRelationDAO {

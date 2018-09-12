@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Sunflower:500');
+
+
+.navbar-custom {
+    background-color: rgba(0, 162, 255, 0.8);
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,0.8);
+    font-family: 'Josefin Sans';
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+    font-family:'Sunflower';
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+
+.ST2M-header{
+    font-family: 'Sunflower';
+    margin-top:55px;
+    height: 40vh;
+    min-height: 300px;
+    background: url('https://www.tibco.com/sites/tibco/files/2018-04/Landing%20Page%20Banner-1920x400%20%281%29_1.jpg') center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.head-line{
+    font-family: "Josefin Sans";
+}

@@ -26,8 +26,8 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public QuestionVO getQuestion(int questionID) {
 
+		//questionVO의 아이디로 문항을 가져옴, 아직까지 필요없는 메소드..
 		QuestionVO target = this.questionDAO.findOne("questionIDNum", questionID);
-
 		if (target == null)
 			return null;
 
@@ -37,6 +37,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public ArrayList<QuestionVO> getQuestion(String memberID) {
 		
+		//해당사용자로 등록된 문항 모두 가져오기.
 		String regex = "^" + memberID.hashCode();
 		ArrayList<QuestionVO> questionList = this.questionDAO.findWithRegex("questionIDNum", regex);
 		
@@ -46,12 +47,17 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public ArrayList<QuestionVO> getTestPaper(int testPaperID) {
 
+		//시험지 존재 검사.
 		TestPaperVO targetTestPaper = this.testPaperDAO.findOne("testPaperIDNum", testPaperID);
-
 		if (targetTestPaper == null)
 			return null;
 
-		ArrayList<QuestionVO> questionList = targetTestPaper.getTestInfo();
+		//시험지에 포함된 문항가져오기.
+		ArrayList<Long> IDList = targetTestPaper.getTestInfo();
+		ArrayList<QuestionVO> questionList  = new ArrayList<QuestionVO>();
+		for(Long questionID : IDList)
+			questionList.add(this.questionDAO.findOne("questionIDNum", questionID));
+		
 		return questionList;
 	}
 
@@ -66,20 +72,24 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public boolean deleteQuestion(int questionID) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteTestPaper(TestPaperVO testPaper) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean registerTestPaper(String memberID, TestPaperVO testPaper) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		testPaper.setTestPaperIDNum(Util.createID(memberID));
+		
+		//중복처리???
+		return this.testPaperDAO.insertTestPaper(testPaper);
+	}
+	
+	@Override
+	public boolean deleteQuestion(Long questionID) {
+		// 문제가 사라지면 그 문제를 가지고있던 시험지 객체도 리스트를 업데이트해야 함.
+		return this.questionDAO.removeQuestion(
+				this.questionDAO.findOne("questionIDNum", questionID));
+	}
+
+	@Override
+	public boolean deleteTestPaper(Long testPaperID) {
+		return this.testPaperDAO.removeTestPaper(
+				this.testPaperDAO.findOne("testPaperIDNum", testPaperID));
 	}
 }

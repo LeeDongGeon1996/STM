@@ -14,10 +14,10 @@
         <title>ST2M-Main</title>
 
         <!-- BOOTSTRAP-->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/resources/bootstrap.min.css" rel="stylesheet" type="text/css">
 
         <!-- ST2MCSS-->
-        <link href="ST2Mfrontpage.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/resources/ST2Mfrontpage.css" rel="stylesheet" type="text/css">
 
     </head>
 
