@@ -58,6 +58,8 @@ public class MemberServiceImpl implements MemberService {
 
 		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] {"password"});
 		if (account != null) {
+			System.out.println(member.getPassword());
+			System.out.println(account.getPassword());
 			return member.getPassword().equals(account.getPassword());
 		}
 
