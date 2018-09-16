@@ -2,6 +2,8 @@ package kw.comso.service.impl;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import kw.comso.dao.QuestionDAO;
 import kw.comso.dao.TestPaperDAO;
 import kw.comso.dao.impl.QuestionDAOImpl;
@@ -12,7 +14,9 @@ import kw.comso.util.Util;
 
 public class QuestionServiceImpl implements QuestionService {
 
+	@Autowired
 	private QuestionDAO questionDAO;
+	@Autowired
 	private TestPaperDAO testPaperDAO;
 
 	public void setQuestionDAO(QuestionDAOImpl questionDAO) {

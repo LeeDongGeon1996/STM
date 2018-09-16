@@ -8,4 +8,5 @@ public interface MemberService {
 	boolean registerMember(MemberInfoVO member);
 	boolean deleteMember(MemberInfoVO member);
 	boolean updateMember(MemberInfoVO member);
+	boolean checkPassword(MemberInfoVO member);
 }

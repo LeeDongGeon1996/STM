@@ -58,13 +58,6 @@
 							placeholder="비밀번호" />
 					</p>
 					<p>
-						<!--비밀번호 확인하기-->
-						<label for="InputPassword2">비밀번호 확인</label>
-						<form:input path="password" class="form-control"
-							placeholder="비밀번호 확인" />
-					<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
-
-					<p>
 						<!--생일넣기-->
 						<label for="InputBirthday">생일</label>
 						<form:input path="birth" type="date" class="form-control"
