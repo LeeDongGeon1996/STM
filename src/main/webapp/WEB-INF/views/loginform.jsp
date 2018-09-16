@@ -37,11 +37,11 @@
          <h1>Login</h1>
 
 
-         <form:form modelAttribute="infoVO" action="getinfo" method="POST">
+         <form:form modelAttribute="infoVO" action="login" method="POST">
             <div class="form-group">
                <p>   
                   <!--이메일로 로그인하기-->
-                  <label for="InputEmail" style="width: 55px">이메일</label>
+                  <label for="email" style="width: 55px">이메일</label>
                   <form:input path="email" type="email" length="400"
                      placeholder="이메일 주소(ID)" />
                </p>
@@ -50,7 +50,9 @@
                   <label for="InputPassword">비밀번호</label>
                         <form:input path="password" type="password" length="400" placeholder="비밀번호" />
                </p>
-            
+            <p>
+					<input type="submit" value="Submit">
+				</p>
             </div>
          </form:form>
       </div>

@@ -47,6 +47,8 @@ public class MemberController {
 		System.out.println("pw=" + infoVO.getPassword());
 		return "home";
 	}
+	
+	
 }
 
 /*
