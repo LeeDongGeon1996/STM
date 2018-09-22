@@ -165,7 +165,7 @@
                   </div>
                 <!-- 전화번호 -->
 				 <div class="form-label-group">
-               <form:input path="pNum" name="pNum" type="tel"  class="form-control" placeholder="휴대폰 번호 : - 없이 입력해 주세요!" required="" autofocus=""></form:input>
+               <form:input path="pNum" name="pNum" type="tel" pattern="[0-9]{11}" title="01012341234 형식으로 입력해주세요" class="form-control" placeholder="휴대폰 번호 : 숫자로만 입력해 주세요!" required="" autofocus=""></form:input>
                   <div id="pNum_error" class="val_error"> </div>
                   </div>
                   
@@ -328,11 +328,6 @@ email.addEventListener("blur", emailVerify, true);
 	  }
   function pNumVerify() {
 	    if (pNum.value != "") {
-	    	/*if (pNum.indexOf('-') != -1 ) {
-	    		pNum.style.border = "2px solid red";
-	    		pNum_error.textContent = "- 없이 입력해주세요";
-	    		pNum.focus();
-	     	 } */
 	    	pNum.style = "#7ba6ed";
 	    	pNum_error.innerHTML = "<span style='color: green'>Complete</span>";
 	      return true;
