@@ -131,7 +131,7 @@
             <h5 class="card-title text-center">Sign Up</h5>
             
             <!-- Page shown-->
-            <form:form modelAttribute="infoVO" action="login" method="POST" onsubmit="return Validate()" name="infos">
+            <form:form modelAttribute="infoVO" action="login" method="POST" onSubmit="return Validate()" onChange="return Validate()" name="infos">
               <form class="form-signin">
                 <!-- 이름넣기 -->
                <div class="form-label-group">
@@ -327,11 +327,10 @@ email.addEventListener("blur", emailVerify, true);
 	    }
 	  }
   function pNumVerify() {
-	    if (pNum.value != "") {
-	    	pNum.style = "#7ba6ed";
-	    	pNum_error.innerHTML = "<span style='color: green'>Complete</span>";
+	  if (pNum.value != "") {
+		  pNum.style = "#7ba6ed";
+		  pNum_error.innerHTML = "<span style='color: green'>Complete</span>";
 	      return true;
 	    }
 	  }
-
 </script>
