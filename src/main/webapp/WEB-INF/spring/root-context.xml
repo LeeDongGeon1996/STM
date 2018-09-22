@@ -42,6 +42,10 @@
 	<bean id="testPaperDAO" class="kw.comso.dao.impl.TestPaperDAOImpl">
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
+	
+	<bean id="AuthMemberInfoDAO" class="kw.comso.dao.impl.AuthMemberInfoDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
 
 	<!-- Services -->
 	<bean id="memberService"

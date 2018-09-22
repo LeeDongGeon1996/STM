@@ -63,7 +63,7 @@
                             <h4 class="card-title text-center">테스트 생성</h4>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="#" class="btn btn-primary">만들기</a>
+                            <a href="editor" class="btn btn-primary">만들기</a>
                         </div>
                     </div>
                 </div>

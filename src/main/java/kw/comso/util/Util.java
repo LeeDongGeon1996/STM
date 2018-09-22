@@ -1,13 +1,36 @@
 package kw.comso.util;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class Util {
 
-	public static Long createID(String value) {
+	private static Gson gson = new GsonBuilder().create();
+	
+	public static String createID(String value) {
 		
-		String code = String.valueOf(value.hashCode());
-		String unique = String.valueOf(System.currentTimeMillis());
+		String token = "";
+		String code = String.valueOf(value.hashCode()).substring(1);
+		String unique = String.valueOf(System.currentTimeMillis()).substring(3);
 		
-		//System.out.println(Integer.parseInt(code + "@" + unique));
-		return Long.parseLong(code + "@" + unique);
+		//System.out.println(unique);
+		System.out.println("Unique ID : " + code + token + unique);
+		return code + token + unique;
+	}
+	
+	public static void sendRedirect(HttpServletResponse response, String url) {
+		try {
+			response.sendRedirect(url);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static String toJson(Object object) {
+		return gson.toJson(object);
 	}
 }
