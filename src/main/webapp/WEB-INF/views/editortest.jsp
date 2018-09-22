@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,42 +9,29 @@
 <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/resources/editor.js"></script>
 <script>
-function loadQuestionList(){
+function onLoad(){
 	createEditor();
-	questionList = ${questionList};
+	alert(questionList);
 }
 </script>
 </head>
 <body onload="onLoad();">
+
 	<div class="container">
 		<h2>
 			<label for="editor1">Document Editor</label>
 		</h2>
 		<textarea id="editor1">
 		??????aasdfasdf
-		<c:if test="${!empty questionList}">
+
+
 		
-		<table border="1">
-			<tr>
-				<td>가게 이름</td>
-				<td>총 예치금</td>
-				<td>남은 예치금</td>
-			</tr>
-			<c:forEach var="list" items="${questionList}">
-				<tr>
-					<td><a
-						href="javascript:document.getElementById('detailForm_${list.questionIDNum}').submit()">
-							${list.passage} </a></td>
-					<td>${list.imageLink}</td>
-					<td>${list.answer}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
-		</c:if>
 		!!!!!
 	</textarea>
 	</div>
-	
+
 </body>
+<script>
+loadQuestionList(${questionList});
+</script>
 </html>

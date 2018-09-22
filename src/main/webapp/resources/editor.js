@@ -172,9 +172,13 @@ function createEditor() {
 }
 
 
-var questionList;
-
-function loadQuestionList(){
+var QuestionList;
+var editor;
+var questionCount = 0;
+function loadQuestionList(jsonQuestionList){
+	document.getElementById('editor1').innerHTML = "<div id=\'question" + questionCount + "\'>" +jsonQuestionList[0].passage + "</div>";
+	alert(jsonQuestionList[0].passage);
+	
 }
 
 function insertQuestion(){
