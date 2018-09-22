@@ -107,6 +107,12 @@
             border-radius: .25rem;
             transition: all .1s ease-in-out;
         }
+        
+        .btn-signup {
+          background: #d9d9d9
+        }
+        
+        
     </style>
     <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
@@ -127,7 +133,7 @@
                                 <form class="form-signin">
 
                                     <div class="form-label-group">
-                                        <form:input path="email" type="email" id="email" class="form-control" placeholder="Type your email" required="" autofocus=""></form:input>
+                                        <form:input path="email" type="email" id="email" class="form-control" placeholder="Type your email" required="" autofocus="" ></form:input>
                                     </div>
                                     <div class="form-label-group">
                                         <form:input path="password" type="password" id="password" class="form-control" placeholder="Type your password" required="" autofocus="" ></form:input>
@@ -144,7 +150,7 @@
                             <form:form modelAttribute="infoVO" action="insertinfo" method="GET">
                                 <form class="form-signin">
                                     <div class="form-label-group">
-                                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up </button>
+                                        <button class="btn btn-lg btn-signup btn-block text-uppercase" type="submit">Sign Up </button>
                                     </div>
                                 </form>
                             </form:form>
