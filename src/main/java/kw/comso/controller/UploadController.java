@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kw.comso.dto.MemberInfoVO;
 import kw.comso.dto.QuestionVO;
 import kw.comso.service.QuestionService;
+import kw.comso.util.Util;
 
 @Controller
 public class UploadController {
@@ -115,6 +116,7 @@ public class UploadController {
 			e.printStackTrace(); 
 		}
 		
+		Util.sendRedirect(rep, "testImg");
 		return null;
 		
 	}
