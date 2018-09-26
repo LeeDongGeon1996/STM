@@ -12,7 +12,9 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +38,17 @@ public class UploadController {
 	private QuestionService questionService;
 	
 	@RequestMapping(value = "/testImg", method = RequestMethod.GET)
-	public String testImg() {
+	public String testImg(HttpSession session) {
+		
+		
 		return "fileupload";
 	}
 	
 	@RequestMapping(value = "/fileUpload")
 	public Map fileUpload(HttpServletRequest req, HttpServletResponse rep) {
-		String path = "C://Users//junma//Desktop//imgPath";
-
+		
+		String path = req.getSession().getServletContext().getRealPath("/webapp/resources/testImg");
+		System.out.println(path);
 		Map returnObject = new HashMap();
 
 		try {

@@ -26,6 +26,7 @@ public class MemberController {
 		// Model¿¡ VO°´Ã¼ Àü´Þ
 		modelMap.addAttribute("infoVO", infoVO);
 
+
 		return "signupform";
 	}
 
@@ -33,14 +34,14 @@ public class MemberController {
 	public String getinfo(MemberInfoVO infoVO, ModelMap modelMap) {
 		boolean is;
 
-		modelMap.addAttribute("name", infoVO.getName());
+		modelMap.addAttribute("name", infoVO.getUsername());
 		modelMap.addAttribute("password", infoVO.getPassword());
 		is = memberService.registerMember(infoVO);
 		System.out.println(is);
 
-		System.out.println("id=" + infoVO.getName());
+		System.out.println("id=" + infoVO.getUsername());
 		System.out.println("pw=" + infoVO.getPassword());
-		return "home";
+		return "loginform";
 	}
 	
 	

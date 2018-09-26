@@ -28,7 +28,7 @@
                 <a class="navbar-brand" href="Main.html">ST2M</a>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">name : ${name}</li>
+                        <li class="nav-item">name : ${username}</li>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">홈
                                 <span class="sr-only">(current)</span>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-sm-3 my-4">
                     <div class="card">
-                        <img class="card-img-top" src="http://hellosoft.co.kr/wp-content/uploads/2017/10/CTPuzzle019-300x200.jpg" alt="myquestion">
+                        <img class="card-img-top" src="http://24eastmain.com/wp-content/uploads/2017/08/test.jpg" alt="myquestion">
                         <div class="card-body">
                             <h4 class="card-title text-center">내 문제함</h4>
                         </div>
