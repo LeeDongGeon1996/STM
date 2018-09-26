@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,11 +23,19 @@ public class LoginController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/loginform", method = RequestMethod.GET)
-	public String loginform(ModelMap modelMap) {
+	public String loginform(ModelMap modelMap, HttpSession session) {
 		// VO 객체생성
 		MemberInfoVO infoVO = new MemberInfoVO();
 		// Model에 VO객체 전달
 		modelMap.addAttribute("infoVO", infoVO);
+		
+		//로그인 실패처리
+		int tryLoginVal = 0;
+		if(session.getAttribute("tryLogin") != null) {
+			session.removeAttribute("tryLogin");
+			tryLoginVal = 1;
+		}
+		modelMap.addAttribute("try", tryLoginVal);
 
 		return "loginform";
 	}
@@ -47,6 +54,7 @@ public class LoginController {
 			Util.sendRedirect(response, "home");
 		} else {
 			System.out.println("실패");
+			session.setAttribute("tryLogin", infoVO);
 			Util.sendRedirect(response, "loginform");
 		}
 	}
@@ -59,17 +67,17 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "/home", method = { RequestMethod.POST, RequestMethod.GET })
-	public String home(MemberInfoVO infoVO, ModelMap modelMap) {
-		boolean is;
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(ModelMap modelMap, HttpSession session, HttpServletResponse response) {
 
-		modelMap.addAttribute("name", infoVO.getUserName());
-		modelMap.addAttribute("password", infoVO.getPassword());
-		is = memberService.registerMember(infoVO);
-		System.out.println(is);
-
-		System.out.println("id=" + infoVO.getUserName());
-		System.out.println("pw=" + infoVO.getPassword());
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+		
+		modelMap.addAttribute("userName", member.getUserName());
+		System.out.println("===========Login===============");
+		System.out.println("userName=" + member.getUserName());
+		System.out.println("Email=" + member.getEmail());
 		return "home";
 	}
 }

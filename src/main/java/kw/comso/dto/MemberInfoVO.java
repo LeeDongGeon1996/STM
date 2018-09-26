@@ -3,7 +3,7 @@ package kw.comso.dto;
 //이름. id(이메일) , pw, 권한, 생년월일, {{지역}},{{전화번호}})
 
 public class MemberInfoVO {
-   String username;
+   String userName;
    String email;
    String password;
    String birth;
@@ -13,8 +13,8 @@ public class MemberInfoVO {
    
    //setter
    
-   public void setUserName(String username) {
-      this.username = username;
+   public void setUserName(String userName) {
+      this.userName = userName;
    }
    public void setEmail(String email) {
       this.email = email;
@@ -38,7 +38,7 @@ public class MemberInfoVO {
    
    //getter
    public String getUserName() {
-      return this.username;
+      return this.userName;
    }
    public String getEmail() {
       return this.email;
