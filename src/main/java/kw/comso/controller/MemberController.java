@@ -48,7 +48,7 @@ public class MemberController {
 			Util.sendRedirect(response, "loginform");
 		}
 		else {
-			Util.sendRedirect(response, "signupform");
+			Util.sendRedirect(response, "insertinfo");
 		}
 	}
 
