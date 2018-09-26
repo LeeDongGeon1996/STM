@@ -28,7 +28,9 @@
                 <a class="navbar-brand" href="Main.html">ST2M</a>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+
                         <li class="nav-item">name : ${userName}</li>
+
                         <li class="nav-item active">
                             <a class="nav-link" href="#">홈
                                 <span class="sr-only">(current)</span>
