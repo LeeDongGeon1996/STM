@@ -138,12 +138,12 @@ body {
                   <h5 class="card-title text-center">Sign Up</h5>
 
                   <!-- Page shown-->
-                  <form:form modelAttribute="infoVO" action="getinfo" method="POST"
+                  <form:form modelAttribute="infoVO" action="signup" method="POST"
                      onSubmit="return Validate()" name="infos">
                      <form class="form-signin">
                         <!-- 이름넣기 -->
                         <div class="form-label-group">
-                           <form:input path="username" name="username" type="text"
+                           <form:input path="userName" name="userName" type="text"
                               class="form-control" placeholder="이름 입력" required=""
                               autofocus=""></form:input>
                            <div id="username_error" class="val_error"></div>

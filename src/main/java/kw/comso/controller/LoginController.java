@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.MemberInfoVO;
 import kw.comso.service.MemberService;
+import kw.comso.util.Util;
 
 @Controller
 public class LoginController {
@@ -36,34 +37,26 @@ public class LoginController {
 	public void login(MemberInfoVO infoVO, HttpSession session, HttpServletResponse response) {
 		boolean is;
 
-		try {
-			if (this.memberService.checkPassword(infoVO)) {
-				AuthMemberInfoVO authMember = new AuthMemberInfoVO();
-				authMember.setEmail(infoVO.getEmail());
-				authMember.setAuth(infoVO.getAuth());
+		if (this.memberService.checkPassword(infoVO)) {
+			AuthMemberInfoVO authMember = new AuthMemberInfoVO();
+			authMember.setEmail(infoVO.getEmail());
+			authMember.setAuth(infoVO.getAuth());
 
-				session.setAttribute("authMember", authMember);
+			session.setAttribute("authMember", authMember);
 
-				response.sendRedirect("home");
-			} else {
-				System.out.println("실패");
-				response.sendRedirect("loginform");
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Util.sendRedirect(response, "home");
+		} else {
+			System.out.println("실패");
+			Util.sendRedirect(response, "loginform");
 		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public void logout(HttpSession session, HttpServletResponse response) {
-		try {
-			session.invalidate();
-			response.sendRedirect("loginform");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		session.invalidate();
+		Util.sendRedirect(response, "loginform");
+
 	}
 
 	@RequestMapping(value = "/home", method = { RequestMethod.POST, RequestMethod.GET })

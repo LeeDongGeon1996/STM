@@ -1,5 +1,7 @@
 package kw.comso.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kw.comso.service.MemberService;
+import kw.comso.util.Util;
 import kw.comso.dto.*;
 
 @Controller
@@ -28,20 +31,25 @@ public class MemberController {
 
 		return "signupform";
 	}
+	
+	
 
-	@RequestMapping(value = "/signup", method = { RequestMethod.POST, RequestMethod.GET })
-	public String getinfo(MemberInfoVO infoVO, ModelMap modelMap) {
-		boolean is;
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public void getinfo(MemberInfoVO infoVO, HttpServletResponse response) {
+		boolean isSucceed;
 
-		modelMap.addAttribute("name", infoVO.getUserName());
-		modelMap.addAttribute("password", infoVO.getPassword());
-		is = memberService.registerMember(infoVO);
+		isSucceed = memberService.registerMember(infoVO);
 
-		System.out.println(is);
-
+		System.out.println(isSucceed);
 		System.out.println("id=" + infoVO.getUserName());
 		System.out.println("pw=" + infoVO.getPassword());
-		return "loginform";
+		
+		if(isSucceed) {
+			Util.sendRedirect(response, "loginform");
+		}
+		else {
+			Util.sendRedirect(response, "signupform");
+		}
 	}
 
 }
