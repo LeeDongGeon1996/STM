@@ -29,21 +29,21 @@ public class MemberController {
 		return "signupform";
 	}
 
-	@RequestMapping(value = "/getinfo", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/signup", method = { RequestMethod.POST, RequestMethod.GET })
 	public String getinfo(MemberInfoVO infoVO, ModelMap modelMap) {
 		boolean is;
 
-		modelMap.addAttribute("name", infoVO.getName());
+		modelMap.addAttribute("name", infoVO.getUserName());
 		modelMap.addAttribute("password", infoVO.getPassword());
 		is = memberService.registerMember(infoVO);
+
 		System.out.println(is);
 
-		System.out.println("id=" + infoVO.getName());
+		System.out.println("id=" + infoVO.getUserName());
 		System.out.println("pw=" + infoVO.getPassword());
 		return "loginform";
 	}
-	
-	
+
 }
 
 /*
