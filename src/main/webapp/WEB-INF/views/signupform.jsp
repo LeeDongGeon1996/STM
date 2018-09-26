@@ -2,8 +2,6 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
-
-
 <head>
 <title>회원가입</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -18,8 +16,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
-
-
 <body>
 
 	<article class="container col-md-10 col-md-offset-1">
@@ -35,8 +31,6 @@
 		<div class="page-header col-md-6">
 			<!--오른쪽 박스-->
 			<h1>회원가입</h1>
-
-
 			<form:form modelAttribute="infoVO" action="getinfo" method="POST">
 				<div class="form-group">
 					<p>
@@ -58,13 +52,6 @@
 							placeholder="비밀번호" />
 					</p>
 					<p>
-						<!--비밀번호 확인하기-->
-						<label for="InputPassword2">비밀번호 확인</label>
-						<form:input path="password" class="form-control"
-							placeholder="비밀번호 확인" />
-					<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
-
-					<p>
 						<!--생일넣기-->
 						<label for="InputBirthday">생일</label>
 						<form:input path="birth" type="date" class="form-control"
@@ -82,9 +69,7 @@
 						<form:input path="pNum" type="tel" class="form-control"
 							placeholder="휴대폰 번호 : - 없이 입력해 주세요!" />
 					</p>
-
 				</div>
-
 				<p>
 					<input type="submit" value="Submit">
 				</p>

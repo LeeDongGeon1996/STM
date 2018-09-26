@@ -45,11 +45,22 @@
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
 
+	<bean id="AuthMemberInfoDAO" class="kw.comso.dao.impl.AuthMemberInfoDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+
 	<!-- Services -->
 	<bean id="memberService"
 		class="kw.comso.service.impl.MemberServiceImpl">
 		<property name="memberInfoDAO" ref="memberInfoDAO"></property>
 		<property name="memberRelationDAO" ref="memberRelationDAO"></property>
+
+	</bean>
+
+	<bean id="QuestionService"
+		class="kw.comso.service.impl.QuestionServiceImpl">
+		<property name="questionDAO" ref="questionDAO"></property>
+		<property name="testPaperDAO" ref="testPaperDAO"></property>
 
 	</bean>
 

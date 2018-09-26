@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kw.comso.dto.MemberInfoVO;
+import kw.comso.dto.QuestionVO;
+import kw.comso.service.QuestionService;
 
 @Controller
 public class UploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
+	@Autowired
+	private QuestionService questionService;
+	
 	@RequestMapping(value = "/testImg", method = RequestMethod.GET)
 	public String testImg() {
 		return "fileupload";
@@ -80,6 +86,13 @@ public class UploadController {
 				file.put("origName", origName);
 				file.put("sfile", serverFile);
 				resultList.add(file);
+				
+				QuestionVO q = new QuestionVO();
+				q.setImageLink(""+serverFile);
+				
+				System.out.println(q.getImageLink());
+				
+				questionService.registerQuestion("",q);
 
 			}
 
