@@ -71,7 +71,7 @@ function onLoad(){
 		<h2>
 			<label for="editor1">Document Editor</label>
 		</h2>
-		<textarea id="editor1">
+		<textarea id="editor1" readonly>
 		??????aasdfasdf
 
 

@@ -44,11 +44,12 @@ public class LoginController {
 	public void login(MemberInfoVO infoVO, HttpSession session, HttpServletResponse response) {
 		boolean is;
 
-		if (this.memberService.checkPassword(infoVO)) {
+		MemberInfoVO userAccount = this.memberService.checkPassword(infoVO);
+		if (userAccount != null) {
 			AuthMemberInfoVO authMember = new AuthMemberInfoVO();
-			authMember.setEmail(infoVO.getEmail());
-			authMember.setAuth(infoVO.getAuth());
-			authMember.setUserName(infoVO.getUserName());
+			authMember.setEmail(userAccount.getEmail());
+			authMember.setAuth(userAccount.getAuth());
+			authMember.setUserName(userAccount.getUserName());
 			
 			session.setAttribute("authMember", authMember);
 

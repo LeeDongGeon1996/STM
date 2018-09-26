@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean deleteMember(MemberInfoVO member) {
 
-		if (checkPassword(member))
+		if (checkPassword(member) != null)
 			return memberInfoDAO.removeMemberInfo(member);
 
 		return false;
@@ -58,16 +58,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean checkPassword(MemberInfoVO member) {
+	public MemberInfoVO checkPassword(MemberInfoVO member) {
 
-		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] { "password" });
+		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] { "password", "userName" });
 		if (account != null) {
-			System.out.println(member.getPassword());
-			System.out.println(account.getPassword());
-			return member.getPassword().equals(account.getPassword());
+			if(member.getPassword().equals(account.getPassword())) {
+				return account;
+			}
 		}
 
-		return false;
+		return null;
 	}
 
 	@Override
