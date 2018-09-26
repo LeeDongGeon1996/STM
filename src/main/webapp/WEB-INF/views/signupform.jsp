@@ -69,7 +69,7 @@ body {
 	width: 45%;
 	/* Link to your background image using in the property below! */
 	background: scroll center
-		url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+		url('/webapp/WEB-INF/views/image/STMimage.PNG');
 	background-size: cover;
 }
 
@@ -138,7 +138,7 @@ body {
 						<h5 class="card-title text-center">Sign Up</h5>
 
 						<!-- Page shown-->
-						<form:form modelAttribute="infoVO" action="login" method="POST"
+						<form:form modelAttribute="infoVO" action="getinfo" method="POST"
 							onSubmit="return Validate()" name="infos">
 							<form class="form-signin">
 								<!-- 이름넣기 -->
@@ -266,6 +266,12 @@ body {
 			email.focus();
 			return false;
 		}
+		/*if () {
+			email.style.border = "2px solid red";
+			email_error.textContent = "Duplicated email. Please type a different email.";
+			email.focus();
+			return false;
+		}*/
 		if (password.value == "") {
 			password.style.border = "2px solid red";
 			password_error.textContent = "Password is required";
