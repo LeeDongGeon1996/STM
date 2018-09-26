@@ -193,7 +193,8 @@ body {
 								</div>
 								<!-- 권한 -->
 								<div class="form-label-group">
-								<input type="radio" name="auth_info" value="1" checked/>선생님								
+								<form:input path="auth" name="auth" type="radio" value="1"	
+								class="form-control" placeholder="" required="" autofocus=""></form:input>		
 								<div id="auth_error" class="auth_error"></div>
 								</div>
 

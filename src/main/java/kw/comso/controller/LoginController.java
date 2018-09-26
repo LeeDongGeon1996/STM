@@ -63,7 +63,7 @@ public class LoginController {
 	public String home(MemberInfoVO infoVO, ModelMap modelMap) {
 		boolean is;
 
-		modelMap.addAttribute("name", infoVO.getUserName());
+		modelMap.addAttribute("userName", infoVO.getUserName());
 		modelMap.addAttribute("password", infoVO.getPassword());
 		is = memberService.registerMember(infoVO);
 		System.out.println(is);
