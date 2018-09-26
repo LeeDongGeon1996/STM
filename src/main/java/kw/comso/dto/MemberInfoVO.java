@@ -13,7 +13,7 @@ public class MemberInfoVO {
    
    //setter
    
-   public void setName(String userName) {
+   public void setUserName(String userName) {
       this.userName = userName;
    }
    public void setEmail(String email) {

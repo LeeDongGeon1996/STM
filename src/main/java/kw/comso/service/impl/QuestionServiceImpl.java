@@ -42,9 +42,9 @@ public class QuestionServiceImpl implements QuestionService {
 	public ArrayList<QuestionVO> getQuestion(String memberID) {
 		
 		//해당사용자로 등록된 문항 모두 가져오기.
-		String regex = "^" + memberID.hashCode();
+		String regex = "^" + String.valueOf(memberID.hashCode()).substring(1);
 		ArrayList<QuestionVO> questionList = this.questionDAO.findWithRegex("questionIDNum", regex);
-		
+
 		return questionList;
 	}
 
@@ -78,7 +78,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public boolean registerTestPaper(String memberID, TestPaperVO testPaper) {
 		
-		testPaper.setTestPaperIDNum(Util.createID(memberID));
+		//testPaper.setTestPaperIDNum(Util.createID(memberID));
 		
 		//중복처리???
 		return this.testPaperDAO.insertTestPaper(testPaper);

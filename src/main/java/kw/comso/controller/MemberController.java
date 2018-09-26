@@ -1,55 +1,57 @@
 package kw.comso.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kw.comso.service.MemberService;
+import kw.comso.util.Util;
 import kw.comso.dto.*;
 
 @Controller
 public class MemberController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+   private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-	@Autowired
-	private MemberService memberService;
+   @Autowired
+   private MemberService memberService;
 
-	@RequestMapping(value = "/insertinfo", method = RequestMethod.GET)
-	public String insertinfo(ModelMap modelMap) {
-		// VO 按眉积己
-		MemberInfoVO infoVO = new MemberInfoVO();
-		// Model俊 VO按眉 傈崔
-		modelMap.addAttribute("infoVO", infoVO);
+   @RequestMapping(value = "/insertinfo", method = RequestMethod.GET)
+   public String insertinfo(ModelMap modelMap) {
+      // VO 按眉积己
+      MemberInfoVO infoVO = new MemberInfoVO();
+      // Model俊 VO按眉 傈崔
+      modelMap.addAttribute("infoVO", infoVO);
 
+      return "signupform";
+   }
+   
+   
 
-		return "signupform";
-	}
+   @RequestMapping(value = "/signup", method = RequestMethod.POST)
+   public void getinfo(MemberInfoVO infoVO, HttpServletResponse response) {
+      boolean isSucceed;
 
-	@RequestMapping(value = "/signup", method = { RequestMethod.POST, RequestMethod.GET })
-	public String signup(MemberInfoVO infoVO, ModelMap modelMap) {
-		boolean is;
+      isSucceed = memberService.registerMember(infoVO);
 
-		modelMap.addAttribute("name", infoVO.getUserName());
-		modelMap.addAttribute("password", infoVO.getPassword());
-		is = memberService.registerMember(infoVO);
-		System.out.println(is);
+      System.out.println(isSucceed);
+      System.out.println("id=" + infoVO.getUserName());
+      System.out.println("pw=" + infoVO.getPassword());
+      
+      if(isSucceed) {
+         Util.sendRedirect(response, "loginform");
+      }
+      else {
+         Util.sendRedirect(response, "signupform");
+      }
+   }
 
-		System.out.println("id=" + infoVO.getUserName());
-		System.out.println("pw=" + infoVO.getPassword());
-		return "home";
-	}
-	
-	
 }
 
 /*

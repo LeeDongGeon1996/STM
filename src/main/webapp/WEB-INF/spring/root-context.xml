@@ -15,6 +15,8 @@
 		</property>
 	</bean>
 
+
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
@@ -43,6 +45,11 @@
 		<property name="mongoTemplate" ref="mongoTemplate" />
 	</bean>
 
+	<bean id="authMemberInfoDAO"
+		class="kw.comso.dao.impl.AuthMemberInfoDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+
 	<!-- Services -->
 	<bean id="memberService"
 		class="kw.comso.service.impl.MemberServiceImpl">
@@ -50,7 +57,7 @@
 		<property name="memberRelationDAO" ref="memberRelationDAO"></property>
 	</bean>
 
-	<bean id="QuestionService"
+	<bean id="questionService"
 		class="kw.comso.service.impl.QuestionServiceImpl">
 		<property name="questionDAO" ref="questionDAO"></property>
 		<property name="testPaperDAO" ref="testPaperDAO"></property>

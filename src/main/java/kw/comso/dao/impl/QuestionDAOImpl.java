@@ -2,6 +2,7 @@ package kw.comso.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.regex.Pattern;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -100,7 +101,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 		Query query = new Query();
 		query.addCriteria(Criteria.where(key).regex(regex));
-
+		System.out.println(regex);
+		
+		//만약 결과가 없어도 비어있는 리스트를 반환한다!!!!!!
 		ArrayList<QuestionVO> found = (ArrayList<QuestionVO>) this.mongoTemplate.find(query, QuestionVO.class,
 				TABLE_NAME);
 
