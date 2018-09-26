@@ -70,12 +70,12 @@ public class LoginController {
 	public String home(MemberInfoVO infoVO, ModelMap modelMap) {
 		boolean is;
 
-		modelMap.addAttribute("name", infoVO.getUsername());
+		modelMap.addAttribute("name", infoVO.getUserName());
 		modelMap.addAttribute("password", infoVO.getPassword());
 		is = memberService.registerMember(infoVO);
 		System.out.println(is);
 
-		System.out.println("id=" + infoVO.getUsername());
+		System.out.println("id=" + infoVO.getUserName());
 		System.out.println("pw=" + infoVO.getPassword());
 		return "home";
 	}

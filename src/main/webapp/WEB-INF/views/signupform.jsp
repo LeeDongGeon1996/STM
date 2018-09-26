@@ -69,7 +69,7 @@ body {
 	width: 45%;
 	/* Link to your background image using in the property below! */
 	background: scroll center
-		url('/webapp/WEB-INF/views/image/STMimage.PNG');
+		url('${pageContext.request.contextPath}/resources/image/STMimage.PNG');
 	background-size: cover;
 }
 
@@ -138,15 +138,15 @@ body {
 						<h5 class="card-title text-center">Sign Up</h5>
 
 						<!-- Page shown-->
-						<form:form modelAttribute="infoVO" action="getinfo" method="POST"
+						<form:form modelAttribute="infoVO" action="signup" method="POST"
 							onSubmit="return Validate()" name="infos">
 							<form class="form-signin">
 								<!-- 이름넣기 -->
 								<div class="form-label-group">
-									<form:input path="username" name="username" type="text"
+									<form:input path="userName" name="userName" type="text"
 										class="form-control" placeholder="이름 입력" required=""
 										autofocus=""></form:input>
-									<div id="username_error" class="val_error"></div>
+									<div id="userName_error" class="val_error"></div>
 								</div>
 								<!-- 이메일 넣기 -->
 								<div class="form-label-group">
@@ -191,6 +191,11 @@ body {
 										required="" autofocus=""></form:input>
 									<div id="pNum_error" class="val_error"></div>
 								</div>
+								<!-- 권한 -->
+								<div class="form-label-group">
+								<input type="radio" name="auth_info" value="1" checked/>선생님								
+								<div id="auth_error" class="auth_error"></div>
+								</div>
 
 								<!-- button -->
 								<hr class="my-4">
@@ -217,7 +222,7 @@ body {
 <!-- adding javascript for error message -->
 <script type="text/javascript">
 	//변수 선언
-	var username = document.forms["infos"]["username"];
+	var userName = document.forms["infos"]["userName"];
 	var email = document.forms["infos"]["email"];
 	var password = document.forms["infos"]["password"];
 	var passwordConfirm = document.forms["infos"]["passwordConfirm"];
@@ -228,7 +233,7 @@ body {
 	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
 	//에러 변수 선언
-	var username_error = document.getElementById("username_error");
+	var userName_error = document.getElementById("userName_error");
 	var email_error = document.getElementById("email_error");
 	var password_error = document.getElementById("password_error");
 	var passwordConfirm_error = document
@@ -238,7 +243,7 @@ body {
 	var pNum_error = document.getElementById("pNum_error");
 
 	//이벤트 리스너 등록
-	username.addEventListener("blur", usernameVerify, true);
+	userName.addEventListener("blur", userNameVerify, true);
 	email.addEventListener("blur", emailVerify, true);
 	password.addEventListener("blur", passwordVerify, true);
 	passwordConfirm.addEventListener("blur", passwordConfirmVerify, true);
@@ -248,21 +253,21 @@ body {
 
 	//Validate() 함수 등록
 	function Validate() {
-		if (username.value == "") {
-			username.style.border = "2px solid red";
-			username_error.textContent = "Name is required";
-			username.focus();
+		if (userName.value == "") {
+			userName.style.border = "2px solid red";
+			userName_error.textContent = "이름을 입력해주세요";
+			userName.focus();
 			return false;
 		}
 		if (email.value == "") {
 			email.style.border = "2px solid red";
-			email_error.textContent = "Email is required";
+			email_error.textContent = "이메일을 입력해주세요";
 			email.focus();
 			return false;
 		}
 		if (regExp.test(email.value) == false) {
 			email.style.border = "2px solid red";
-			email_error.textContent = "Proper email is required";
+			email_error.textContent = "정확한 이메일을 입력해주세요";
 			email.focus();
 			return false;
 		}
@@ -274,31 +279,31 @@ body {
 		}*/
 		if (password.value == "") {
 			password.style.border = "2px solid red";
-			password_error.textContent = "Password is required";
+			password_error.textContent = "비밀번호를 입력해주세요";
 			password.focus();
 			return false;
 		}
 		if (passwordConfirm.value == "") {
 			passwordConfirm.style.border = "2px solid red";
-			passwordConfirm_error.textContent = "Password confirmation is required";
+			passwordConfirm_error.textContent = "비밀번호를 재입력 해주세요";
 			passwordConfirm.focus();
 			return false;
 		}
 		if (birth.value == "") {
 			birth.style.border = "2px solid red";
-			birth_error.textContent = "Birthday is required";
+			birth_error.textContent = "생년월일을 입력해주세요";
 			birth.focus();
 			return false;
 		}
 		if (address.value == "") {
 			address.style.border = "2px solid red";
-			address_error.textContent = "Address is required";
+			address_error.textContent = "주소를 입력해주세요";
 			address.focus();
 			return false;
 		}
 		if (pNum.value == "") {
 			pNum.style.border = "2px solid red";
-			pNum_error.textContent = "Phone number is required";
+			pNum_error.textContent = "전화번호를 입력해주세요";
 			pNum.focus();
 			return false;
 		}
@@ -318,16 +323,16 @@ body {
 		if (password.value != passwordConfirm.value) {
 			password.style.border = "2px solid red";
 			passwordConfirm.style.border = "2px solid red";
-			passwordConfirm_error.innerHTML = "Password does not match";
+			passwordConfirm_error.innerHTML = "비밀번호가 일치하지 않습니다.";
 			return false;
 		}
 	}
 
 	//event handler functions
-	function usernameVerify() {
-		if (username.value != "") {
-			username.style = "#7ba6ed";
-			username_error.innerHTML = "<span style='color: green'>Complete</span>";
+	function userNameVerify() {
+		if (userName.value != "") {
+			userName.style = "#7ba6ed";
+			userName_error.innerHTML = "<span style='color: green'>완료</span>";
 			return true;
 		}
 	}
@@ -336,7 +341,7 @@ body {
 		if (email.value != "") {
 			if (regExp.test(email.value) == true) {
 				email.style = "#7ba6ed";
-				email_error.innerHTML = "<span style='color: green'>Complete</span>";
+				email_error.innerHTML = "<span style='color: green'>완료</span>";
 				return true;
 			}
 		}
@@ -346,7 +351,7 @@ body {
 		if (password.value != "") {
 			if (password.value != passwordConfirm.value) {
 				password.style = "#7ba6ed";
-				password_error.innerHTML = "<span style='color: green'>Complete</span>";
+				password_error.innerHTML = "<span style='color: green'>완료</span>";
 				return true;
 			}
 		}
@@ -356,7 +361,7 @@ body {
 		if (passwordConfirm.value != "") {
 			passwordConfirm.style = "#7ba6ed";
 			password.style = "#7ba6ed";
-			passwordConfirm_error.innerHTML = "<span style='color: green'>Complete</span>";
+			passwordConfirm_error.innerHTML = "<span style='color: green'>완료</span>";
 			return true;
 		}
 	}
@@ -364,7 +369,7 @@ body {
 	function birthVerify() {
 		if (birth.value != "") {
 			birth.style = "#7ba6ed";
-			birth_error.innerHTML = "<span style='color: green'>Complete</span>";
+			birth_error.innerHTML = "<span style='color: green'>완료</span>";
 			return true;
 		}
 	}
@@ -372,7 +377,7 @@ body {
 	function addressVerify() {
 		if (address.value != "") {
 			address.style = "#7ba6ed";
-			address_error.innerHTML = "<span style='color: green'>Complete</span>";
+			address_error.innerHTML = "<span style='color: green'>완료</span>";
 			return true;
 		}
 	}
@@ -383,7 +388,7 @@ body {
 			if (!isNaN(pNum.value) == true) {
 				if (pNum.value.length == 11) {
 					pNum.style = "#7ba6ed";
-					pNum_error.innerHTML = "<span style='color: green'>Complete</span>";
+					pNum_error.innerHTML = "<span style='color: green'>완료</span>";
 					return true;
 				}
 			}
