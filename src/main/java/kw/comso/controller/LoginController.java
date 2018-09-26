@@ -48,7 +48,8 @@ public class LoginController {
 			AuthMemberInfoVO authMember = new AuthMemberInfoVO();
 			authMember.setEmail(infoVO.getEmail());
 			authMember.setAuth(infoVO.getAuth());
-
+			authMember.setUserName(infoVO.getUserName());
+			
 			session.setAttribute("authMember", authMember);
 
 			Util.sendRedirect(response, "home");
