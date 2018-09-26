@@ -40,7 +40,7 @@ public class MemberController {
 
 		System.out.println("id=" + infoVO.getName());
 		System.out.println("pw=" + infoVO.getPassword());
-		return "home";
+		return "loginform";
 	}
 	
 	
