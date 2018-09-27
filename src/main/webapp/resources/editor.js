@@ -175,6 +175,9 @@ function createEditor() {
 var QuestionList;
 var editor;
 var questionCount = 0;
+var passageDiv;
+var passageInput;
+
 function loadQuestionList(jsonQuestionList){
 	document.getElementById('editor1').innerHTML = "<div id=\'question" + questionCount + "\'>" +jsonQuestionList[0].passage + "</div>";
 	alert(jsonQuestionList[0].passage);
@@ -186,3 +189,20 @@ function insertQuestion(){
 	
 }
 function removeQuestion(){}
+
+function onPassageChange(){
+	var passageDiv;
+	if(passageDiv == null){
+		
+		passageDiv = document.getElementById('passageDiv');
+	}
+	if(passageInput == null){
+		passageInput = document.getElementById('passageInput123');
+		
+	}
+	
+	var e = document.getElementById('editor1');
+
+	document.getElementById('editor1').value = "test message";
+	
+}

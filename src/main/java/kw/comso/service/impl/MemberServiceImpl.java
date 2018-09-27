@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberInfoVO checkPassword(MemberInfoVO member) {
 
-		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] { "password", "userName" });
+		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] { "email", "password", "userName" });
 		if (account != null) {
 			if(member.getPassword().equals(account.getPassword())) {
 				return account;

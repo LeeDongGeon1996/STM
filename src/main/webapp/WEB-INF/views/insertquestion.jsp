@@ -28,9 +28,9 @@ function onLoad(){
 							<form class="form-signin">
 								<!-- 지문넣기 -->
 								<div class="form-label-group">
-									<form:input path="passage" name="passage" type="text"
+									<form:input path="passage" name="passage" type="text" id="passageInput123"
 										class="form-control" placeholder="지문 입력" required=""
-										autofocus=""></form:input>
+										autofocus="" onchange="onPassageChange();"></form:input>
 									<div id="username_error" class="val_error"></div>
 								</div>
 								<!-- 이미지링크 넣기 -->
@@ -71,11 +71,9 @@ function onLoad(){
 		<h2>
 			<label for="editor1">Document Editor</label>
 		</h2>
-		<textarea id="editor1" readonly>
+		<textarea id="editor1">
 		??????aasdfasdf
 
-
-		
 		!!!!!
 	</textarea>
 		
