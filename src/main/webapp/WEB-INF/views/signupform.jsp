@@ -66,10 +66,10 @@ body {
 }
 
 .card-signin .card-img-left {
-	width: 45%;
+	width: 50%;
 	/* Link to your background image using in the property below! */
 	background: scroll center
-		url('${pageContext.request.contextPath}/resources/image/STMimage.PNG');
+		url('${pageContext.request.contextPath}/resources/image/stmImage.PNG');
 	background-size: cover;
 }
 
@@ -187,16 +187,17 @@ body {
 								<div class="form-label-group">
 									<form:input path="pNum" name="pNum" type="tel"
 										pattern="[0-9]{11}" title="01012341234 형식으로 입력해주세요"
-										class="form-control" placeholder="휴대폰 번호 : 숫자로만 입력해 주세요!"
+										class="form-control" placeholder="휴대폰 번호 : 11자리 숫자로만 입력해 주세요!"
 										required="" autofocus=""></form:input>
 									<div id="pNum_error" class="val_error"></div>
 								</div>
 								<!-- 권한 -->
 								<div class="form-label-group">
-								<form:input path="auth" name="auth" type="text"	
-								class="form-control" placeholder="" required="" autofocus=""></form:input>		
-								<div id="auth_error" class="auth_error"></div>
-								</div>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;선생님 <form:radiobutton path="auth" value="1" name="auth" onclick="authVerify();"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								학생 <form:radiobutton path="auth" value="2" name="auth" onclick="authVerify();"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								개인 사용자 <form:radiobutton path="auth" value="3" name="auth" onclick="authVerify();"/>
+								<div id="auth_error" class="val_error"></div>
+								</div>		
 
 								<!-- button -->
 								<hr class="my-4">
@@ -230,6 +231,7 @@ body {
 	var birth = document.forms["infos"]["birth"];
 	var address = document.forms["infos"]["address"];
 	var pNum = document.forms["infos"]["pNum"];
+	var auth = document.forms["infos"]["auth"];
 	var pString = pNum.value.length;
 	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
@@ -237,11 +239,11 @@ body {
 	var userName_error = document.getElementById("userName_error");
 	var email_error = document.getElementById("email_error");
 	var password_error = document.getElementById("password_error");
-	var passwordConfirm_error = document
-			.getElementById("passwordConfirm_error");
+	var passwordConfirm_error = document.getElementById("passwordConfirm_error");
 	var birth_error = document.getElementById("birth_error");
 	var address_error = document.getElementById("address_error");
 	var pNum_error = document.getElementById("pNum_error");
+	var auth_error = document.getElementById("auth_error");
 
 	//이벤트 리스너 등록
 	userName.addEventListener("blur", userNameVerify, true);
@@ -251,6 +253,7 @@ body {
 	birth.addEventListener("blur", birthVerify, true);
 	address.addEventListener("blur", addressVerify, true);
 	pNum.addEventListener("blur", pNumVerify, true);
+	auth.addEventListener("onclick", authVerify, true);
 
 	//Validate() 함수 등록
 	function Validate() {
@@ -308,17 +311,17 @@ body {
 			pNum.focus();
 			return false;
 		}
-		/*if (isNaN(pNum.value) == true) {
+		if ((!isNaN(pNum.value) != true) || (pNum.value.length != 11)) {
 			pNum.style.border = "2px solid red";
-			pNum_error.textContent = "Proper phone number is required";
+			pNum_error.textContent = "정확한 전화번호를 입력해주세요";
 			pNum.focus();
 			return false;
 		}
-		if (pNum.value.length != 11) {
-			pNum_error.textContent = "Type 11 numbers";
-			pNum.focus();
-			return false;
-		}*/
+		if(auth.value != 1 && auth.value !=2 && auth.value != 3) {	
+			auth_error.textContent = "사용자 권한을 선택해주세요";
+			//auth.focus();
+			return false;			
+		}
 
 		//비밀번호 중복확인
 		if (password.value != passwordConfirm.value) {
@@ -384,7 +387,6 @@ body {
 	}
 
 	function pNumVerify() {
-
 		if (pNum.value != "") {
 			if (!isNaN(pNum.value) == true) {
 				if (pNum.value.length == 11) {
@@ -393,6 +395,12 @@ body {
 					return true;
 				}
 			}
+		}
+	}
+	function authVerify() {
+		if (auth.value >= 1) {
+			auth_error.innerHTML = "<span style='color: green'>완료</span>";
+			return true;
 		}
 	}
 </script>
