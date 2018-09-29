@@ -70,7 +70,7 @@ body {
 	/* Link to your background image using in the property below! */
 	background: scroll center
 		url('${pageContext.request.contextPath}/resources/image/stmImage.PNG');
-	background-size: cover;
+	background-size: 600px;
 }
 
 .card-signin .card-body {
