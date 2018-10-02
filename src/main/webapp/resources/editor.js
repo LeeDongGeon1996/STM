@@ -178,8 +178,9 @@ var questionCount = 0;
 var passageDiv;
 var passageInput;
 
-function loadQuestionList(jsonQuestionList){
-	document.getElementById('editor1').innerHTML = "<div id=\'question" + questionCount + "\'>" +jsonQuestionList[0].passage + "</div>";
+function loadQuestionList(jsonQuestionList, link){
+	
+	document.getElementById('editor1').innerHTML = "<img src=  \'"  + jsonQuestionList[0].imageLink  + "\' />";
 	alert(jsonQuestionList[0].passage);
 	
 }

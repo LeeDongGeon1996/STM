@@ -9,9 +9,9 @@
 <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/resources/editor.js"></script>
 <script>
+
 function onLoad(){
 	createEditor();
-	alert(questionList);
 }
 </script>
 </head>

@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.MemberInfoVO;
 import kw.comso.dto.QuestionVO;
+import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
 
@@ -38,6 +40,9 @@ public class UploadController {
 	@Autowired
 	private QuestionService questionService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	@RequestMapping(value = "/testImg", method = RequestMethod.GET)
 	public String testImg(HttpSession session) {
 		
@@ -46,9 +51,10 @@ public class UploadController {
 	}
 	
 	@RequestMapping(value = "/fileUpload")
-	public Map fileUpload(HttpServletRequest req, HttpServletResponse rep) {
+	public Map fileUpload(HttpServletRequest req, HttpServletResponse rep, HttpSession session) {
 		
-		String path = req.getSession().getServletContext().getRealPath("/webapp/resources/testImg");
+		String relativePath = "/resources/testImg";
+		String path = "C:\\Users\\junma\\Desktop\\imgPath";
 		System.out.println(path);
 		Map returnObject = new HashMap();
 
@@ -92,13 +98,17 @@ public class UploadController {
 				file.put("origName", origName);
 				file.put("sfile", serverFile);
 				resultList.add(file);
+		
+				AuthMemberInfoVO member = memberService.checkAuth(session, rep);
+				if (member == null)
+					return null;
 				
 				QuestionVO q = new QuestionVO();
-				q.setImageLink(""+serverFile);
+				q.setImageLink("http://localhost:8181/st2m/img"+"/"+saveFileName);
 				
 				System.out.println(q.getImageLink());
 				
-				questionService.registerQuestion("",q);
+				questionService.registerQuestion(member.getEmail(),q);
 
 			}
 
