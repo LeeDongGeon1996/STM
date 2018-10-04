@@ -5,7 +5,7 @@
 <html>
 
 <head>
-<title>로그인 시험중</title>
+<title>로그인 페이지</title>
 <!--  Jquery -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
