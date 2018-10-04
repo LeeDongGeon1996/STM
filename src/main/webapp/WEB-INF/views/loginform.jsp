@@ -70,8 +70,8 @@ body {
 	width: 45%;
 	/* Link to your background image using in the property below! */
 	background: scroll center
-		url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-	background-size: cover;
+		url('${pageContext.request.contextPath}/resources/image/stmImage.PNG');
+	background-size: 450px;
 }
 
 .card-signin .card-body {
@@ -137,7 +137,8 @@ body {
 						<h5 class="card-title text-center">Login</h5>
 
 						<!-- Page shown-->
-						<form:form modelAttribute="infoVO" action="login" method="POST">
+						<form:form modelAttribute="infoVO" action="login"
+							onSubmit="return Validate()" method="POST">
 							<form class="form-signin">
 
 								<div class="form-label-group">
@@ -150,6 +151,7 @@ body {
 										class="form-control" placeholder="Type your password"
 										required="" autofocus=""></form:input>
 								</div>
+
 
 								<!-- button -->
 								<hr class="my-4">
@@ -169,12 +171,10 @@ body {
 								</div>
 							</form>
 						</form:form>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>

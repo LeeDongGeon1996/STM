@@ -28,10 +28,10 @@ public class LoginController {
 		MemberInfoVO infoVO = new MemberInfoVO();
 		// Model에 VO객체 전달
 		modelMap.addAttribute("infoVO", infoVO);
-		
-		//로그인 실패처리
+
+		// 로그인 실패처리
 		int tryLoginVal = 0;
-		if(session.getAttribute("tryLogin") != null) {
+		if (session.getAttribute("tryLogin") != null) {
 			session.removeAttribute("tryLogin");
 			tryLoginVal = 1;
 		}
@@ -50,7 +50,7 @@ public class LoginController {
 			authMember.setEmail(userAccount.getEmail());
 			authMember.setAuth(userAccount.getAuth());
 			authMember.setUserName(userAccount.getUserName());
-			
+
 			session.setAttribute("authMember", authMember);
 
 			Util.sendRedirect(response, "home");
@@ -75,7 +75,7 @@ public class LoginController {
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 		if (member == null)
 			return null;
-		
+
 		modelMap.addAttribute("userName", member.getUserName());
 		System.out.println("===========Login===============");
 		System.out.println("userName=" + member.getUserName());

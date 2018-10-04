@@ -60,9 +60,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberInfoVO checkPassword(MemberInfoVO member) {
 
-		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] { "email", "password", "userName" });
+		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(),
+				new String[] { "email", "password", "userName" });
 		if (account != null) {
-			if(member.getPassword().equals(account.getPassword())) {
+			if (member.getPassword().equals(account.getPassword())) {
 				return account;
 			}
 		}
@@ -82,6 +83,6 @@ public class MemberServiceImpl implements MemberService {
 		// 권한에서막히면 적절히 리다이렉션해주고 member는 null로 초기화해서 리턴되도록.
 
 		return member;
-	}
 
+	}
 }
