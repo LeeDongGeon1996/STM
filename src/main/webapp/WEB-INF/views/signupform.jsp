@@ -29,7 +29,7 @@
 <meta name="author" content="JSFiddle">
 <meta name="copyright" content="share alike">
 
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow">	
 <meta name="googlebot" content="index, follow">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
