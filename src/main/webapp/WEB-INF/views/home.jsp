@@ -67,11 +67,11 @@ body {
   <body>
     <button class=" btn-home">STM</button>
     <div>
-      <textarea class="textarea-smallN">시험지 제작 툴 </textarea>
-      <textarea class="textarea-bigN">STM</textarea>
+      <text class="text-smallN">시험지 제작 툴 </text>
+      <text class="text-bigN">STM</text>
     </div>
     <div>
-      <textarea class="textarea-exp">Make your own optimized test paper using STM</textarea>
+      <text class="text-exp">Make your own optimized test paper using STM</text>
     </div>
     <!--button-->
     <button class=" btn-paper">내 문제</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

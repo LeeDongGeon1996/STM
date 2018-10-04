@@ -1,4 +1,4 @@
-<!-- 문제 추가 -->
+<!-- 내 시험지함 -->
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -18,7 +18,7 @@ body {
 </style>
 
   <head>
-    <title>문제 추가 화면</title>
+    <title>시험지함 화면</title>
   </head>
 
   <body>
