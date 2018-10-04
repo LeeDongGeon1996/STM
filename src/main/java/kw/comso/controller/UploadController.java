@@ -12,9 +12,12 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,22 +25,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.MemberInfoVO;
+import kw.comso.dto.QuestionVO;
+import kw.comso.service.MemberService;
+import kw.comso.service.QuestionService;
+import kw.comso.util.Util;
 
 @Controller
 public class UploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
+	@Autowired
+	private QuestionService questionService;
+	
+	@Autowired
+	private MemberService memberService;
+	
 	@RequestMapping(value = "/testImg", method = RequestMethod.GET)
-	public String testImg() {
+	public String testImg(HttpSession session) {
+		
+		
 		return "fileupload";
 	}
 	
 	@RequestMapping(value = "/fileUpload")
-	public Map fileUpload(HttpServletRequest req, HttpServletResponse rep) {
-		String path = "C://Users//junma//Desktop//imgPath";
-
+	public Map fileUpload(HttpServletRequest req, HttpServletResponse rep, HttpSession session) {
+		
+		String relativePath = "/resources/testImg";
+		String path = "C:\\Users\\junma\\Desktop\\imgPath";
+		System.out.println(path);
 		Map returnObject = new HashMap();
 
 		try {
@@ -80,6 +98,17 @@ public class UploadController {
 				file.put("origName", origName);
 				file.put("sfile", serverFile);
 				resultList.add(file);
+		
+				AuthMemberInfoVO member = memberService.checkAuth(session, rep);
+				if (member == null)
+					return null;
+				
+				QuestionVO q = new QuestionVO();
+				q.setImageLink("http://localhost:8181/st2m/img"+"/"+saveFileName);
+				
+				System.out.println(q.getImageLink());
+				
+				questionService.registerQuestion(member.getEmail(),q);
 
 			}
 
@@ -97,6 +126,7 @@ public class UploadController {
 			e.printStackTrace(); 
 		}
 		
+		Util.sendRedirect(rep, "testImg");
 		return null;
 		
 	}

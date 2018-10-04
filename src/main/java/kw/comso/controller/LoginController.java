@@ -19,65 +19,67 @@ import kw.comso.util.Util;
 @Controller
 public class LoginController {
 
-   @Autowired
-   private MemberService memberService;
+	@Autowired
+	private MemberService memberService;
 
-   @RequestMapping(value = "/loginform", method = RequestMethod.GET)
-   public String loginform(ModelMap modelMap, HttpSession session) {
-      // VO 객체생성
-      MemberInfoVO infoVO = new MemberInfoVO();
-      // Model에 VO객체 전달
-      modelMap.addAttribute("infoVO", infoVO);
-      
-      //로그인 실패처리
-      int tryLoginVal = 0;
-      if(session.getAttribute("tryLogin") != null) {
-         session.removeAttribute("tryLogin");
-         tryLoginVal = 1;
-      }
-      modelMap.addAttribute("try", tryLoginVal);
+	@RequestMapping(value = "/loginform", method = RequestMethod.GET)
+	public String loginform(ModelMap modelMap, HttpSession session) {
+		// VO 객체생성
+		MemberInfoVO infoVO = new MemberInfoVO();
+		// Model에 VO객체 전달
+		modelMap.addAttribute("infoVO", infoVO);
 
-      return "loginform";
-   }
+		// 로그인 실패처리
+		int tryLoginVal = 0;
+		if (session.getAttribute("tryLogin") != null) {
+			session.removeAttribute("tryLogin");
+			tryLoginVal = 1;
+		}
+		modelMap.addAttribute("try", tryLoginVal);
 
-   @RequestMapping(value = "/login", method = RequestMethod.POST)
-   public void login(MemberInfoVO infoVO, HttpSession session, HttpServletResponse response) {
-      boolean is;
+		return "loginform";
+	}
 
-      if (this.memberService.checkPassword(infoVO)) {
-         AuthMemberInfoVO authMember = new AuthMemberInfoVO();
-         authMember.setEmail(infoVO.getEmail());
-         authMember.setAuth(infoVO.getAuth());
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public void login(MemberInfoVO infoVO, HttpSession session, HttpServletResponse response) {
+		boolean is;
 
-         session.setAttribute("authMember", authMember);
+		MemberInfoVO userAccount = this.memberService.checkPassword(infoVO);
+		if (userAccount != null) {
+			AuthMemberInfoVO authMember = new AuthMemberInfoVO();
+			authMember.setEmail(userAccount.getEmail());
+			authMember.setAuth(userAccount.getAuth());
+			authMember.setUserName(userAccount.getUserName());
 
-         Util.sendRedirect(response, "home");
-      } else {
-         System.out.println("실패");
-         session.setAttribute("tryLogin", infoVO);
-         Util.sendRedirect(response, "loginform");
-      }
-   }
+			session.setAttribute("authMember", authMember);
 
-   @RequestMapping(value = "/logout", method = RequestMethod.POST)
-   public void logout(HttpSession session, HttpServletResponse response) {
+			Util.sendRedirect(response, "home");
+		} else {
+			System.out.println("실패");
+			session.setAttribute("tryLogin", infoVO);
+			Util.sendRedirect(response, "loginform");
+		}
+	}
 
-      session.invalidate();
-      Util.sendRedirect(response, "loginform");
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public void logout(HttpSession session, HttpServletResponse response) {
 
-   }
+		session.invalidate();
+		Util.sendRedirect(response, "loginform");
 
-   @RequestMapping(value = "/home", method = RequestMethod.GET)
-   public String home(ModelMap modelMap, HttpSession session, HttpServletResponse response) {
+	}
 
-      AuthMemberInfoVO member = memberService.checkAuth(session, response);
-      if (member == null)
-         return null;
-      
-      modelMap.addAttribute("userName", member.getUserName());
-      System.out.println("===========Login===============");
-      System.out.println("userName=" + member.getUserName());
-      System.out.println("Email=" + member.getEmail());
-      return "home";
-   }
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(ModelMap modelMap, HttpSession session, HttpServletResponse response) {
+
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+
+		modelMap.addAttribute("userName", member.getUserName());
+		System.out.println("===========Login===============");
+		System.out.println("userName=" + member.getUserName());
+		System.out.println("Email=" + member.getEmail());
+		return "home";
+	}
 }

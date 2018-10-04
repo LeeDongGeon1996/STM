@@ -10,6 +10,9 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
+	
+	
+	
 	<!-- 브라우저가 multipart/form-data 데이터로 보내는 파일을 처리하기 위한 MultipartResolver 클래스를 
 		bean으로 등록 -->
 	<beans:bean id="multipartResolver"
@@ -23,6 +26,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/js/**" location="/js/"/>
+	<resources mapping="C:/Users/junma/Desktop/imgPath/**" location="/img/**" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
@@ -30,7 +34,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
 	<context:component-scan base-package="kw.comso" />	
 	
 	

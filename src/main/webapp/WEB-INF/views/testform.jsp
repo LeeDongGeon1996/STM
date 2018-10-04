@@ -4,8 +4,15 @@
 
 <!doctype html>
 <html>
+  <head>
+    <title>시험지함 화면</title>
+  </head>
 
-<style>
+  <body>
+    <button class=" btn-home">STM</button>
+  </body>
+  
+  <style>
 body {
   background-color: rgb(23, 186, 239);
 }
@@ -14,14 +21,6 @@ body {
   background-color: transparent;
   border: none;
 }
-
 </style>
-
-  <head>
-    <title>시험지함 화면</title>
-  </head>
-
-  <body>
-    <button class=" btn-home">STM</button>
-  </body>
+  
 </html>

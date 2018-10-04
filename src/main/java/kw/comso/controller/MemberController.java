@@ -17,40 +17,37 @@ import kw.comso.dto.*;
 @Controller
 public class MemberController {
 
-   private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-   @Autowired
-   private MemberService memberService;
+	@Autowired
+	private MemberService memberService;
 
-   @RequestMapping(value = "/insertinfo", method = RequestMethod.GET)
-   public String insertinfo(ModelMap modelMap) {
-      // VO 按眉积己
-      MemberInfoVO infoVO = new MemberInfoVO();
-      // Model俊 VO按眉 傈崔
-      modelMap.addAttribute("infoVO", infoVO);
+	@RequestMapping(value = "/insertinfo", method = RequestMethod.GET)
+	public String insertinfo(ModelMap modelMap) {
+		// VO 按眉积己
+		MemberInfoVO infoVO = new MemberInfoVO();
+		// Model俊 VO按眉 傈崔
+		modelMap.addAttribute("infoVO", infoVO);
 
-      return "signupform";
-   }
-   
-   
+		return "signupform";
+	}
 
-   @RequestMapping(value = "/signup", method = RequestMethod.POST)
-   public void getinfo(MemberInfoVO infoVO, HttpServletResponse response) {
-      boolean isSucceed;
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public void getinfo(MemberInfoVO infoVO, HttpServletResponse response) {
+		boolean isSucceed;
 
-      isSucceed = memberService.registerMember(infoVO);
+		isSucceed = memberService.registerMember(infoVO);
 
-      System.out.println(isSucceed);
-      System.out.println("id=" + infoVO.getUserName());
-      System.out.println("pw=" + infoVO.getPassword());
-      
-      if(isSucceed) {
-         Util.sendRedirect(response, "loginform");
-      }
-      else {
-         Util.sendRedirect(response, "signupform");
-      }
-   }
+		System.out.println(isSucceed);
+		System.out.println("id=" + infoVO.getUserName());
+		System.out.println("pw=" + infoVO.getPassword());
+
+		if (isSucceed) {
+			Util.sendRedirect(response, "loginform");
+		} else {
+			Util.sendRedirect(response, "signupform");
+		}
+	}
 
 }
 

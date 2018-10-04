@@ -31,6 +31,9 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
 	
 	// getter
 	public String getQuestionIDNum() {
@@ -50,5 +53,8 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	}
 	public String getAnswer() {
 		return this.answer;
+	}
+	public String getOwner() {
+		return owner;
 	}
 }

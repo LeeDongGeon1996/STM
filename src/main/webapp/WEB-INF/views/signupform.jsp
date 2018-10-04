@@ -193,11 +193,17 @@ body {
 								</div>
 								<!-- 권한 -->
 								<div class="form-label-group">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;선생님 <form:radiobutton path="auth" value="1" name="auth" onclick="authVerify();"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								학생 <form:radiobutton path="auth" value="2" name="auth" onclick="authVerify();"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								개인 사용자 <form:radiobutton path="auth" value="3" name="auth" onclick="authVerify();"/>
-								<div id="auth_error" class="val_error"></div>
-								</div>		
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;선생님
+									<form:radiobutton path="auth" value="1" name="auth"
+										onclick="authVerify();" />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 학생
+									<form:radiobutton path="auth" value="2" name="auth"
+										onclick="authVerify();" />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인 사용자
+									<form:radiobutton path="auth" value="3" name="auth"
+										onclick="authVerify();" />
+									<div id="auth_error" class="val_error"></div>
+								</div>
 
 								<!-- button -->
 								<hr class="my-4">
@@ -403,4 +409,5 @@ body {
 			return true;
 		}
 	}
+>>>>>>> refs/remotes/origin/KHR_br
 </script>

@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean deleteMember(MemberInfoVO member) {
 
-		if (checkPassword(member))
+		if (checkPassword(member) != null)
 			return memberInfoDAO.removeMemberInfo(member);
 
 		return false;
@@ -58,16 +58,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean checkPassword(MemberInfoVO member) {
+	public MemberInfoVO checkPassword(MemberInfoVO member) {
 
-		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(), new String[] { "password" });
+		MemberInfoVO account = this.memberInfoDAO.findOne("email", member.getEmail(),
+				new String[] { "email", "password", "userName" });
 		if (account != null) {
-			System.out.println(member.getPassword());
-			System.out.println(account.getPassword());
-			return member.getPassword().equals(account.getPassword());
+			if (member.getPassword().equals(account.getPassword())) {
+				return account;
+			}
 		}
 
-		return false;
+		return null;
 	}
 
 	@Override
@@ -75,14 +76,13 @@ public class MemberServiceImpl implements MemberService {
 
 		AuthMemberInfoVO member = (AuthMemberInfoVO) session.getAttribute("authMember");
 
-		if (member == null) 
+		if (member == null)
 			Util.sendRedirect(response, "loginform");
 
-			// 권한체크는 어떻게할지...(구현해야함)
-			// 권한에서막히면 적절히 리다이렉션해주고 member는 null로 초기화해서 리턴되도록.
+		// 권한체크는 어떻게할지...(구현해야함)
+		// 권한에서막히면 적절히 리다이렉션해주고 member는 null로 초기화해서 리턴되도록.
 
-			return member;
-		
+		return member;
 
 	}
 }
