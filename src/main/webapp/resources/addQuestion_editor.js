@@ -243,3 +243,63 @@ function onChoiceChange() {
 	choiceDiv.setText(choiceInput.value);
 	choiceInput.focus();
 }
+
+var imgDiv;
+
+function onFileSelected(file) {
+
+	// 파일의 인자로 input element의 files를 전달받습니다.
+	
+	if (imgDiv == null) {
+		createDiv();
+	}
+	
+	var fileReader = new FileReader();
+	// fileReader객체로 input 태그에서 받아온 첫번째 파일의 URL을 받아옵니다.
+	fileReader.readAsDataURL(file[0]);
+
+	// 파일을 다읽어오면 콜백onload합수로 이미지 태그를 에디터안에 넣어줍니다.
+	fileReader.onload = function() {
+		// var preview = CKEDITOR.dom.element
+		// .createFromHtml('<img id=\"preview1\" width=\'' + 300
+		// + '\' src=\'' + fileReader.result + '\' >');
+		// CKEDITOR.instances.editor1.insertElement(preview);
+		
+		imgDiv.setHtml('<img id=\"preview1\" width=\'' + 300
+								+ '\' src=\'' + fileReader.result + '\' >');
+	}
+
+}
+
+function createDiv() {
+
+	createForm();
+
+	if (passageDiv == null) {
+		passageDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="passageDiv"></div><br>');
+		CKEDITOR.instances.editor1.insertElement(passageDiv);
+	}
+	if (choiceDiv == null) {
+		choiceDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="choiceDiv"></div><br>');
+		CKEDITOR.instances.editor1.insertElement(choiceDiv);
+	}
+	if (imgDiv == null){
+		imgDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="imgDiv"></div><br>');
+		CKEDITOR.instances.editor1.insertElement(imgDiv);
+	}
+}
+
+function createForm() {
+	var editor = CKEDITOR.instances.editor1;
+
+	editor.document
+			.getBody()
+			.appendHtml(
+					'<DIV>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>         <TABLE class=\'header\' >          </TABLE>     </DIV>     <DIV class=\'content\'>         <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>');
+	// editor.document.appendStyleSheet('/innerEditor.css');
+
+	// editor.document.getById()
+}

@@ -47,7 +47,7 @@
 							<form class="form-signin">
 
 								<!--  이미지 넣기  -->
-								파일 : <input type="file" name="file" placeholder="파일 선택"><br>
+								파일 : <input type="file" name="file" placeholder="파일 선택" onchange="onFileSelected(this.files)"><br>
 
 								<!-- 지문넣기 -->
 								<div class="form-label-group">
