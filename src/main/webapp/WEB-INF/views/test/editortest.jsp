@@ -33,5 +33,6 @@ function onLoad(){
 </body>
 <script>
 loadQuestionList(${questionList});
+CKEDITOR.config.imageResize.maxWidth=100;
 </script>
 </html>

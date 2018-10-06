@@ -53,7 +53,7 @@ public class QuestionController {
 		}
 		modelMap.addAttribute("try", tryRegiVal);
 
-		return "insertquestion";
+		return "test/insertquestion";
 	}
 
 	@RequestMapping(value = "/registerquestion", method = RequestMethod.POST)

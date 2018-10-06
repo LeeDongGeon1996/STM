@@ -80,6 +80,6 @@ public class LoginController {
 		System.out.println("===========Login===============");
 		System.out.println("userName=" + member.getUserName());
 		System.out.println("Email=" + member.getEmail());
-		return "home";
+		return "test/home";
 	}
 }
