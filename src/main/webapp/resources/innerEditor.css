@@ -1,5 +1,9 @@
 @charset "EUC-KR";
 
+img{
+	width: 200px;
+}
+
 .header {
 	column-span: all;
 	font-size:100px;
@@ -10,3 +14,4 @@
 	column-width: 250px;
 	column-rule: 3px solid #000;
 }
+

@@ -95,7 +95,7 @@ function createEditor() {
 		// Note: it is recommended to keep your own styles in a separate file in
 		// order to make future updates painless.
 		contentsCss : [ 'https://cdn.ckeditor.com/4.8.0/full-all/contents.css',
-				'mystyles.css' ],
+				'mystyles.css', 'resources/innerEditor.css' ],
 		// This is optional, but will let us define multiple different styles
 		// for
 		// multiple editors using the same CSS file.
