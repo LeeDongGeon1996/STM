@@ -1,0 +1,12 @@
+@charset "EUC-KR";
+
+.header {
+	column-span: all;
+	font-size:100px;
+}
+
+.content {
+	column-gap: 32px;
+	column-width: 250px;
+	column-rule: 3px solid #000;
+}
