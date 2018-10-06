@@ -1,6 +1,6 @@
 var editor;
 function createEditor() {
-	
+
 	editor = CKEDITOR.replace('editor1', {
 		// Define the toolbar:
 		// http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_toolbar
@@ -95,7 +95,7 @@ function createEditor() {
 		// Note: it is recommended to keep your own styles in a separate file in
 		// order to make future updates painless.
 		contentsCss : [ 'https://cdn.ckeditor.com/4.8.0/full-all/contents.css',
-				'mystyles.css', 'resources/innerEditor.css'],
+				'mystyles.css', 'resources/innerEditor.css' ],
 		// This is optional, but will let us define multiple different styles
 		// for
 		// multiple editors using the same CSS file.
@@ -169,13 +169,12 @@ function createEditor() {
 				'list-style-type' : 'square'
 			}
 		} ]
-	})
-	
-	//CKEDITOR.document.appendStyleSheet('/innerEditor.css');
-	//시험지의 기본틀을 형성하는 부분
-	//CKEDITOR.instances.editor1.insertText("왜안돼");
-	
-			
+	});
+
+	// CKEDITOR.document.appendStyleSheet('/innerEditor.css');
+	// 시험지의 기본틀을 형성하는 부분
+	// CKEDITOR.instances.editor1.insertText("왜안돼");
+
 	alert('에디터 생성8');
 }
 
@@ -183,13 +182,14 @@ var QuestionList;
 var questionCount = 0;
 var passageDiv;
 var choiceDiv;
+var imgDiv;
 var passageInput;
 var choiceInput;
 
 function createDiv() {
-	
+
 	createForm();
-	
+
 	if (passageDiv == null) {
 		passageDiv = CKEDITOR.dom.element
 				.createFromHtml('<div id="passageDiv"></div><br>');
@@ -200,18 +200,27 @@ function createDiv() {
 				.createFromHtml('<div id="choiceDiv"></div><br>');
 		CKEDITOR.instances.editor1.insertElement(choiceDiv);
 	}
-	
-	//CKEDITOR.instances.editor1.insertHtml('<STYLE>         .header{             column-span: all;         }                      .content{             column-gap: 32px;             column-width: 250px;             column-rule: 3px solid #000;         }        </STYLE>      <DIV>         <h3 class=\header\ id=\test_paper_name\>STM 문제지</h3>         <h1 class=\header\ id=\subject\>과목 영역</h1>         <TABLE class=\header\ >          </TABLE>     </DIV>     <DIV class=\content\>         <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>              </DIV>');
-			
+	if (imgDiv == null){
+		imgDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="imgDiv"></div><br>');
+		CKEDITOR.instances.editor1.insertElement(imgDiv);
+	}
+
+
+
 }
 
-function createForm(){
+function createForm() {
 	var editor = CKEDITOR.instances.editor1;
-	//editor.document.write('<HTML> <HEAD> <META http-equiv=\Content-Type\ content=\text/html; charset=UTF-8\>  <TITLE>TestPaper Form</TITLE> </HEAD>  <BODY>       <DIV>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>         <TABLE class=\'header\' >          </TABLE>     </DIV>     <DIV class=\'content\'>         <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>  </BODY>  </HTML>');
-	editor.document.getBody().appendHtml('<DIV>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>         <TABLE class=\'header\' >          </TABLE>     </DIV>     <DIV class=\'content\'>         <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>');
-	//editor.document.appendStyleSheet('/innerEditor.css');
-	
-	//editor.document.getById()
+
+	editor.document
+			.getBody()
+			.appendHtml(
+					'<DIV>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>         <TABLE class=\'header\' >          </TABLE>     </DIV>     <DIV class=\'content\'>         <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>');
+	// editor.document.appendStyleSheet('/innerEditor.css');
+
+	// editor.document.getById()
+
 }
 
 function loadQuestionList(jsonQuestionList) {
@@ -236,13 +245,14 @@ function onPassageChange() {
 		passageInput = document.getElementById('passageInput');
 	}
 	passageDiv.setHtml("<b>" + passageInput.value + "</b>");
-	
+
 	passageInput.focus();
 
 }
 
 function onChoiceChange() {
 
+	alert('choice 함수');
 	if (choiceDiv == null) {
 		createDiv();
 	}
@@ -251,4 +261,29 @@ function onChoiceChange() {
 	}
 	choiceDiv.setText(choiceInput.value);
 	choiceInput.focus();
+}
+
+function onFileSelected(file) {
+
+	// 파일의 인자로 input element의 files를 전달받습니다.
+	
+	if (imgDiv == null) {
+		createDiv();
+	}
+	
+	var fileReader = new FileReader();
+	// fileReader객체로 input 태그에서 받아온 첫번째 파일의 URL을 받아옵니다.
+	fileReader.readAsDataURL(file[0]);
+
+	// 파일을 다읽어오면 콜백onload합수로 이미지 태그를 에디터안에 넣어줍니다.
+	fileReader.onload = function() {
+		// var preview = CKEDITOR.dom.element
+		// .createFromHtml('<img id=\"preview1\" width=\'' + 300
+		// + '\' src=\'' + fileReader.result + '\' >');
+		// CKEDITOR.instances.editor1.insertElement(preview);
+		
+		imgDiv.setHtml('<img id=\"preview1\" width=\'' + 300
+								+ '\' src=\'' + fileReader.result + '\' >');
+	}
+
 }
