@@ -29,7 +29,7 @@ public class LoginController {
 		// Model에 VO객체 전달
 		modelMap.addAttribute("infoVO", infoVO);
 
-		// 로그인 실패처리
+		// 로그인 실패처리zz
 		int tryLoginVal = 0;
 		if (session.getAttribute("tryLogin") != null) {
 			session.removeAttribute("tryLogin");

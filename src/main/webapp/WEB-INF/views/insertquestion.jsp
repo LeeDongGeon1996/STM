@@ -27,7 +27,7 @@
 						<h5 class="card-title text-center">문제등록 테스트 페이지</h5>
 
 						<!-- Page shown-->
-						<form:form modelAttribute="questionVO" action="resgisterQuestion"
+						<form:form modelAttribute="questionVO" action="registerquestion"
 							method="POST" onSubmit="return Validate()" name="infos"
 							enctype="multipart/form-data">
 							<form class="form-signin">
