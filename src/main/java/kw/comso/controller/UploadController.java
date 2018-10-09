@@ -1,9 +1,11 @@
 package kw.comso.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.IOUtils;
 
 import org.junit.runner.Request;
 import org.slf4j.Logger;
@@ -31,6 +35,7 @@ import kw.comso.dto.QuestionVO;
 import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
+import net.iharder.Base64;
 
 @Controller
 public class UploadController {
@@ -61,6 +66,27 @@ public class UploadController {
 		
 		return "test/addquestiontest";
 	}
+	
+	@RequestMapping(value = "/link/download/", method = RequestMethod.POST)
+    public void download(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+        try {
+        	System.out.println("1");
+            String imgData = request.getParameter("imgData");
+            imgData = imgData.replaceAll("data:image/png;base64,", "");
+ 
+            byte[] file = org.apache.commons.codec.binary.Base64.decodeBase64(imgData);
+            ByteArrayInputStream is = new ByteArrayInputStream(file);
+ 
+            response.setContentType("image/png");
+            response.setHeader("Content-Disposition", "attachment; filename=report.png");
+ 
+            IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
+    }
 
 	@RequestMapping(value = "/registerQuestion")
 	public Map registerQuestion(QuestionVO questionVO, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
