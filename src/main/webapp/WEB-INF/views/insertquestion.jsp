@@ -47,6 +47,14 @@
 									<div id="password_error" class="val_error"></div>
 								</div>
 
+								<!-- 이미지 테스트 -->
+								<div class="form-label-group">
+									이름 : <input type="text" name="name" id="cmd" value="namevla"><br>
+									파일 : <input type="file" name="file" placeholder="파일 선택"
+										onchange="onFileSelected(this.files)"><br>
+								</div>
+
+
 								<!-- button -->
 								<hr class="my-4">
 								<div class="form-label-group">
