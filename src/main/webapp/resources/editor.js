@@ -171,11 +171,7 @@ function createEditor() {
 		} ]
 	});
 
-	// CKEDITOR.document.appendStyleSheet('/innerEditor.css');
-	// 시험지의 기본틀을 형성하는 부분
-	// CKEDITOR.instances.editor1.insertText("왜안돼");
-
-	alert('에디터 생성8');
+	alert('에디터 생성11');
 }
 
 var QuestionList;
@@ -185,6 +181,7 @@ var choiceDiv;
 var imgDiv;
 var passageInput;
 var choiceInput;
+var questionDiv;
 
 function createDiv() {
 
@@ -192,21 +189,22 @@ function createDiv() {
 
 	if (passageDiv == null) {
 		passageDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="passageDiv"></div><br>');
-		CKEDITOR.instances.editor1.insertElement(passageDiv);
+				.createFromHtml('<div id="passage_div"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(passageDiv);
+		passageDiv.appendTo(questionDiv);
 	}
 	if (choiceDiv == null) {
 		choiceDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="choiceDiv"></div><br>');
-		CKEDITOR.instances.editor1.insertElement(choiceDiv);
+				.createFromHtml('<div id="choice_div"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(choiceDiv);
+		choiceDiv.appendTo(questionDiv);
 	}
-	if (imgDiv == null){
+	if (imgDiv == null) {
 		imgDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="imgDiv"></div><br>');
-		CKEDITOR.instances.editor1.insertElement(imgDiv);
+				.createFromHtml('<div id="img_div"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(imgDiv);
+		imgDiv.appendTo(questionDiv);
 	}
-
-
 
 }
 
@@ -215,12 +213,9 @@ function createForm() {
 
 	editor.document
 			.getBody()
-			.appendHtml(
-					'<DIV>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>         <TABLE class=\'header\' >          </TABLE>     </DIV>     <DIV class=\'content\'>         <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>');
-	// editor.document.appendStyleSheet('/innerEditor.css');
-
-	// editor.document.getById()
-
+			.setHtml(
+					'<DIV id=\'head_div\'>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h3 class=\'header\' id=\'test_paper_page_num\'>1</h3>         <div class=\'header\' id=\'test_paper_time\'>제 1교시</div>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>                  <div class=\'header\' id=\'student_input_div\'>         <div class=\'header student_info\'>성명</div>         <div class=\'header student_info student_input_name\' id=\'student_input_name\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info\'>수험번호</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_1\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_2\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_3\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_4\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_5\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info\'>-</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_6\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_7\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_8\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_9\'>&nbsp;&nbsp;&nbsp;</div>         </div>      </DIV>     <hr color=\'#000\'/>     <DIV class=\'content\' id=\'question_div\'>         <p>1sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>2sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>3sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>4sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>5sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>6sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>7sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>8sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>     <hr color=\'#000\'/>');
+	questionDiv = editor.document.getById('question_div');
 }
 
 function loadQuestionList(jsonQuestionList) {
@@ -266,24 +261,19 @@ function onChoiceChange() {
 function onFileSelected(file) {
 
 	// 파일의 인자로 input element의 files를 전달받습니다.
-	
+
 	if (imgDiv == null) {
 		createDiv();
 	}
-	
+
 	var fileReader = new FileReader();
 	// fileReader객체로 input 태그에서 받아온 첫번째 파일의 URL을 받아옵니다.
 	fileReader.readAsDataURL(file[0]);
 
 	// 파일을 다읽어오면 콜백onload합수로 이미지 태그를 에디터안에 넣어줍니다.
 	fileReader.onload = function() {
-		// var preview = CKEDITOR.dom.element
-		// .createFromHtml('<img id=\"preview1\" width=\'' + 300
-		// + '\' src=\'' + fileReader.result + '\' >');
-		// CKEDITOR.instances.editor1.insertElement(preview);
-		
-		imgDiv.setHtml('<img id=\"preview1\" width=\'' + 300
-								+ '\' src=\'' + fileReader.result + '\' >');
+		imgDiv.setHtml('<img id=\"preview1\" width=\'' + 300 + '\' src=\''
+				+ fileReader.result + '\' >');
 	}
 
 }
