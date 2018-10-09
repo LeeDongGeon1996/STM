@@ -11,6 +11,8 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	private String answer; // 답 저장
 	private String owner; //문제의 소유자  ex)자이스토리문제인경우 '평가원'으로 저장
 	
+	private String questionImgLink; //프리뷰에서 제작되어 캡쳐된 이미지
+	
 	
 	// setter
 	public void setQuestionIDNum(String questionIDNum) {
@@ -34,6 +36,9 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+	public void setQuestionImgLink(String questionImgLink) {
+		this.questionImgLink=questionImgLink;
+	}
 	
 	// getter
 	public String getQuestionIDNum() {
@@ -56,5 +61,8 @@ public class QuestionVO { // 각 문제 하나하나를 저장하는 공간, 시험지 아님!!!
 	}
 	public String getOwner() {
 		return owner;
+	}
+	public String getQuestionImgLink() {
+		return questionImgLink;
 	}
 }

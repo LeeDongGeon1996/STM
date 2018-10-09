@@ -89,7 +89,7 @@ function createEditor() {
 		// 'http://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
 		/** ********************* File management support ********************** */
 		// Make the editing area bigger than default.
-		height : 400,
+		height : 500,
 		width: 400,
 		// An array of stylesheets to style the WYSIWYG area.
 		// Note: it is recommended to keep your own styles in a separate file in
@@ -176,7 +176,6 @@ function createEditor() {
 	CKEDITOR.instances.editor1.insertText("왜안돼");
 	
 			
-	alert('에디터 생성8');
 }
 
 var QuestionList;
@@ -209,8 +208,8 @@ function loadQuestionList(jsonQuestionList) {
 }
 
 function insertQuestion() {
-
 }
+
 function removeQuestion() {
 }
 
@@ -273,7 +272,7 @@ function onFileSelected(file) {
 
 function createDiv() {
 
-	createForm();
+	//createForm();
 
 	if (passageDiv == null) {
 		passageDiv = CKEDITOR.dom.element

@@ -46,12 +46,12 @@ public class UploadController {
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
 	public String addQuestion(ModelMap modelMap, HttpSession session) {
 		
-		// VO °´Ã¼»ý¼º
+		// VO ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
 		QuestionVO questionVO = new QuestionVO();
-		// Model¿¡ VO°´Ã¼ Àü´Þ
+		// Modelï¿½ï¿½ VOï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		modelMap.addAttribute("questionVO", questionVO);
 
-		// QuestionVO µî·Ï ½ÇÆÐÃ³¸®
+		// QuestionVO ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		int tryRegiVal = 0;
 		if (session.getAttribute("tryRegiQuestion") != null) {
 			session.removeAttribute("tryRegiQuestion");
@@ -70,15 +70,15 @@ public class UploadController {
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 
 
-		// ÅØ½ºÆ®
+		// ï¿½Ø½ï¿½Æ®
 
-		// ÀÌ¹ÌÁö
+		// ï¿½Ì¹ï¿½ï¿½ï¿½
 		String path = "C:\\Users\\junma\\Desktop\\imgPath";
 		System.out.println(path);
 		Map returnObject = new HashMap();
 
 		try {
-			// multiparthttpservletrequest »ý¼º
+			// multiparthttpservletrequest ï¿½ï¿½ï¿½ï¿½
 			MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
 			Iterator iter = mhsr.getFileNames();
 
@@ -86,30 +86,30 @@ public class UploadController {
 			String fieldName = "";
 			List resultList = new ArrayList();
 
-			// µð·ºÅä¸®°¡ ¾ø´Ù¸é »ý¼ºÇÑ´Ù
+			// ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 			File dir = new File(path);
 			if (!dir.isDirectory()) {
 				dir.mkdirs();
 			}
 
-			// °ªÀÌ ³ª¿Ã¶§±îÁö
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½
 			while (iter.hasNext()) {
 				fieldName = (String) iter.next();
 				mfile = mhsr.getFile(fieldName);
 				String origName;
 
-				origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8");// ÇÑ±Û ±úÁü¹æÁö ÄÚµå
+				origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8");// ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 
-				// ÆÄÀÏ¸íÀÌ ¾ø´Ù¸é
+				// ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
 				if ("".equals(origName)) {
 					continue;
 				}
 
-				// ÆÄÀÏ ¸í º¯°æ (uuid·Î ¾ÏÈ£È­)
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (uuidï¿½ï¿½ ï¿½ï¿½È£È­)
 				String ext = origName.substring(origName.lastIndexOf('.'));
 				String saveFileName = getUuid() + ext;
 
-				// ¼³Á¤ÇÑ path¿¡ ÆÄÀÏÀúÀå
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pathï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				File serverFile = new File(path + File.separator + saveFileName);
 				mfile.transferTo(serverFile);
 
@@ -157,28 +157,28 @@ public class UploadController {
 	 * String path = "C:\\Users\\junma\\Desktop\\imgPath"; System.out.println(path);
 	 * Map returnObject = new HashMap();
 	 * 
-	 * try { // multiparthttpservletrequest »ý¼º MultipartHttpServletRequest mhsr =
+	 * try { // multiparthttpservletrequest ï¿½ï¿½ï¿½ï¿½ MultipartHttpServletRequest mhsr =
 	 * (MultipartHttpServletRequest) req; Iterator iter = mhsr.getFileNames();
 	 * 
 	 * MultipartFile mfile = null; String fieldName = ""; List resultList = new
 	 * ArrayList();
 	 * 
-	 * // µð·ºÅä¸®°¡ ¾ø´Ù¸é »ý¼ºÇÑ´Ù File dir = new File(path); if (!dir.isDirectory()) {
+	 * // ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ File dir = new File(path); if (!dir.isDirectory()) {
 	 * dir.mkdirs(); }
 	 * 
-	 * // °ªÀÌ ³ª¿Ã¶§±îÁö while (iter.hasNext()) { fieldName = (String) iter.next(); mfile
+	 * // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ while (iter.hasNext()) { fieldName = (String) iter.next(); mfile
 	 * = mhsr.getFile(fieldName); String origName;
 	 * 
 	 * origName = new String(mfile.getOriginalFilename().getBytes("8859_1"),
-	 * "UTF-8");// ÇÑ±Û ±úÁü¹æÁö ÄÚµå
+	 * "UTF-8");// ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 	 * 
-	 * // ÆÄÀÏ¸íÀÌ ¾ø´Ù¸é if ("".equals(origName)) { continue; }
+	 * // ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ if ("".equals(origName)) { continue; }
 	 * 
-	 * // ÆÄÀÏ ¸í º¯°æ (uuid·Î ¾ÏÈ£È­) String ext =
+	 * // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (uuidï¿½ï¿½ ï¿½ï¿½È£È­) String ext =
 	 * origName.substring(origName.lastIndexOf('.')); String saveFileName =
 	 * getUuid() + ext;
 	 * 
-	 * // ¼³Á¤ÇÑ path¿¡ ÆÄÀÏÀúÀå File serverFile = new File(path + File.separator +
+	 * // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pathï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ File serverFile = new File(path + File.separator +
 	 * saveFileName); mfile.transferTo(serverFile);
 	 * 
 	 * AuthMemberInfoVO member = memberService.checkAuth(session, rep); if (member
@@ -205,7 +205,7 @@ public class UploadController {
 	 * 
 	 * }
 	 */
-	// uuid »ý¼º
+	// uuid ï¿½ï¿½ï¿½ï¿½
 	public static String getUuid() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
