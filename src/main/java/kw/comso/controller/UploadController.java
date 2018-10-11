@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.codec.*;
-
+import org.apache.commons.codec.binary.Base64;
 import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,6 @@ import kw.comso.dto.QuestionVO;
 import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
-import net.iharder.Base64;
 
 @Controller
 public class UploadController {
@@ -68,19 +67,23 @@ public class UploadController {
 		return "test/addquestiontest";
 	}
 	
-	@RequestMapping(value = "/link/download/", method = RequestMethod.POST)
+	//제작된 문제 이미지캡쳐 컨트롤러
+	@RequestMapping(value = "/captureQuestion", method = RequestMethod.POST)
     public void download(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         try {
-        	System.out.println("1");
-            String imgData = request.getParameter("imgData");
-            imgData = imgData.replaceAll("data:image/png;base64,", "");
- 
-            byte[] file = org.apache.commons.codec.binary.Base64.decodeBase64(imgData);
+        	//이미지 정보 받아오기 && 불필요한 정보 제거
+            String capimgData = request.getParameter("capimgData");
+            capimgData = capimgData.replaceAll("data:image/png;base64,", "");
+            
+            //이미지 디코딩(codec 라이브러리 사용 - base64)
+            byte[] file = Base64.decodeBase64(capimgData);
             ByteArrayInputStream is = new ByteArrayInputStream(file);
- 
+            
+            //이미지 정보 재작성
             response.setContentType("image/png");
-            response.setHeader("Content-Disposition", "attachment; filename=report.png");
- 
+            response.setHeader("Content-Disposition", "attachment; filename="+getUuid()+".png");
+            
+            //이미지 다운로드 ( 추후 수정 예정 )
             IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
         } catch (IOException e) {

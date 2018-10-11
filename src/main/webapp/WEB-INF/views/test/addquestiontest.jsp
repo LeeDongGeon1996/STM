@@ -7,7 +7,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>AddQuestion</title>
-<script type="text/javascript" src="/resources/script/html2canvas.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/html2canvas.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link
@@ -23,21 +24,21 @@
 	}
 </script>
 <script language="javascript">
-	$(function() {
-		$('#btn_submit').click(function() {
-			html2canvas($('.printDiv').parent(), {
-				onrendered : function(canvas) {
-					if (typeof FlashCanvas != "undefined") {
-						FlashCanvas.initElement(canvas);
-					}
-					var image = canvas.toDataURL("image/png");
-					$("#imgData").val(image);
-					$("#imgForm").submit();
+	$(
+			function() {
+				$('#btn_submit').click(
+						function() {
+							html2canvas(document.querySelector("#captureDiv"))
+									.then(function(canvas) {
+										var image = new Image();
+										image = canvas.toDataURL("image/png");
 
-				}
+										$("#capimgData").val(image);
+										$("#capimgForm").submit();
+
+									})
+						})
 			})
-		})
-	})
 </script>
 <body onload="onLoad();">
 
@@ -110,21 +111,21 @@
 
 		<div id="preview_editor" class="flex-row my-5">
 			<h2>
-				<label for="editor1">문제 프뷰</label>
+				<label for="editor1">문제 프리뷰</label>
 			</h2>
-			<form name="imgForm" id="imgForm" action="link/download/"
-				method="post">
 			<div class="printBtnZone" align="right">
-				<button id="btn_submit" class="btn bg-gray small w-auto">다운로드2</button>
+				<button id="btn_submit" class="btn bg-gray small w-auto">다운로드</button>
 			</div>
-			<div class="printDiv">
-			sdfsdfsdfdsfdsfdsfdsf
-				<div id="editor1" contenteditable="true"></div>
-			</div>
-				<input type="hidden" id="imgData" name="imgData">
+			<form name="capimgForm" id="capimgForm" action="captureQuestion"
+				method="post">
+				<input type="hidden" id="capimgData" name="capimgData">
+				<div id="captureDiv">
+					<br>
+					<div id="editor1" contenteditable="true"></div>
+				</div>
 			</form>
 
-			
+
 		</div>
 	</div>
 </body>
