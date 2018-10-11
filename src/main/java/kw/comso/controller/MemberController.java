@@ -29,7 +29,7 @@ public class MemberController {
 		// Model에 VO객체 전달
 		modelMap.addAttribute("infoVO", infoVO);
 
-		return "insertinfo";
+		return "home";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)

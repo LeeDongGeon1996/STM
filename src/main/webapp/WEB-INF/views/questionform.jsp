@@ -7,28 +7,45 @@
 
 <head>
 <title>내 문제함</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body>
-	<div>
-		<button class=" btn-home">STM</button>
-		<button class=" btn-logout">logout</button>
 
+	<div class="div-nav">
+		<button class=" btn-home">STM</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<text class="text-page">내 문제함</text>
+		<button class="btn-logout">Logout</button>
 	</div>
-	<div class="container">
-	<div>
-		<div class="img-plus">
-		<input type="image" class="img-plus"
-		src="${pageContext.request.contextPath}/resources/image/plusImg.png"/>
-		</div>
+
+	<div class="container-fluid">
+		<div class="container-fluid outterB" style="width: 95%; height: 600px;">
+			<div class="img-plus">
+				<input type="image" class="img-plus"
+					src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
+			</div>
 		</div>
 	</div>
 </body>
 
 <style>
 img {
-    max-width: 100%;
-    max-height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .container {
@@ -47,21 +64,75 @@ img {
 	padding: 0; /*if your want to padding */
 	border: none;
 }
+.outterB {
+	border-style: solid;
+	border-width: 3pt;
+	border-color: rgb(51, 196, 241);
+	margin: auto;
+	border-radius: 50px;
+}
+
+.div-nav {
+	width: 1550px;
+	margin: auto;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
 
 .btn-home {
-	color: rgb(238, 131, 111);
+	color: rgb(246, 129, 112);
 	background-color: transparent;
-	font-size: 14pt;
+	font-size: 21pt;
 	border: none;
 	cursor: pointer;
+	font-family: typoSMB;
+	position: absolute;
+	top: 10px;
+	left: 30px;
 }
 
 .btn-logout {
+	border: none;
 	color: rgb(7, 79, 102);
 	background-color: transparent;
-	font-size: 14pt;
-	border: none;
+	font-size: 21pt;
 	cursor: pointer;
+	font-family: typoSMB;
+	color: rgb(7, 79, 102);
+	position: absolute;
+	top: 10px;
+	right: 30px;
+}
+
+.text-page {
+	font-family: typoSMB;
+	background-color: transparent;
+	font-size: 35pt;
+	color: black;
+	margin-left: 90px;
+}
+
+@font-face {
+	font-family: typoSMB;
+	src: url(typoSMB.eot); /* IE 호환성 보기 */
+	src:
+		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
+		format('embedded-opentype'), /* IE 6 ~ 8 */  
+		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		format('woff'), /* 모던 브라우저 */ 
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: mbcL;
+	src: url(mbcL.eot); /* IE 호환성 보기 */
+	src: url('${pageContext.request.contextPath}/resources/font/mbcL.eot')
+		format('embedded-opentype'), /* IE 6 ~ 8 */ 
+		 url('${pageContext.request.contextPath}/resources/font/mbcL.woff')
+		format('woff'), /* 모던 브라우저 */
+      url('${pageContext.request.contextPath}/resources/font/mbcL.ttf')
+		format('truetype');
 }
 </style>
 
