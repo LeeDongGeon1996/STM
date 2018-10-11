@@ -1,116 +1,150 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- 메인화면 홈 -->
+<%@page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-
-<meta charset="utf-8">
-<meta name="description" content="ST2M">
-<meta name="author" content="최준만">
-
-<title>ST2M-Main</title>
-
-<!-- BOOTSTRAP-->
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-
-<!-- ST2MCSS-->
-<link
-	href="${pageContext.request.contextPath}/resources/ST2Mfrontpage.css"
-	rel="stylesheet" type="text/css">
-
+<title>메인 홈 화면</title>
 </head>
 
 <body>
-	<!--Navigator-->
-	<nav class="navbar navbar-custom navbar-expand-lg fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="Main.html">ST2M</a>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+   <button class=" btn-home">STM</button>
+   <button class=" btn-logout">logout</button>
+   <div class="div-text">
+      <text class="text-smallN">시험지 제작 툴 </text>
+      <text class="text-bigN">STM</text>
+   </div>
+   <div class="div-exp">
+      <text class="text-exp">Make your own optimized test paper using
+      STM</text>
+   </div>
 
-					<li class="nav-item">name : ${userName}</li>
-
-					<li class="nav-item active"><a class="nav-link" href="#">홈
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">시험지 제작</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">학생 관리</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<header class="ST2M-header">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="display-2 text-center text-white mt-5">학생 시험지 제작 및
-						관리</h1>
-				</div>
-			</div>
-		</div>
-	</header>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3 my-4">
-				<div class="card">
-					<img class="card-img-top"
-						src="http://www.educationviews.org/wp-content/uploads/2017/06/Standardized-Test-300x200.png"
-						alt="test">
-					<div class="card-body">
-						<h4 class="card-title text-center">테스트 생성</h4>
-					</div>
-					<div class="card-footer text-center">
-						<a href="editor" class="btn btn-primary">만들기</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3 my-4">
-				<div class="card">
-					<img class="card-img-top"
-						src="http://smca.or.kr/wp/wp-content/uploads/2017/02/2017-%EC%A4%91%ED%95%99%EA%B5%90-%EC%A1%B8%EC%97%85%EC%8B%9D-1%EB%B6%80-3-300x200.jpg"
-						alt="test">
-					<div class="card-body">
-						<h4 class="card-title text-center">학생 관리</h4>
-					</div>
-					<div class="card-footer text-center">
-						<a href="#" class="btn btn-primary">관리하기</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3 my-4">
-				<div class="card">
-					<img class="card-img-top"
-						src="http://24eastmain.com/wp-content/uploads/2017/08/test.jpg"
-						alt="myquestion">
-					<div class="card-body">
-						<h4 class="card-title text-center">내 문제함</h4>
-					</div>
-					<div class="card-footer text-center">
-						<a href="#" class="btn btn-primary">이동</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3 my-4">
-				<div class="card">
-					<img class="card-img-top"
-						src="http://semlab.com/semlab.com/2017/wp-content/uploads/2017/08/4-FotoliaComp_67313340_cu1CsgH8VXwG3X8PeLYmg9R7ffg7WRqz-849x566-300x200.jpg"
-						alt="mytest">
-					<div class="card-body">
-						<h4 class="card-title text-center">내 기출문제</h4>
-					</div>
-					<div class="card-footer text-center">
-						<a href="#" class="btn btn-primary">이동</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+   <!--button-->
+   <div class="container" style="margin-left: 40%">
+      <div class="row">
+         <div class="div-btn">
+            <form:form action="questionform" method="GET">
+               <button class=" btn-question" type="submit">내 문제</button>
+            </form:form>
+         </div>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <div class="div-btn">
+            <form:form action="testform" method="GET">
+               <button class=" btn-paper" type="submit">내 시험지</button>
+            </form:form>
+         </div>
+      </div>
+   </div>
 </body>
+
+<style>
+body {
+   background-color: rgb(23, 186, 239);
+}
+
+.div-text {
+   margin-bottom: 40px;
+   margin-top: 5%;
+}
+
+.text-smallN {
+   font-family: mbcL;
+   margin-left: 25%;
+   color: rgb(7, 79, 102);
+   font-size: 50pt;
+}
+
+.text-bigN {
+   font-family: typoSMB;
+   color: rgb(250, 217, 86);
+   font-size: 98pt;
+}
+
+.text-exp {
+   color: white;
+   font-size: 27pt;
+}
+
+.div-exp {
+   margin-left: 25%;
+   margin-bottom: 40px;
+}
+
+.btn-question {
+   color: white;
+   background-color: rgb(250, 217, 86);
+   border-radius: 8px;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   width: 200px;
+   font-size: 20pt;
+   font-family: mbcL;
+   padding: 5px;
+}
+
+.btn-paper {
+   color: white;
+   background-color: rgb(7, 79, 102);
+   border-radius: 8px;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   width: 200px;
+   font-size: 20pt;
+   font-family: mbcL;
+   padding: 5px;
+}
+
+.div-btn {
+   display: inline-block;
+   margin: auto;
+}
+
+.btn-home {
+   color: rgb(238, 131, 111);
+   background-color: transparent;
+   font-size: 14pt;
+   border: none;
+   cursor: pointer;
+}
+
+.btn-logout {
+   color: rgb(7, 79, 102);
+   background-color: transparent;
+   font-size: 14pt;
+   border: none;
+   cursor: pointer;
+}
+
+@font-face {
+   font-family: typoSMB;
+   src: url(typoSMB.eot); /* IE 호환성 보기 */
+   src:
+      url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
+      format('embedded-opentype'), /* IE 6 ~ 8 */
+      url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+      format('woff'), /* 모던 브라우저 */
+      url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
+      format('truetype');
+   font-weight: bold;
+   font-style: bold;
+}
+
+@font-face {
+   font-family: mbcL;
+   src: url(mbcL.eot); /* IE 호환성 보기 */
+   src: url('${pageContext.request.contextPath}/resources/font/mbcL.eot')
+      format('embedded-opentype'), /* IE 6 ~ 8 */
+      url('${pageContext.request.contextPath}/resources/font/mbcL.woff')
+      format('woff'), /* 모던 브라우저 */
+      url('${pageContext.request.contextPath}/resources/font/mbcL.ttf')
+      format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+</style>
+
 </html>
