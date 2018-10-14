@@ -1,9 +1,15 @@
 package kw.comso.controller;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -69,26 +75,42 @@ public class UploadController {
 	
 	//제작된 문제 이미지캡쳐 컨트롤러
 	@RequestMapping(value = "/captureQuestion", method = RequestMethod.POST)
-    public void download(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-        try {
+    public void captureQuestion(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+        String uuid=getUuid();
+        
+		Path path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\"+uuid+".png");
+		String pathwd="C:\\Users\\junma\\Desktop\\capimgPath\\"+uuid+".png";
+		File addfile = new File(pathwd);
+		
+		try {
+			BufferedWriter fw = new BufferedWriter(new FileWriter(addfile, true));
+            
+            // 파일안에 문자열 쓰기
+            
+            fw.flush();
+ 
+            // 객체 닫기
+            fw.close();
+
         	//이미지 정보 받아오기 && 불필요한 정보 제거
             String capimgData = request.getParameter("capimgData");
             capimgData = capimgData.replaceAll("data:image/png;base64,", "");
-            
+            System.out.println(capimgData);
             //이미지 디코딩(codec 라이브러리 사용 - base64)
             byte[] file = Base64.decodeBase64(capimgData);
             ByteArrayInputStream is = new ByteArrayInputStream(file);
             
             //이미지 정보 재작성
             response.setContentType("image/png");
-            response.setHeader("Content-Disposition", "attachment; filename="+getUuid()+".png");
+            response.setHeader("Content-Disposition", "image/png; filename="+uuid+".png");
             
             //이미지 다운로드 ( 추후 수정 예정 )
-            IOUtils.copy(is, response.getOutputStream());
-            response.flushBuffer();
+           
+            Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING);
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            
         } 
     }
 

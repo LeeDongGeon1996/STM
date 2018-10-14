@@ -116,8 +116,8 @@
 			<div class="printBtnZone" align="right">
 				<button id="btn_submit" class="btn bg-gray small w-auto">다운로드</button>
 			</div>
-			<form name="capimgForm" id="capimgForm" action="captureQuestion"
-				method="post">
+			<form name="capimgForm" id="capimgForm" enctype="multipart/form-data"
+				action="captureQuestion" method="post">
 				<input type="hidden" id="capimgData" name="capimgData">
 				<div id="captureDiv">
 					<br>
