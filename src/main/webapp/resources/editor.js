@@ -1,4 +1,22 @@
 var editor;
+var QuestionList;
+var questionCount = 0;
+var passageDiv;
+var choiceDiv;
+var imgDiv;
+var passageInput;
+var choiceInput;
+var questionDiv;
+
+function makeTestPaper(){
+
+	createEditor();
+	setTimeout(function(){
+		createTestPaper();
+	},500);
+	
+}
+
 function createEditor() {
 
 	editor = CKEDITOR.replace('editor1', {
@@ -89,8 +107,7 @@ function createEditor() {
 		// filebrowserUploadUrl:
 		// 'http://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
 		/** ********************* File management support ********************** */
-		// Make the editing area bigger than default.
-		height : 800,
+		
 		// An array of stylesheets to style the WYSIWYG area.
 		// Note: it is recommended to keep your own styles in a separate file in
 		// order to make future updates painless.
@@ -168,25 +185,31 @@ function createEditor() {
 			styles : {
 				'list-style-type' : 'square'
 			}
-		} ]
+		} ],
+		
+		
+		resize_enabled : false,
+		// Make the editing area bigger than default.
+		height : '297mm',
+		width : '210mm'
 	});
 
-	alert('에디터 생성11');
 }
 
-var QuestionList;
-var questionCount = 0;
-var passageDiv;
-var choiceDiv;
-var imgDiv;
-var passageInput;
-var choiceInput;
-var questionDiv;
+function createTestPaper(){
+	fetch("resources/dd.html")
+	.then( response => response.text() )
+	.then( text => editor.document.getBody().setHtml(text) );
+	
+	questionDiv = editor.document.getById('question_div');
+}
 
 function createDiv() {
 
-	createForm();
-
+	if(questionDiv == null){
+		questionDiv = editor.document.getById('question_div');
+	}
+	
 	if (passageDiv == null) {
 		passageDiv = CKEDITOR.dom.element
 				.createFromHtml('<div id="passage_div"></div><br>');
@@ -208,25 +231,99 @@ function createDiv() {
 
 }
 
+
+var aryPassageDiv=[];
+var aryChoiceDiv=[];
+var aryImgDiv=[];
+
+function createDivNum(num) {
+
+	var passageDiv;
+	var choiceDiv;
+	var imgDiv;
+	
+	
+	if(questionDiv == null){
+		questionDiv = editor.document.getById('question_div');
+	}
+	
+		passageDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="passage_div_' + num + '"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(passageDiv);
+		aryPassageDiv.push(passageDiv);
+		passageDiv.appendTo(questionDiv);
+		
+		
+		choiceDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="choice_div_' + num + '"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(choiceDiv);
+		aryChoiceDiv.push(choiceDiv);
+		choiceDiv.appendTo(questionDiv);
+		
+		imgDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="img_div_' + num + '"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(imgDiv);
+		aryImgDiv.push(imgDiv);
+		imgDiv.appendTo(questionDiv);
+		
+		
+}
+
+
 function createForm() {
 	var editor = CKEDITOR.instances.editor1;
 
-	editor.document
-			.getBody()
-			.setHtml(
-					'<DIV id=\'head_div\'>         <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>         <h3 class=\'header\' id=\'test_paper_page_num\'>1</h3>         <div class=\'header\' id=\'test_paper_time\'>제 1교시</div>         <h1 class=\'header\' id=\'subject\'>과목 영역</h1>                  <div class=\'header\' id=\'student_input_div\'>         <div class=\'header student_info\'>성명</div>         <div class=\'header student_info student_input_name\' id=\'student_input_name\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info\'>수험번호</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_1\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_2\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_3\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_4\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_5\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info\'>-</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_6\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_7\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_8\'>&nbsp;&nbsp;&nbsp;</div>         <div class=\'header student_info student_input_id\' id=\'student_input_id_9\'>&nbsp;&nbsp;&nbsp;</div>         </div>      </DIV>     <hr color=\'#000\'/>     <DIV class=\'content\' id=\'question_div\'>         <p>1sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>2sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>3sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>4sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>5sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>6sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>7sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>                  <p>8sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>     </DIV>     <hr color=\'#000\'/>');
-	questionDiv = editor.document.getById('question_div');
+	/*
+	 * editor.document .getBody() .setHtml( '<DIV id=\'head_div\'>
+	 * <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>
+	 * <h3 class=\'header\' id=\'test_paper_page_num\'>1</h3> <div
+	 * class=\'header\' id=\'test_paper_time\'>제 1교시</div>
+	 * <h1 class=\'header\' id=\'subject\'>과목 영역</h1> <div class=\'header\'
+	 * id=\'student_input_div\'> <div class=\'header student_info\'>성명</div>
+	 * <div class=\'header student_info student_input_name\'
+	 * id=\'student_input_name\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+	 * <div class=\'header student_info\'>수험번호</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_1\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_2\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_3\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_4\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_5\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info\'>-</div> <div class=\'header student_info
+	 * student_input_id\' id=\'student_input_id_6\'>&nbsp;&nbsp;&nbsp;</div>
+	 * <div class=\'header student_info student_input_id\'
+	 * id=\'student_input_id_7\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_8\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
+	 * student_info student_input_id\'
+	 * id=\'student_input_id_9\'>&nbsp;&nbsp;&nbsp;</div> </div> </DIV>
+	 * <hr color=\'#000\'/> <DIV class=\'content\' id=\'question_div\'> <p>1sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
+	 * <p>2sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> <p>3sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
+	 * <p>4sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> <p>5sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
+	 * <p>6sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> <p>7sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
+	 * <p>8sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> </DIV>
+	 * <hr color=\'#000\'/>');
+	 */
+	
+	setTimeout(function(){questionDiv = editor.document.getById('question_div');alert(questionDiv)}, 3000)
+	// questionDiv = editor.document.getById('question_div');
 }
 
 function loadQuestionList(jsonQuestionList) {
 	document.getElementById('editor1').innerHTML = "<div id=\'question"
 			+ questionCount + "\'>" + jsonQuestionList[0].passage + "</div>";
+	document.getElementById('editor1').innerHTML = "<img src=  \'"  + jsonQuestionList[0].imageLink  + "\' />";
 	alert(jsonQuestionList[0].passage);
 
 }
 
 function insertQuestion() {
-
+	questionCount +=1;
+	createDiv(questionCount);
 }
 function removeQuestion() {
 }
@@ -235,6 +332,9 @@ function onPassageChange() {
 
 	if (passageDiv == null) {
 		createDiv();
+		createDivNum(3);
+		createDivNum(4);
+		
 	}
 	if (passageInput == null) {
 		passageInput = document.getElementById('passageInput');
@@ -247,7 +347,6 @@ function onPassageChange() {
 
 function onChoiceChange() {
 
-	alert('choice 함수');
 	if (choiceDiv == null) {
 		createDiv();
 	}

@@ -9,9 +9,9 @@
 <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath}/resources/editor.js"></script>
 <script>
+
 function onLoad(){
 	createEditor();
-	alert(questionList);
 }
 </script>
 </head>
@@ -33,5 +33,6 @@ function onLoad(){
 </body>
 <script>
 loadQuestionList(${questionList});
+CKEDITOR.config.imageResize.maxWidth=100;
 </script>
 </html>

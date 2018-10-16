@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.MemberInfoVO;
 import kw.comso.dto.QuestionVO;
+import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
 
@@ -37,92 +39,69 @@ public class UploadController {
 
 	@Autowired
 	private QuestionService questionService;
-	
-	@RequestMapping(value = "/testImg", method = RequestMethod.GET)
-	public String testImg(HttpSession session) {
-		
-		
-		return "fileupload";
-	}
-	
-	@RequestMapping(value = "/fileUpload")
-	public Map fileUpload(HttpServletRequest req, HttpServletResponse rep) {
-		
-		String path = req.getSession().getServletContext().getRealPath("/webapp/resources/testImg");
-		System.out.println(path);
-		Map returnObject = new HashMap();
 
-		try {
-			// multiparthttpservletrequest »ý¼º
-			MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) req;
-			Iterator iter = mhsr.getFileNames();
+	@Autowired
+	private MemberService memberService;
 
-			MultipartFile mfile = null;
-			String fieldName = "";
-			List resultList = new ArrayList();
 
-			// µð·ºÅä¸®°¡ ¾ø´Ù¸é »ý¼ºÇÑ´Ù
-			File dir = new File(path);
-			if (!dir.isDirectory()) {
-				dir.mkdirs();
-			}
-
-			// °ªÀÌ ³ª¿Ã¶§±îÁö
-			while (iter.hasNext()) {
-				fieldName = (String) iter.next();
-				mfile = mhsr.getFile(fieldName);
-				String origName;
-
-				origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8");// ÇÑ±Û ±úÁü¹æÁö ÄÚµå
-
-				// ÆÄÀÏ¸íÀÌ ¾ø´Ù¸é
-				if ("".equals(origName)) {
-					continue;
-				}
-
-				// ÆÄÀÏ ¸í º¯°æ (uuid·Î ¾ÏÈ£È­)
-				String ext = origName.substring(origName.lastIndexOf('.'));
-				String saveFileName = getUuid() + ext;
-
-				// ¼³Á¤ÇÑ path¿¡ ÆÄÀÏÀúÀå
-				File serverFile = new File(path + File.separator + saveFileName);
-				mfile.transferTo(serverFile);
-
-				Map file = new HashMap();
-				file.put("origName", origName);
-				file.put("sfile", serverFile);
-				resultList.add(file);
-				
-				QuestionVO q = new QuestionVO();
-				q.setImageLink(""+serverFile);
-				
-				System.out.println(q.getImageLink());
-				
-				questionService.registerQuestion("",q);
-
-			}
-
-			returnObject.put("files", resultList);
-			returnObject.put("params", mhsr.getParameterMap());
-
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalStateException e) { 
-			// TODO Auto-generated catch block 
-			e.printStackTrace(); 
-		} catch (IOException e) { 
-			// TODO Auto-generated catch block 
-			e.printStackTrace(); 
-		}
-		
-		Util.sendRedirect(rep, "testImg");
-		return null;
-		
-	}
-	
-	//uuid »ý¼º
+	/*
+	 * @RequestMapping(value = "/fileUpload") public Map
+	 * fileUpload(HttpServletRequest req, HttpServletResponse rep, HttpSession
+	 * session) {
+	 * 
+	 * String path = "C:\\Users\\junma\\Desktop\\imgPath"; System.out.println(path);
+	 * Map returnObject = new HashMap();
+	 * 
+	 * try { // multiparthttpservletrequest ï¿½ï¿½ï¿½ï¿½ MultipartHttpServletRequest mhsr =
+	 * (MultipartHttpServletRequest) req; Iterator iter = mhsr.getFileNames();
+	 * 
+	 * MultipartFile mfile = null; String fieldName = ""; List resultList = new
+	 * ArrayList();
+	 * 
+	 * // ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ File dir = new File(path); if (!dir.isDirectory()) {
+	 * dir.mkdirs(); }
+	 * 
+	 * // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ while (iter.hasNext()) { fieldName = (String) iter.next(); mfile
+	 * = mhsr.getFile(fieldName); String origName;
+	 * 
+	 * origName = new String(mfile.getOriginalFilename().getBytes("8859_1"),
+	 * "UTF-8");// ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	 * 
+	 * // ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ if ("".equals(origName)) { continue; }
+	 * 
+	 * // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (uuidï¿½ï¿½ ï¿½ï¿½È£È­) String ext =
+	 * origName.substring(origName.lastIndexOf('.')); String saveFileName =
+	 * getUuid() + ext;
+	 * 
+	 * // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ pathï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ File serverFile = new File(path + File.separator +
+	 * saveFileName); mfile.transferTo(serverFile);
+	 * 
+	 * AuthMemberInfoVO member = memberService.checkAuth(session, rep); if (member
+	 * == null) return null;
+	 * 
+	 * QuestionVO q = new QuestionVO();
+	 * q.setImageLink("http://localhost:8181/st2m/img" + "/" + saveFileName);
+	 * 
+	 * System.out.println(q.getImageLink());
+	 * 
+	 * questionService.registerQuestion(member.getEmail(), q);
+	 * 
+	 * }
+	 * 
+	 * returnObject.put("files", resultList); returnObject.put("params",
+	 * mhsr.getParameterMap());
+	 * 
+	 * } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } catch (IllegalStateException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } catch (IOException e) { //
+	 * TODO Auto-generated catch block e.printStackTrace(); }
+	 * 
+	 * Util.sendRedirect(rep, "testImg"); return null;
+	 * 
+	 * }
+	 */
+	// uuid ï¿½ï¿½ï¿½ï¿½
 	public static String getUuid() {
-		return UUID.randomUUID().toString().replaceAll("-","");
+		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
 }

@@ -31,8 +31,6 @@ public class MemberController {
 
 		return "signupform";
 	}
-	
-	
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public void getinfo(MemberInfoVO infoVO, HttpServletResponse response) {
@@ -44,11 +42,10 @@ public class MemberController {
 		System.out.println("id=" + infoVO.getUserName());
 		System.out.println("pw=" + infoVO.getPassword());
 
-		if(isSucceed) {
+		if (isSucceed) {
 			Util.sendRedirect(response, "loginform");
-		}
-		else {
-			Util.sendRedirect(response, "insertinfo");
+		} else {
+			Util.sendRedirect(response, "signupform");
 		}
 	}
 

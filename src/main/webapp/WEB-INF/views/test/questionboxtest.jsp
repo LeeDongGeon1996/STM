@@ -4,7 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>문제 박스 </title>
+
+<!-- BOOTSTRAP-->
+<link
+	href="${pageContext.request.contextPath}/resources/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 

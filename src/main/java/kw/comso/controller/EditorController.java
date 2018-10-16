@@ -89,7 +89,7 @@ public class EditorController {
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
 
-		return "editortest";
+		return "test/editortest";
 	}
-
+	
 }
