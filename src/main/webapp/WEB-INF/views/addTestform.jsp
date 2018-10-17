@@ -1,12 +1,11 @@
-<!-- 시험지 만들기-->
+<!--시험지 만드는 화면-->
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!doctype html>
-<html>
 
+<html>
 <head>
-<title>시험지 만드는 화면</title>
+<title>시험지 만들기</title>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -25,27 +24,47 @@
 </head>
 
 <body>
-	<div class="div-nav">
-		<button class=" btn-home">STM</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<text class="text-page">시험지 만들기</text>
-		<button class="btn-logout">Logout</button>
-	</div>
+	<header id="main_header">
+		<div class="div-nav">
+			<button class=" btn-home">STM</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<text class="text-page">시험지 만들기</text>
+			<button class="btn-logout">Logout</button>
 
-	<div class="container-fluid">
-		<div class="container-fluid outterB" style="width: 95%">
-			<div class="row">
-				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 leftD"
-					style="height: 600px">시험지 미리보기</div>
+		</div>
+	</header>
+	<section id="main_section">
+		<div style="width: 1000px; height: 580px;">
+			<div class="container-fluid">
+				<div class="container-fluid ">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+							style="padding: 0px; text-align: center">
+							<text class="exp">사용할 문제를 선택해주세요</text>
+							<div class="outterB topC"></div>
 
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
-					style="padding: 0px">
-					<div class="upperD" style="height: 350px">내 문제 선택하는 곳</div>
-					<div class="downD" style="height: 250px">선택한 문제 리스트</div>
+							<text class="exp">선택된 문제는 아래와 같습니다</text>
+							<div class="outterB bottomC"></div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+							style="text-align: center">
+							<text class="exp">미리보기</text>
+							<div class="outterB rightC"></div>
+
+							<div class="div-btn">
+								<form:form action="testform" method="POST">
+									<button class=" btn-save" type="submit">저장</button>
+								</form:form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+
+	<footer id="main_footer"> </footer>
 </body>
 
 <style>
@@ -53,42 +72,90 @@
 	border-style: solid;
 	border-width: 3pt;
 	border-color: rgb(51, 196, 241);
-	margin: auto;
 	border-radius: 50px;
 }
 
-.leftD {
-	border: none;
-	border-right: solid;
-	border-width: 1pt;
-	border-color: rgb(51, 196, 241);
-	padding-top: 10px;
-	padding-left: 20px;
+.topC {
+	margin-right: 10px;
+	margin-bottom: 5px;
+	height: 350px;
 }
 
-.upperD {
-	border: none;
-	border-bottom: solid;
-	border-width: 1pt;
-	border-color: rgb(51, 196, 241);
-	padding-top: 10px;
-	padding-left: 20px;
+.bottomC {
+	margin-right: 10px;
+	margin-top: 5px;
+	height: 180px;
 }
 
-.downD {
-	border: none;
-	border-bottom: solid;
-	border-width: 1pt;
-	border-color: rgb(51, 196, 241);
-	padding-top: 10px;
-	padding-left: 20px;
+.rightC {
+	height: 530px;
 }
 
-.div-nav {
-	width: 1550px;
-	margin: auto;
-	margin-top: 25px;
-	margin-bottom: 10px;
+.exp {
+	font-family: mbcL;
+	color: rgb(64);
+	font-size: 15pt;
+}
+
+.btn-save {
+	color: white;
+	background-color: rgb(7, 79, 102);
+	border-radius: 8px;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	padding: 3px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+/* 전체 적용 코드 */
+/*초기화 코드*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+:focus {
+	outline: none !important
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: 0;
+}
+
+img {
+	border: 0;
+}
+
+/*스타일 적용*/
+#main_header {
+	width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	height: 60px;
+	position: relative;
+	top: 15px;
+}
+
+#main_section {
+	width: 1000px;
+	margin: 20px auto;
+	position: relative;
+}
+
+#main_footer {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	bottom: 10px;
 }
 
 .btn-home {
@@ -99,7 +166,6 @@
 	cursor: pointer;
 	font-family: typoSMB;
 	position: absolute;
-	top: 10px;
 	left: 30px;
 }
 
@@ -107,12 +173,11 @@
 	border: none;
 	color: rgb(7, 79, 102);
 	background-color: transparent;
-	font-size: 21pt;
+	font-size: 15pt;
 	cursor: pointer;
 	font-family: typoSMB;
 	color: rgb(7, 79, 102);
 	position: absolute;
-	top: 10px;
 	right: 30px;
 }
 
@@ -129,8 +194,10 @@
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */  
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		format('embedded-opentype'), /* IE 6 ~ 8 */         
+		 
+		 
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */ 
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
 		format('truetype');
@@ -147,5 +214,4 @@
 		format('truetype');
 }
 </style>
-
 </html>

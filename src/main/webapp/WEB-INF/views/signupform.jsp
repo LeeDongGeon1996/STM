@@ -409,5 +409,4 @@ body {
 			return true;
 		}
 	}
->>>>>>> refs/remotes/origin/KHR_br
 </script>

@@ -34,15 +34,35 @@
 
 	<div class="container-fluid">
 		<div class="container-fluid outterB" style="width: 95%; height: 600px;">
-			<div class="img-plus">
+		<table class="div-table" border="1">
+		<tr>
+		<th>img</th><th>img</th><th>img</th><th>img</th><th>img</th><th>img</th><th>img</th>
+		</tr>
+		<tr>
+		<th>img</th><th>img</th><th>img</th><th>img</th><th>img</th><th>img</th><th>img</th>
+		</tr>
+		<tr>
+		<th>img</th><th>img</th><th>img</th><th>img</th><th>img</th><th>img</th><th>img</th>
+		</tr>
+		
+		</table>
+			<!--  <div class="img-plus">
 				<input type="image" class="img-plus"
 					src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
-			</div>
+			</div>-->
 		</div>
 	</div>
 </body>
 
 <style>
+
+/*초기화 코드*/
+*{margin: 0; padding: 0;}
+li {list-style: none;}
+a{text-decoration: 0;}
+img {border:0;}
+
+/*스타일 적용*/
 img {
 	max-width: 100%;
 	max-height: 100%;
@@ -54,14 +74,13 @@ img {
 	border-color: rgb(23, 186, 239);
 	margin: 3% 5%;
 	height: 600px;
-	padding: 0% 2%;
+	padding: 8%;
 }
 
 .img-plus {
-	width: 100px; /*width of your image*/
-	height: 100px; /*height of your image*/
-	margin: 3%; /* If you want no margin */
-	padding: 0; /*if your want to padding */
+	width: 100px; 
+	height: 100px; 
+	padding: 0; 
 	border: none;
 }
 .outterB {
@@ -70,6 +89,16 @@ img {
 	border-color: rgb(51, 196, 241);
 	margin: auto;
 	border-radius: 50px;
+}
+
+table {
+width: 1400px;
+height: 500px;
+margin-top: 30px;
+margin: auto;
+}
+
+.div-table {
 }
 
 .div-nav {
