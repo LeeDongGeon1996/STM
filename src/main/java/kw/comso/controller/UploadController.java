@@ -55,7 +55,11 @@ public class UploadController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-	public String addQuestion(ModelMap modelMap, HttpSession session) {
+	public String addQuestion(ModelMap modelMap, HttpSession session,HttpServletResponse response) {
+		
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if(member==null)
+			return null;
 		
 		// VO ��ü����
 		QuestionVO questionVO = new QuestionVO();
@@ -70,13 +74,14 @@ public class UploadController {
 		}
 		modelMap.addAttribute("try", tryRegiVal);
 		
-		return "test/addquestiontest";
+		return "addQuestionform";
 	}
 	
 	//제작된 문제 이미지캡쳐 컨트롤러
 	@RequestMapping(value = "/captureQuestion", method = RequestMethod.POST)
-    public void captureQuestion(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-        String uuid=getUuid();
+    public void captureQuestion(QuestionVO questionVO, ModelMap modelMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		boolean isSucceed = false;
+		String uuid=getUuid();
         
 		Path path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\"+uuid+".png");
 		String pathwd="C:\\Users\\junma\\Desktop\\capimgPath\\"+uuid+".png";
@@ -95,7 +100,6 @@ public class UploadController {
         	//이미지 정보 받아오기 && 불필요한 정보 제거
             String capimgData = request.getParameter("capimgData");
             capimgData = capimgData.replaceAll("data:image/png;base64,", "");
-            System.out.println(capimgData);
             //이미지 디코딩(codec 라이브러리 사용 - base64)
             byte[] file = Base64.decodeBase64(capimgData);
             ByteArrayInputStream is = new ByteArrayInputStream(file);
@@ -104,14 +108,15 @@ public class UploadController {
             response.setContentType("image/png");
             response.setHeader("Content-Disposition", "attachment; filename="+uuid+".png");
             
-            //이미지 다운로드 ( 추후 수정 예정 )
-           
+            //이미지 서버 업로드
             Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING);
-            
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            
+            // TODO Auto-generated catch block   
         }
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		questionVO.setCapImageLink("http://localhost:8181/st2m/capimg" + "/" + uuid+".png");
+		System.out.println(questionVO.getCapImageLink());
+		isSucceed = questionService.registerQuestion(member.getEmail(), questionVO);
 		
     }
 
@@ -165,10 +170,6 @@ public class UploadController {
 				// ������ path�� ��������
 				File serverFile = new File(path + File.separator + saveFileName);
 				mfile.transferTo(serverFile);
-
-				if (member == null)
-					return null;
-
 			
 				questionVO.setImageLink("http://localhost:8181/st2m/img" + "/" + saveFileName);
 

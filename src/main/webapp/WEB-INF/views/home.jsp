@@ -34,9 +34,9 @@
 	<div class="div-container">
 		<div class="row">
 			<div class="div-btn">
-				<form:form action="questionform" method="GET">
-					<button class=" btn-question" type="submit">내 문제</button>
-				</form:form>
+				
+					<button class=" btn-question" type="submit" onclick="window.location.href='./addQuestion'">내 문제</button>
+				
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

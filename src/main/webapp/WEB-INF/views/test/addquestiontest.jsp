@@ -72,21 +72,21 @@
 							<form class="form-signin">
 
 								<!--  이미지 넣기  -->
-								이미지 파일 <input type="file" name="file" placeholder="파일 선택"
+								이미지 파일 <input class="upload-name" type="file" name="file" placeholder="파일 선택"
 									onchange="onFileSelected(this.files)"><br>
 
 								<!-- 지문넣기 -->
 								<div class="form-label-group">
 									<form:input path="passage" name="passage" type="text"
-										id="passageInput" class="form-control" placeholder="지문 입력"
+										id="passageInput" class="form-control outterB topC" placeholder="지문 입력"
 										required="" autofocus="" onkeyup="onPassageChange();"></form:input>
 									<div id="username_error" class="val_error"></div>
 								</div>
 
 								<!--보기 넣기-->
 								<div class="form-label-group">
-									<form:input path="mulChoice" name="mulChoice" type="text"
-										class="form-control" placeholder="보기" required="" autofocus=""
+									<form:input path="mulChoiceOne" name="mulChoiceOne" type="text"
+										class="form-control" placeholder="보기" required="" text="1." autofocus=""
 										onkeyup="onChoiceChange();"></form:input>
 									<div id="password_error" class="val_error"></div>
 								</div>
