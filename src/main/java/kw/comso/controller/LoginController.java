@@ -24,12 +24,12 @@ public class LoginController {
 
 	@RequestMapping(value = "/loginform", method = RequestMethod.GET)
 	public String loginform(ModelMap modelMap, HttpSession session) {
-		// VO °´Ã¼»ý¼º
+		// VO ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
 		MemberInfoVO infoVO = new MemberInfoVO();
-		// Model¿¡ VO°´Ã¼ Àü´Þ
+		// Modelï¿½ï¿½ VOï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		modelMap.addAttribute("infoVO", infoVO);
 
-		// ·Î±×ÀÎ ½ÇÆÐÃ³¸®
+		// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
 		int tryLoginVal = 0;
 		if (session.getAttribute("tryLogin") != null) {
 			session.removeAttribute("tryLogin");
@@ -55,7 +55,7 @@ public class LoginController {
 
 			Util.sendRedirect(response, "home");
 		} else {
-			System.out.println("½ÇÆÐ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			session.setAttribute("tryLogin", infoVO);
 			Util.sendRedirect(response, "loginform");
 		}
@@ -80,6 +80,6 @@ public class LoginController {
 		System.out.println("===========Login===============");
 		System.out.println("userName=" + member.getUserName());
 		System.out.println("Email=" + member.getEmail());
-		return "test/home";
+		return "home_renual";
 	}
 }

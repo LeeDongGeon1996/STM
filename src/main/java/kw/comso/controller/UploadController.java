@@ -102,7 +102,7 @@ public class UploadController {
             
             //이미지 정보 재작성
             response.setContentType("image/png");
-            response.setHeader("Content-Disposition", "image/png; filename="+uuid+".png");
+            response.setHeader("Content-Disposition", "attachment; filename="+uuid+".png");
             
             //이미지 다운로드 ( 추후 수정 예정 )
            
@@ -111,7 +111,8 @@ public class UploadController {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             
-        } 
+        }
+		
     }
 
 	@RequestMapping(value = "/registerQuestion")
@@ -191,7 +192,7 @@ public class UploadController {
 		
 		isSucceed = questionService.registerQuestion(member.getEmail(), questionVO);
 		if (isSucceed) {
-			Util.sendRedirect(response, "home");
+			Util.sendRedirect(response, "addQuestion");
 		} else {
 			session.setAttribute("tryRegiQuestion", questionVO);
 			Util.sendRedirect(response, "addQuestion");
