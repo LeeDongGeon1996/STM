@@ -95,6 +95,7 @@ body {
 	font-size: 20pt;
 	font-family: mbcL;
 	padding: 9px;
+	cursor: pointer;
 }
 
 .btn-paper {
@@ -108,6 +109,7 @@ body {
 	font-size: 20pt;
 	font-family: mbcL;
 	padding: 9px;
+	cursor: pointer;
 }
 
 .div-btn {
@@ -138,12 +140,12 @@ body {
 	color: rgb(7, 79, 102);
 	background-color: transparent;
 	font-size: 21pt;
-	cursor: pointer;
 	font-family: typoSMB;
 	color: rgb(7, 79, 102);
 	position: absolute;
 	top: 10px;
 	right: 30px;
+	cursor: pointer;
 }
 
 .text-page {

@@ -61,7 +61,10 @@
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="padding: 0px">
-												<div class="outterB topC">지문입력하는 곳</div>
+												<form style="word-break:break-all">
+													<input  class="outterB topC" type="text"
+														placeholder="지문을 입력해주세요" required="" autofocus="">
+												</form>
 
 												<div class="filebox">
 													<label for="ex_filename">이미지 업로드</label> <input type="file"
@@ -73,20 +76,27 @@
 
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
-												<text class="exp">미리보기</text>
-												<div class="outterB rightC"></div>
+												
+												<div class="outterB rightC">
+												!!!!!!!!!!여기에 에디터 넣어!!!!!!!!!!!!!
+												</div>
 
 											</div>
 										</div>
 									</div>
 								</div>
 								<!-- 주관식 부분 -->
+
 								<div role="tabpanel" class="tab-pane fade" id="messages">
 									<div class="container-fluid ">
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="padding: 0px">
-												<div class="outterB topC">지문입력하는 곳</div>
+												<form>
+													<input class="outterB topC" type="text"
+														placeholder="지문을 입력해주세요" required="" autofocus="">
+												</form>
+
 
 												<div class="filebox">
 													<label for="ex_filename">이미지 업로드</label> <input type="file"
@@ -98,7 +108,7 @@
 
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
-												<text class="exp">미리보기</text>
+												
 												<div class="outterB rightC"></div>
 
 											</div>
@@ -122,6 +132,12 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<button class=" btn-save" type="submit">정답 입력</button>
+						<label style="font-size: 15pt;">①&nbsp</label><input type="radio" name="answer" value="1">
+						<label style="font-size: 15pt;">&nbsp&nbsp②&nbsp</label><input type="radio" name="answer" value="2">
+						<label style="font-size: 15pt;">&nbsp&nbsp③&nbsp</label><input type="radio" name="answer" value="3">
+						<label style="font-size: 15pt;">&nbsp&nbsp④&nbsp</label><input type="radio" name="answer" value="4">
+						<label style="font-size: 15pt;">&nbsp&nbsp⑤&nbsp</label><input type="radio" name="answer" value="5">
+
 					</div>
 
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -243,7 +259,10 @@ i {
 .topC {
 	margin-right: 10px;
 	margin-bottom: 5px;
-	height: 350px;
+	margin-top: 15px;
+	height: 300px;
+	width: 470px;
+	word-break:break-all;word-wrap:break-word;
 }
 
 .bottomC {
@@ -254,6 +273,7 @@ i {
 
 .rightC {
 	height: 530px;
+	margin-top: 15px;
 }
 
 .exp {
@@ -364,7 +384,8 @@ img {
 		 
 		 
 		 
-		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 
+		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */  
        
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
