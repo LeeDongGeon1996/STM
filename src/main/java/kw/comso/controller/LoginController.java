@@ -28,8 +28,6 @@ public class LoginController {
 		MemberInfoVO infoVO = new MemberInfoVO();
 		// Model�� VO��ü ����
 		modelMap.addAttribute("infoVO", infoVO);
-
-		// �α��� ����ó��
 		int tryLoginVal = 0;
 		if (session.getAttribute("tryLogin") != null) {
 			session.removeAttribute("tryLogin");
@@ -80,6 +78,6 @@ public class LoginController {
 		System.out.println("===========Login===============");
 		System.out.println("userName=" + member.getUserName());
 		System.out.println("Email=" + member.getEmail());
-		return "home_renual";
+		return "home";
 	}
 }

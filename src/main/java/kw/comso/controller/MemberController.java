@@ -24,9 +24,9 @@ public class MemberController {
 
 	@RequestMapping(value = "/insertinfo", method = RequestMethod.GET)
 	public String insertinfo(ModelMap modelMap) {
-		// VO °´Ã¼»ý¼º
+		// VO ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
 		MemberInfoVO infoVO = new MemberInfoVO();
-		// Model¿¡ VO°´Ã¼ Àü´Þ
+		// Modelï¿½ï¿½ VOï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		modelMap.addAttribute("infoVO", infoVO);
 
 		return "signupform";

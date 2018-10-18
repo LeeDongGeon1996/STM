@@ -57,7 +57,7 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/registerquestion", method = RequestMethod.POST)
-	public void registerQuestion(QuestionVO questionVO, HttpSession session, HttpServletRequest req,
+	public void registerquestion(QuestionVO questionVO, HttpSession session, HttpServletRequest req,
 			HttpServletResponse response) {
 
 		boolean isSucceed = false;
