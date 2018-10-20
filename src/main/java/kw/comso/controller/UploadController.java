@@ -55,12 +55,12 @@ public class UploadController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-	public String addQuestion(ModelMap modelMap, HttpSession session,HttpServletResponse response) {
-		
+	public String addQuestion(ModelMap modelMap, HttpSession session, HttpServletResponse response) {
+
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
-		if(member==null)
+		if (member == null)
 			return null;
-		
+
 		// VO ��ü����
 		QuestionVO questionVO = new QuestionVO();
 		// Model�� VO��ü ����
@@ -73,62 +73,98 @@ public class UploadController {
 			tryRegiVal = 1;
 		}
 		modelMap.addAttribute("try", tryRegiVal);
-		
+
 		return "addQuestionform";
 	}
-	
-	//제작된 문제 이미지캡쳐 컨트롤러
+
+	// 제작된 문제 이미지캡쳐 컨트롤러
 	@RequestMapping(value = "/captureQuestion", method = RequestMethod.POST)
-    public void captureQuestion(QuestionVO questionVO, ModelMap modelMap, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	public void captureQuestion(QuestionVO questionVO, ModelMap modelMap, HttpSession session,
+			HttpServletRequest request, HttpServletResponse response) {
 		boolean isSucceed = false;
-		String uuid=getUuid();
-        
-		Path path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\"+uuid+".png");
-		String pathwd="C:\\Users\\junma\\Desktop\\capimgPath\\"+uuid+".png";
+		String uuid = getUuid();
+
+		Path path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png");
+		String pathwd = "C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png";
 		File addfile = new File(pathwd);
-		
+
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(addfile, true));
-            
-            // 파일안에 문자열 쓰기
-            
-            fw.flush();
- 
-            // 객체 닫기
-            fw.close();
 
-        	//이미지 정보 받아오기 && 불필요한 정보 제거
-            String capimgData = request.getParameter("capimgData");
-            capimgData = capimgData.replaceAll("data:image/png;base64,", "");
-            //이미지 디코딩(codec 라이브러리 사용 - base64)
-            byte[] file = Base64.decodeBase64(capimgData);
-            ByteArrayInputStream is = new ByteArrayInputStream(file);
-            
-            //이미지 정보 재작성
-            response.setContentType("image/png");
-            response.setHeader("Content-Disposition", "attachment; filename="+uuid+".png");
-            
-            //이미지 서버 업로드
-            Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block   
-        }
+			// 파일안에 문자열 쓰기
+
+			fw.flush();
+
+			// 객체 닫기
+			fw.close();
+
+			// 이미지 정보 받아오기 && 불필요한 정보 제거
+			String capimgData = request.getParameter("capimgData");
+			System.out.print(capimgData);
+			capimgData = capimgData.replaceAll("data:image/png;base64,", "");
+			// 이미지 디코딩(codec 라이브러리 사용 - base64)
+			byte[] file = Base64.decodeBase64(capimgData);
+			ByteArrayInputStream is = new ByteArrayInputStream(file);
+
+			// 이미지 정보 재작성
+			response.setContentType("image/png");
+			response.setHeader("Content-Disposition", "attachment; filename=" + uuid + ".png");
+
+			// 이미지 서버 업로드
+			Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
-		questionVO.setCapImageLink("http://localhost:8181/st2m/capimg" + "/" + uuid+".png");
+		questionVO.setCapImageLink("http://localhost:8181/st2m/capimg" + "/" + uuid + ".png");
 		System.out.println(questionVO.getCapImageLink());
 		isSucceed = questionService.registerQuestion(member.getEmail(), questionVO);
-		
-    }
+
+	}
 
 	@RequestMapping(value = "/registerQuestion")
-	public Map registerQuestion(QuestionVO questionVO, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
+	public Map registerQuestion(QuestionVO questionVO, ModelMap modelMap, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		boolean isSucceed = false;
 
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 
+		String uuid = getUuid();
 
-		// �ؽ�Ʈ
+		Path cap_path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png");
+		String pathwd = "C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png";
+		File addfile = new File(pathwd);
+
+		try {
+			BufferedWriter fw = new BufferedWriter(new FileWriter(addfile, true));
+
+			// 파일안에 문자열 쓰기
+
+			fw.flush();
+
+			// 객체 닫기
+			fw.close();
+
+			// 이미지 정보 받아오기 && 불필요한 정보 제거
+			String capimgData = questionVO.getCapValue();
+			System.out.print(capimgData);
+			capimgData = capimgData.replaceAll("data:image/png;base64,", "");
+			// 이미지 디코딩(codec 라이브러리 사용 - base64)
+			byte[] file = Base64.decodeBase64(capimgData);
+			ByteArrayInputStream is = new ByteArrayInputStream(file);
+
+			// 이미지 정보 재작성
+			response.setContentType("image/png");
+			response.setHeader("Content-Disposition", "attachment; filename=" + uuid + ".png");
+
+			// 이미지 서버 업로드
+			Files.copy(is, cap_path, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		
+		questionVO.setCapImageLink("http://localhost:8181/st2m/capimg" + "/" + uuid + ".png");
+		System.out.println(questionVO.getCapImageLink());
 
 		// �̹���
 		String path = "C:\\Users\\junma\\Desktop\\imgPath";
@@ -170,7 +206,7 @@ public class UploadController {
 				// ������ path�� ��������
 				File serverFile = new File(path + File.separator + saveFileName);
 				mfile.transferTo(serverFile);
-			
+
 				questionVO.setImageLink("http://localhost:8181/st2m/img" + "/" + saveFileName);
 
 				System.out.println(questionVO.getImageLink());
@@ -190,7 +226,7 @@ public class UploadController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		isSucceed = questionService.registerQuestion(member.getEmail(), questionVO);
 		if (isSucceed) {
 			Util.sendRedirect(response, "addQuestion");
@@ -198,7 +234,6 @@ public class UploadController {
 			session.setAttribute("tryRegiQuestion", questionVO);
 			Util.sendRedirect(response, "addQuestion");
 		}
-
 
 		return null;
 	}
@@ -220,8 +255,8 @@ public class UploadController {
 	 * // ���丮�� ���ٸ� �����Ѵ� File dir = new File(path); if (!dir.isDirectory()) {
 	 * dir.mkdirs(); }
 	 * 
-	 * // ���� ���ö����� while (iter.hasNext()) { fieldName = (String) iter.next(); mfile
-	 * = mhsr.getFile(fieldName); String origName;
+	 * // ���� ���ö����� while (iter.hasNext()) { fieldName = (String) iter.next();
+	 * mfile = mhsr.getFile(fieldName); String origName;
 	 * 
 	 * origName = new String(mfile.getOriginalFilename().getBytes("8859_1"),
 	 * "UTF-8");// �ѱ� �������� �ڵ�

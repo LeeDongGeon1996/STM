@@ -36,6 +36,11 @@
 		createEditor();
 
 	}
+	document.addEventListener('keydown', function(event) {
+	    if (event.keyCode === 13) {
+	        event.preventDefault();
+	    }
+	}, true);
 </script>
 <script language="javascript">
 	$(
@@ -46,9 +51,9 @@
 									.then(function(canvas) {
 										var image = new Image();
 										image = canvas.toDataURL("image/png");
-
-										$("#capimgData").val(image);
-										$("#capimgForm").submit();
+										console.log($("#capimgData").val(image));
+										document.getElementById("CapValue").value=image;
+										$("#btnfinal").trigger('click');
 									})
 						})
 			})
@@ -157,8 +162,9 @@
 															style="font-size: 15pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
 															type="radio" name="answer" value="5">
 													</div>
-													<button class="fix-savebutton btn-save" type="submit">저장</button>
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<form:input path="CapValue" name="CapValue" autofocus="" required="" type="hidden" id="CapValue" ></form:input>
+													
+													<button id="btnfinal" type="submit"></button>
                                           <button class="fix-refreshbutton btn-new"
 														type="submit">새로만들기</button>
 												</form:form>
@@ -167,13 +173,16 @@
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
 
-												<div class="outterB rightC">
+												<div class="outterB rightC" id="editordiv">
+													<div id="capimgLabel">
 													<h2>
 														<label for="editor1">문제 프리뷰</label>
 													</h2>
-													<div class="printBtnZone" align="right">
-														<button id="btn_submit" class="btn bg-gray small w-auto">다운로드</button>
 													</div>
+													<div class="printBtnZone" align="right">
+														<button id="btn_submit" class="fix-savebutton btn-save">저장</button>
+													</div>
+													<div id="ck">
 													<form name="capimgForm" id="capimgForm"
 														enctype="multipart/form-data" action="captureQuestion"
 														method="post">
@@ -183,6 +192,7 @@
 															<div id="editor1" contenteditable="true"></div>
 														</div>
 													</form>
+													</div>
 												</div>
 											</div>
 										</div>

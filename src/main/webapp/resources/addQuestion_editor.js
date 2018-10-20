@@ -266,6 +266,9 @@ function onFileSelected(file) {
 		
 		imgDiv.setHtml('<img id=\"preview1\" width=\'' + 300
 								+ '\' src=\'' + fileReader.result + '\' >');
+		setTimeout(function(){
+		document.querySelector("#editordiv").style.height=$("#capimgForm").height()+$("#passageInput").height()-100;
+		},100);
 	}
 
 }

@@ -15,6 +15,7 @@ public class QuestionVO { // �� ���� �ϳ��ϳ��� ���
 	private String mulChoice_five;
 	private String answer; // �� ����
 	private String owner; //������ ������  ex)���̽��丮�����ΰ�� '�򰡿�'���� ����
+	private String capvalue;
 	
 	private String questionImgLink; //�����信�� ���۵Ǿ� ĸ�ĵ� �̹���
 	
@@ -59,6 +60,9 @@ public class QuestionVO { // �� ���� �ϳ��ϳ��� ���
 	public void setQuestionImgLink(String questionImgLink) {
 		this.questionImgLink=questionImgLink;
 	}
+	public void setCapValue(String capvalue) {
+		this.capvalue=capvalue;
+	}
 	
 	// getter
 	public String getQuestionIDNum() {
@@ -99,5 +103,8 @@ public class QuestionVO { // �� ���� �ϳ��ϳ��� ���
 	}
 	public String getQuestionImgLink() {
 		return questionImgLink;
+	}
+	public String getCapValue() {
+		return capvalue;
 	}
 }
