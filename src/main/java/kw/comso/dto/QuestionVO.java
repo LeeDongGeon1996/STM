@@ -1,17 +1,24 @@
 package kw.comso.dto;
 
-public class QuestionVO { // °¢ ¹®Á¦ ÇÏ³ªÇÏ³ª¸¦ ÀúÀåÇÏ´Â °ø°£, ½ÃÇèÁö ¾Æ´Ô!!!
-	private String questionIDNum; // °¢ ¹®Á¦ÀÇ °íÀ¯¹øÈ£
+public class QuestionVO { // å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¹ë†‚ì˜™å ì‹¹ë†‚ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™, å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹£ëŒì˜™!!!
+	private String questionIDNum; // å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™í˜¸
 	private int mulORSub;
-	// ÀÌ ¹®Á¦°¡ °´°ü½ÄÀÎÁö ÁÖ°ü½ÄÀÎÁö ¼±ÅÃÇÏ´Â °÷ (0, 1)·Î ±¸ºĞÇÏ±â? ÃßÈÄ¿¡ Á¤ÇÏÀÚ, mul-multiple=°´°ü½Ä,
-	// sub-subjective=ÁÖ°ü½Ä
-	private String passage; // ¹®Á¦ Áö¹®À» ÀúÀåÇÔ
-	private String imageLink; // ÀÌ¹ÌÁö°¡ ÀúÀåµÇ¾î ÀÖ´Â ¸µÅ©¸¦ ÀúÀå
-	private String mulChoice; // °´°ü½Ä º¸±â¸¦ ÀúÀåÇÔ
-	private String answer; // ´ä ÀúÀå
-	private String owner; //¹®Á¦ÀÇ ¼ÒÀ¯ÀÚ  ex)ÀÚÀÌ½ºÅä¸®¹®Á¦ÀÎ°æ¿ì 'Æò°¡¿ø'À¸·Î ÀúÀå
+	// å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒê³¤ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™ (0, 1)å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê¹ì˜™? å ì™ì˜™å ì‹ìš¸ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™, mul-multiple=å ì™ì˜™å ì™ì˜™å ì™ì˜™,
+	// sub-subjective=å ìŒê³¤ì˜™å ì™ì˜™
+	private String passage; // å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™
+	private String imageLink; // å ì‹±ë±„ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™í“¸å ï¿½ å ìŒëŒì˜™ å ì™ì˜™í¬å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+	private String capimageLink;
+	private String mulChoice_one; 
+	private String mulChoice_two;
+	private String mulChoice_three;
+	private String mulChoice_four;
+	private String mulChoice_five;
+	private String answer; // å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+	private String owner; //å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™  ex)å ì™ì˜™å ì‹±ì™ì˜™å ì°ë¦¬å ì™ì˜™å ì™ì˜™å ì‹¸ê³¤ì˜™å ï¿½ 'å ì ê°€ìš¸ì˜™'å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+	private String capValue;
 	
-	private String questionImgLink; //ÇÁ¸®ºä¿¡¼­ Á¦ÀÛµÇ¾î Ä¸ÃÄµÈ ÀÌ¹ÌÁö
+	
+	private String questionImgLink; //å ì™ì˜™å ì™ì˜™å ì°ì—å ì™ì˜™ å ì™ì˜™å ìŒœë˜ì–µì˜™ ìº¡å ì‹ë“¸ì˜™ å ì‹±ë±„ì˜™å ì™ì˜™
 	
 	
 	// setter
@@ -27,8 +34,23 @@ public class QuestionVO { // °¢ ¹®Á¦ ÇÏ³ªÇÏ³ª¸¦ ÀúÀåÇÏ´Â °ø°£, ½ÃÇèÁö ¾Æ´Ô!!!
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
-	public void setMulChoice(String mulChoice) {
-		this.mulChoice = mulChoice;
+	public void setCapImageLink(String capimageLink) {
+		this.capimageLink = capimageLink;
+	}
+	public void setMulChoiceOne(String mulChoice_one) {
+		this.mulChoice_one = mulChoice_one;
+	}
+	public void setMulChoiceTwo(String mulChoice_two) {
+		this.mulChoice_two = mulChoice_two;
+	}
+	public void setMulChoiceThree(String mulChoice_three) {
+		this.mulChoice_three = mulChoice_three;
+	}
+	public void setMulChoiceFour(String mulChoice_four) {
+		this.mulChoice_four = mulChoice_four;
+	}
+	public void setMulChoiceFive(String mulChoice_five) {
+		this.mulChoice_five = mulChoice_five;
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;
@@ -38,6 +60,9 @@ public class QuestionVO { // °¢ ¹®Á¦ ÇÏ³ªÇÏ³ª¸¦ ÀúÀåÇÏ´Â °ø°£, ½ÃÇèÁö ¾Æ´Ô!!!
 	}
 	public void setQuestionImgLink(String questionImgLink) {
 		this.questionImgLink=questionImgLink;
+	}
+	public void setCapValue(String capValue) {
+		this.capValue = capValue;
 	}
 	
 	// getter
@@ -53,8 +78,23 @@ public class QuestionVO { // °¢ ¹®Á¦ ÇÏ³ªÇÏ³ª¸¦ ÀúÀåÇÏ´Â °ø°£, ½ÃÇèÁö ¾Æ´Ô!!!
 	public String getImageLink() {
 		return this.imageLink;
 	}
-	public String getMulChoice() {
-		return this.mulChoice;
+	public String getCapImageLink() {
+		return this.capimageLink;
+	}
+	public String getMulChoiceOne() {
+		return this.mulChoice_one;
+	}
+	public String getMulChoiceTwo() {
+		return this.mulChoice_two;
+	}
+	public String getMulChoiceThree() {
+		return this.mulChoice_three;
+	}
+	public String getMulChoiceFour() {
+		return this.mulChoice_four;
+	}
+	public String getMulChoiceFive() {
+		return this.mulChoice_five;
 	}
 	public String getAnswer() {
 		return this.answer;
@@ -64,5 +104,8 @@ public class QuestionVO { // °¢ ¹®Á¦ ÇÏ³ªÇÏ³ª¸¦ ÀúÀåÇÏ´Â °ø°£, ½ÃÇèÁö ¾Æ´Ô!!!
 	}
 	public String getQuestionImgLink() {
 		return questionImgLink;
+	}
+	public String getCapValue() {
+		return capValue;
 	}
 }

@@ -6,7 +6,7 @@ var choiceDiv;
 var imgDiv;
 var passageInput;
 var choiceInput;
-var questionDiv;
+var contentDiv;
 
 function makeTestPaper(){
 
@@ -201,11 +201,12 @@ function createTestPaper(){
 	.then( response => response.text() )
 	.then( text => editor.document.getBody().setHtml(text) );
 	
-	questionDiv = editor.document.getById('question_div');
+	questionDiv = editor.document.getById('content_div');
 }
 
 function createDiv() {
 
+	// 고칠필요가 있는구문이지만 아직 쓸일 이함수가 아직쓸일이 없어 서 안고치
 	if(questionDiv == null){
 		questionDiv = editor.document.getById('question_div');
 	}
@@ -231,21 +232,61 @@ function createDiv() {
 
 }
 
-
+var aryQuestionDiv=[];
 var aryPassageDiv=[];
 var aryChoiceDiv=[];
 var aryImgDiv=[];
 
+
+function createQuestionDiv(num){
+	
+	var questionDiv;
+	
+	// content_div를 얻어옵니다. (content_div는 여러 문제들이 속해 있는 div입니다.)
+	if(contentDiv == null){
+		contentDiv = editor.document.getById('content_div');
+	}
+	
+	// questionDiv를 생성합니다. (questionDiv는 문제 하나가 속한 div입니다. 문제별로 questionDiv가
+	// 존재합니다.)
+	questionDiv = CKEDITOR.dom.element.createFromHtml('<div id="content_div_' + num + '"></div><br>');
+	aryQuestionDiv.push(questionDiv);
+	questionDiv.appendTo(contentDiv);
+	
+}
+
+function createPassageDiv(num){
+	
+	var passageDiv;
+	
+	passageDiv = CKEDITOR.dom.element
+	.createFromHtml('<div id="passage_div_' + num + '"></div><br>');
+	// CKEDITOR.instances.editor1.insertElement(passageDiv);
+	aryPassageDiv.push(passageDiv);
+	passageDiv.appendTo(questionDiv);
+}
+
+function createImgDiv(num){
+	
+}
+
 function createDivNum(num) {
 
+	var questionDiv;
 	var passageDiv;
 	var choiceDiv;
 	var imgDiv;
 	
-	
-	if(questionDiv == null){
-		questionDiv = editor.document.getById('question_div');
+	// content_div를 얻어옵니다. (content_div는 여러 문제들이 속해 있는 div입니다.)
+	if(contentDiv == null){
+		contentDiv = editor.document.getById('content_div');
 	}
+	
+	// questionDiv를 생성합니다. (questionDiv는 문제 하나가 속한 div입니다. 문제별로 questionDiv가
+	// 존재합니다.)
+	questionDiv = CKEDITOR.dom.element.createFromHtml('<div id="content_div_' + num + '"></div><br>');
+	aryQuestionDiv.push(questionDiv);
+	questionDiv.appendTo(contentDiv);
 	
 		passageDiv = CKEDITOR.dom.element
 				.createFromHtml('<div id="passage_div_' + num + '"></div><br>');
@@ -253,67 +294,52 @@ function createDivNum(num) {
 		aryPassageDiv.push(passageDiv);
 		passageDiv.appendTo(questionDiv);
 		
-		
-		choiceDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="choice_div_' + num + '"></div><br>');
-		// CKEDITOR.instances.editor1.insertElement(choiceDiv);
-		aryChoiceDiv.push(choiceDiv);
-		choiceDiv.appendTo(questionDiv);
-		
 		imgDiv = CKEDITOR.dom.element
 				.createFromHtml('<div id="img_div_' + num + '"></div><br>');
 		// CKEDITOR.instances.editor1.insertElement(imgDiv);
 		aryImgDiv.push(imgDiv);
 		imgDiv.appendTo(questionDiv);
 		
+
+		choiceDiv = CKEDITOR.dom.element
+				.createFromHtml('<div id="choice_div_' + num + '"></div><br>');
+		// CKEDITOR.instances.editor1.insertElement(choiceDiv);
+		aryChoiceDiv.push(choiceDiv);
+		choiceDiv.appendTo(questionDiv);
 		
+}
+
+
+function loadQuestionList(jsonQuestionList) {
+	//이 부분을 작성해주세요.
+	//jsonQuestionList는 서버에서 전달된 문제 배열입니다.
+	//이 배열에 있는 문제를 웹페이지에 나열해주세요.
+	//+추가적으로 사용자가 문제를 선택하면 addQuestionToEditor(num)을 호출해주세요.
+	//num은 jsonQuestionList에서의 인덱스입니다.
+	
+}
+
+
+function loadQuestionList_old2(jsonQuestionList) {
+	for(var i=0; i<jsonQuestionList.length; i++){
+		createDivNum(i);
+		passageDiv[i].setText(jsonQuestionList[i].passage);
+		imgDiv[i].setHtml("<img id='question_img_" + i + "' width='" + 300 + "' src='" + jsonQuestionList[i].imageLink + "' >");
+		choiceDiv[i].setText(jsonQuestionList[i].mulChoice_one);
+	}
+	alert(jsonQuestionList[0].passage);
+
 }
 
 
 function createForm() {
 	var editor = CKEDITOR.instances.editor1;
 
-	/*
-	 * editor.document .getBody() .setHtml( '<DIV id=\'head_div\'>
-	 * <h3 class=\'header\' id=\'test_paper_name\'>STM 문제지</h3>
-	 * <h3 class=\'header\' id=\'test_paper_page_num\'>1</h3> <div
-	 * class=\'header\' id=\'test_paper_time\'>제 1교시</div>
-	 * <h1 class=\'header\' id=\'subject\'>과목 영역</h1> <div class=\'header\'
-	 * id=\'student_input_div\'> <div class=\'header student_info\'>성명</div>
-	 * <div class=\'header student_info student_input_name\'
-	 * id=\'student_input_name\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-	 * <div class=\'header student_info\'>수험번호</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_1\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_2\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_3\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_4\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_5\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info\'>-</div> <div class=\'header student_info
-	 * student_input_id\' id=\'student_input_id_6\'>&nbsp;&nbsp;&nbsp;</div>
-	 * <div class=\'header student_info student_input_id\'
-	 * id=\'student_input_id_7\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_8\'>&nbsp;&nbsp;&nbsp;</div> <div class=\'header
-	 * student_info student_input_id\'
-	 * id=\'student_input_id_9\'>&nbsp;&nbsp;&nbsp;</div> </div> </DIV>
-	 * <hr color=\'#000\'/> <DIV class=\'content\' id=\'question_div\'> <p>1sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
-	 * <p>2sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> <p>3sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
-	 * <p>4sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> <p>5sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
-	 * <p>6sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> <p>7sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p>
-	 * <p>8sadifjaoweifjaweofiawjefoiawjeofiawjeofiawjoefijawoeifje</p> </DIV>
-	 * <hr color=\'#000\'/>');
-	 */
-	
 	setTimeout(function(){questionDiv = editor.document.getById('question_div');alert(questionDiv)}, 3000)
 	// questionDiv = editor.document.getById('question_div');
 }
 
-function loadQuestionList(jsonQuestionList) {
+function loadQuestionList_old(jsonQuestionList) {
 	document.getElementById('editor1').innerHTML = "<div id=\'question"
 			+ questionCount + "\'>" + jsonQuestionList[0].passage + "</div>";
 	document.getElementById('editor1').innerHTML = "<img src=  \'"  + jsonQuestionList[0].imageLink  + "\' />";
@@ -327,6 +353,24 @@ function insertQuestion() {
 }
 function removeQuestion() {
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function onPassageChange() {
 
