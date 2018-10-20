@@ -6,8 +6,7 @@
 <script src="${pageContext.request.contextPath}/resources/editor.js"></script>
 <script>
    function onLoad() {
-      createEditor();
-
+	   makeTestPaper();
    }
 </script>
 </head>
@@ -41,7 +40,7 @@
 
                         <!--비밀번호 넣기-->
                         <div class="form-label-group">
-                           <form:input path="mulChoice" name="mulChoice" type="text"
+                           <form:input path="mulChoiceOne" name="mulChoiceOne" type="text"
                               class="form-control" placeholder="보기" required="" autofocus=""
                               onkeyup="onChoiceChange();"></form:input>
                            <div id="password_error" class="val_error"></div>

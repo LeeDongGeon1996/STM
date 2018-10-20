@@ -6,7 +6,7 @@
 <script src="${pageContext.request.contextPath}/resources/editor.js"></script>
 <script>
 	function onLoad() {
-		createEditor();
+		makeTestPaper();
 
 	}
 </script>
@@ -77,7 +77,7 @@
 		<h2>
 			<label for="editor1">Document Editor</label>
 		</h2>
-		<textarea id="editor1" disable>
+		<textarea id="editor1" style='overflow-y:scroll;'>
 		??????aasdfasdf
 
 		!!!!!

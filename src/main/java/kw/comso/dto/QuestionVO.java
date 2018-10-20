@@ -1,23 +1,25 @@
 package kw.comso.dto;
 
-public class QuestionVO { // �� ���� �ϳ��ϳ��� �����ϴ� ����, ������ �ƴ�!!!
-	private String questionIDNum; // �� ������ ������ȣ
+public class QuestionVO { // 占쏙옙 占쏙옙占쏙옙 占싹놂옙占싹놂옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙, 占쏙옙占쏙옙占쏙옙 占싣댐옙!!!
+	private String questionIDNum; // 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙호
 	private int mulORSub;
-	// �� ������ ���������� �ְ������� �����ϴ� �� (0, 1)�� �����ϱ�? ���Ŀ� ������, mul-multiple=������,
-	// sub-subjective=�ְ���
-	private String passage; // ���� ������ ������
-	private String imageLink; // �̹����� ����Ǿ� �ִ� ��ũ�� ����
+	// 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌍곤옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙 (0, 1)占쏙옙 占쏙옙占쏙옙占싹깍옙? 占쏙옙占식울옙 占쏙옙占쏙옙占쏙옙, mul-multiple=占쏙옙占쏙옙占쏙옙,
+	// sub-subjective=占쌍곤옙占쏙옙
+	private String passage; // 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+	private String imageLink; // 占싱뱄옙占쏙옙占쏙옙 占쏙옙占쏙옙퓸占� 占쌍댐옙 占쏙옙크占쏙옙 占쏙옙占쏙옙
 	private String capimageLink;
 	private String mulChoice_one; 
 	private String mulChoice_two;
 	private String mulChoice_three;
 	private String mulChoice_four;
 	private String mulChoice_five;
-	private String answer; // �� ����
-	private String owner; //������ ������  ex)���̽��丮�����ΰ�� '�򰡿�'���� ����
-	private String capvalue;
 	
-	private String questionImgLink; //�����信�� ���۵Ǿ� ĸ�ĵ� �̹���
+	private String answer; // 占쏙옙 占쏙옙占쏙옙
+	private String owner; //占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙  ex)占쏙옙占싱쏙옙占썰리占쏙옙占쏙옙占싸곤옙占� '占쏠가울옙'占쏙옙占쏙옙 占쏙옙占쏙옙
+	private String capValue;
+
+	
+	private String questionImgLink; //占쏙옙占쏙옙占썰에占쏙옙 占쏙옙占쌜되억옙 캡占식듸옙 占싱뱄옙占쏙옙
 	
 	
 	// setter
@@ -60,8 +62,8 @@ public class QuestionVO { // �� ���� �ϳ��ϳ��� ���
 	public void setQuestionImgLink(String questionImgLink) {
 		this.questionImgLink=questionImgLink;
 	}
-	public void setCapValue(String capvalue) {
-		this.capvalue=capvalue;
+	public void setCapValue(String capValue) {
+		this.capValue=capValue;
 	}
 	
 	// getter
@@ -105,6 +107,6 @@ public class QuestionVO { // �� ���� �ϳ��ϳ��� ���
 		return questionImgLink;
 	}
 	public String getCapValue() {
-		return capvalue;
+		return capValue;
 	}
 }

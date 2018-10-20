@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<TITLE>TestPaper Form</TITLE>
+<style>
+.cke_show_borders {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+hr {
+	border: 0;
+	height: 3px;
+}
+
+#head_div {
+	text-align: center;
+}
+
+.header {
+	column-span: all;
+	font-size: 50px;
+	text-align: center;
+	font-family: '궁서', '신명조', '굴림', 'Comic Sans MS';
+}
+
+.header#test_paper_page_num {
+	position: absolute;
+	right: 20px;
+	top: -20px;
+}
+
+.header#test_paper_name {
+	font-size: 25px;
+}
+
+.header#test_paper_time {
+	font-size: 25px;
+	position: absolute;
+	left: 20px;
+	border: solid black 3px;
+	border-radius: 50px;
+	padding: 5px;
+}
+
+.header#student_input_div {
+	display: inline-block;
+	margin: auto;
+}
+
+.header.student_info {
+	font-size: 25px;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	border: solid black 1px;
+}
+
+.content {
+	column-gap: 35px;
+	column-width: 20px;
+	column-rule: 3px solid #000;
+	column-count: 2;
+	width: 97%;
+}
+</style>
+
+</HEAD>
+
+<BODY>
+	<DIV class='page_div' id='page1_div' onchange='onPageChange();'>
+
+		<DIV id='head_div'>
+			<h3 class='header' id='test_paper_name'>STM 문제지</h3>
+			<h3 class='header' id='test_paper_page_num'>1</h3>
+			<div class='header' id='test_paper_time'>제 1교시</div>
+			<h1 class='header' id='subject'>과목 영역</h1>
+
+			<div class='header' id='student_input_div'>
+				<div class='header student_info'>성명</div>
+				<div class='header student_info student_input_name'
+					id='student_input_name'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info'>수험번호</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_1'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_2'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_3'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_4'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_5'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info'>-</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_6'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_7'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_8'>&nbsp;&nbsp;&nbsp;</div>
+				<div class='header student_info student_input_id'
+					id='student_input_id_9'>&nbsp;&nbsp;&nbsp;</div>
+			</div>
+
+		</DIV>
+		<hr color='#000' />
+		<DIV class='content' id='content_div'>
+			<p>기본 텍스트입니다.</p>
+
+		</DIV>
+		<hr color='#000' />
+
+	</DIV>
+
+</BODY>
+
+</HTML>
