@@ -1,11 +1,11 @@
-<!-- 내 문제함 화면 -->
+<!-- 내 시험지함 화면 -->
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 
 <head>
-<title>내 문제함</title>
+<title>내 시험지함</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
