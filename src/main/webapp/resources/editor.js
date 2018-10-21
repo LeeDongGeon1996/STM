@@ -327,7 +327,6 @@ function loadQuestionList() {
 		var question=jsonQuestionList[n].capimageLink;
 		console.log(question);
 		n++;
-		
 	}
 }
 
