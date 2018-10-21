@@ -39,11 +39,38 @@
 	<section id="main_section">
 		<div>
 			<div class="container-fluid surB"
-				style="width: 1000px; height: 580px;">
-				<div>
-				
-				</div>	
-				
+				style="width: 1000px; height: 580px; padding: 55px;">
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img ">
+						<div class="img-plus">
+							<input type="image" class="img-plus"
+								src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+				</div>
+
+
 			</div>
 		</div>
 	</section>
@@ -56,25 +83,48 @@
 
 <style>
 /*초기화 코드*/
-*{margin: 0; padding: 0;}
-li {list-style: none;}
-a{text-decoration: 0;}
-img {border:0;
+* {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: 0;
+}
+
+img {
+	border: 0;
 	max-width: 100%;
-	max-height: 100%;}
-	
+	max-height: 100%;
+}
+
 .surB {
 	border-style: solid;
 	border-width: 3pt;
 	border-color: rgb(51, 196, 241);
 	border-radius: 40px;
+	padding: 20px;
+}
+
+.div-img {
+	border-width: 1pt;
+	border-color: rgb(51, 196, 241);
+	border-style: none;
+	width: 150px;
+	height: 150px;
 }
 
 .img-plus {
 	width: 80px;
 	height: 80px;
 	padding: 0px;
-	margin: 0px;
+	margin: auto;
+	outline: none;
+	
 }
 /* 전체 적용 코드 */
 
@@ -103,6 +153,7 @@ img {border:0;
 	font-family: typoSMB;
 	position: absolute;
 	left: 30px;
+	outline: none;
 }
 
 .btn-logout { /*오른쪽 위 로그인하는 버튼*/
@@ -115,6 +166,7 @@ img {border:0;
 	color: rgb(7, 79, 102);
 	position: absolute;
 	right: 30px;
+	outline: none;
 }
 
 .text-page { /*상단 중앙 현재 무슨 페이지인지 나타냄*/
@@ -130,7 +182,8 @@ img {border:0;
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                
+		format('embedded-opentype'), /* IE 6 ~ 8 */                 
+		 
 		 
 		 
 		 
@@ -151,13 +204,3 @@ img {border:0;
 		format('truetype');
 }
 </style>
-
-<script type="text/javascript">
-	add_filter('post_thumbnail_html', 'remove_width_attribute', 10);
-	add_filter('image_send_to_editor', 'remove_width_attribute', 10);
-
-	function remove_width_attribute($html) {
-		$html = preg_replace('/(width|height)="\d*"\s/', "", $html);
-		return $html;
-	}
-</script>
