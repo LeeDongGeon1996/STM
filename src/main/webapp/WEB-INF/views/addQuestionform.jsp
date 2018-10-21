@@ -37,25 +37,34 @@
 
 	}
 	document.addEventListener('keydown', function(event) {
-	    if (event.keyCode === 13) {
-	        event.preventDefault();
-	    }
+		if (event.keyCode === 13) {
+			event.preventDefault();
+		}
 	}, true);
 </script>
 <script language="javascript">
 	$(
 			function() {
-				$('#btn_submit').click(
-						function() {
-							html2canvas(document.querySelector("#captureDiv"))
-									.then(function(canvas) {
-										var image = new Image();
-										image = canvas.toDataURL("image/png");
-										console.log($("#capimgData").val(image));
-										document.getElementById("CapValue").value=image;
-										$("#btnfinal").trigger('click');
-									})
-						})
+				$('#btn_submit')
+						.click(
+								function() {
+									html2canvas(
+											document
+													.querySelector("#captureDiv"))
+											.then(
+													function(canvas) {
+														var image = new Image();
+														image = canvas
+																.toDataURL("image/png");
+														console.log($(
+																"#capimgData")
+																.val(image));
+														document
+																.getElementById("CapValue").value = image;
+														$("#btnfinal").trigger(
+																'click');
+													})
+								})
 			})
 </script>
 </head>
@@ -66,8 +75,8 @@
 			<button class=" btn-home" onclick="window.location.href='./home'">STM</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<text class="text-page">문제 추가하기</text>
-			<form style="top:0px;bottom:100%" action="logout" method="post">
-			<button class="btn-logout">Logout</button>
+			<form style="top: 0px; bottom: 100%" action="logout" method="post">
+				<button class="btn-logout">Logout</button>
 			</form>
 		</div>
 	</header>
@@ -152,21 +161,22 @@
 													<div>
 														<label class="label-answer">정답 입력</label> <label
 															style="font-size: 15pt;">&nbsp;&nbsp;①&nbsp;</label><input
-															type="radio" name="answer" value="1"> <label
-															style="font-size: 15pt;">&nbsp;&nbsp;②&nbsp;</label><input
-															type="radio" name="answer" value="2"> <label
-															style="font-size: 15pt;">&nbsp;&nbsp;③&nbsp;</label><input
-															type="radio" name="answer" value="3"> <label
-															style="font-size: 15pt;">&nbsp;&nbsp;④&nbsp;</label><input
-															type="radio" name="answer" value="4"> <label
-															style="font-size: 15pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
-															type="radio" name="answer" value="5">
+															type="radio" name="answer" value="1" path="answer"
+															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;②&nbsp;</label><input
+															type="radio" name="answer" value="2" path="answer"
+															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;③&nbsp;</label><input
+															type="radio" name="answer" value="3" path="answer"
+															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;④&nbsp;</label><input
+															type="radio" name="answer" value="4" path="answer"
+															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
+															type="radio" name="answer" value="5" path="answer"
+															name="answer"></input>
 													</div>
-													<form:input path="CapValue" name="CapValue" autofocus="" required="" type="hidden" id="CapValue" ></form:input>
-													
+													<form:input path="CapValue" name="CapValue" autofocus=""
+														required="" type="hidden" id="CapValue"></form:input>
+
 													<button id="btnfinal" type="submit"></button>
-                                          <button class="fix-refreshbutton btn-new"
-														type="submit">새로만들기</button>
+													<button class="fix-refreshbutton btn-new" type="submit">새로만들기</button>
 												</form:form>
 											</div>
 
@@ -175,23 +185,23 @@
 
 												<div class="outterB rightC" id="editordiv">
 													<div id="capimgLabel">
-													<h2>
-														<label for="editor1">문제 프리뷰</label>
-													</h2>
+														<h2>
+															<label for="editor1">문제 프리뷰</label>
+														</h2>
 													</div>
 													<div class="printBtnZone" align="right">
 														<button id="btn_submit" class="fix-savebutton btn-save">저장</button>
 													</div>
 													<div id="ck">
-													<form name="capimgForm" id="capimgForm"
-														enctype="multipart/form-data" action="captureQuestion"
-														method="post">
-														<input type="hidden" id="capimgData" name="capimgData">
-														<div id="captureDiv">
-															<br>
-															<div id="editor1" contenteditable="true"></div>
-														</div>
-													</form>
+														<form name="capimgForm" id="capimgForm"
+															enctype="multipart/form-data" action="captureQuestion"
+															method="post">
+															<input type="hidden" id="capimgData" name="capimgData">
+															<div id="captureDiv">
+																<br>
+																<div id="editor1" contenteditable="true"></div>
+															</div>
+														</form>
 													</div>
 												</div>
 											</div>
@@ -329,7 +339,8 @@ i {
 /* named upload */
 .filebox .upload-name {
 	width: 310px;
-	display: inline-block; padding : 5px; /* label의 패딩값과 일치 */
+	display: inline-block;
+	padding: 5px; /* label의 패딩값과 일치 */
 	font-size: inherit;
 	font-family: inherit;
 	line-height: normal;
@@ -440,13 +451,18 @@ i {
 	margin-top: 10px;
 }
 
-.fix-savebutton{
-	position:fixed;
-	top:100px; right:550px;
+.fix-savebutton {
+	position: fixed;
+	top: 100px;
+	right: 550px;
+	z-index:1;
 }
-.fix-refreshbutton{
-	position:fixed;
-	top:100px; right:330px;
+
+.fix-refreshbutton {
+	position: fixed;
+	top: 100px;
+	right: 330px;
+	z-index:1;
 }
 
 /*---------------주관식----------------*/
@@ -592,7 +608,7 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                  
+		format('embedded-opentype'), /* IE 6 ~ 8 */                   
        
        
       
@@ -602,7 +618,7 @@ img {
 		 
 		 
 		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */   
        
        

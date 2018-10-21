@@ -7,6 +7,11 @@ var imgDiv;
 var passageInput;
 var choiceInput;
 var contentDiv;
+var jsonQuestionList=[];
+
+function assignQuestion(questionList){
+	jsonQuestionList=questionList;
+}
 
 function makeTestPaper(){
 
@@ -112,7 +117,7 @@ function createEditor() {
 		// Note: it is recommended to keep your own styles in a separate file in
 		// order to make future updates painless.
 		contentsCss : [ 'https://cdn.ckeditor.com/4.8.0/full-all/contents.css',
-				'mystyles.css', 'resources/innerEditor.css' ],
+				 'resources/innerEditor.css' ],
 		// This is optional, but will let us define multiple different styles
 		// for
 		// multiple editors using the same CSS file.
@@ -310,13 +315,20 @@ function createDivNum(num) {
 }
 
 
-function loadQuestionList(jsonQuestionList) {
+function loadQuestionList() {
+	
+	var n=0;
 	//이 부분을 작성해주세요.
 	//jsonQuestionList는 서버에서 전달된 문제 배열입니다.
 	//이 배열에 있는 문제를 웹페이지에 나열해주세요.
 	//+추가적으로 사용자가 문제를 선택하면 addQuestionToEditor(num)을 호출해주세요.
 	//num은 jsonQuestionList에서의 인덱스입니다.
-	
+	while(jsonQuestionList[n]!=null){
+		var question=jsonQuestionList[n].capimageLink;
+		console.log(question);
+		n++;
+		
+	}
 }
 
 
