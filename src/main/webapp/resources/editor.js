@@ -1,13 +1,30 @@
 var editor;
 var QuestionList;
-var questionCount = 0;
 var passageDiv;
 var choiceDiv;
 var imgDiv;
 var passageInput;
 var choiceInput;
 var contentDiv;
+var jsonQuestionList=[];
+var addedQuestionList=[];
+var questionCount = 0;
 
+function testScript(){
+	
+	addQuestionToTestPaper(0);
+	
+}
+function testScript_re(){
+	
+	removeQuestionFromTestPaper(0);
+	
+}
+
+
+function assignQuestion(questionList){
+	jsonQuestionList = questionList;
+}
 function makeTestPaper(){
 
 	createEditor();
@@ -193,7 +210,7 @@ function createEditor() {
 		height : '297mm',
 		width : '210mm'
 	});
-
+	
 }
 
 function createTestPaper(){
@@ -201,7 +218,7 @@ function createTestPaper(){
 	.then( response => response.text() )
 	.then( text => editor.document.getBody().setHtml(text) );
 	
-	questionDiv = editor.document.getById('content_div');
+	contentDiv = editor.document.getById('content_div');
 }
 
 function createDiv() {
@@ -234,7 +251,8 @@ function createDiv() {
 
 var aryQuestionDiv=[];
 var aryPassageDiv=[];
-var aryChoiceDiv=[];
+var aryChoiceDiv=[];	// 해당문항의 모든 보기를 포함하는 Div
+var aryChoiceNumDiv=[];	// 해당문항의 보기 각각을 포함하는 Div배열의 배열 (2차원 배열)
 var aryImgDiv=[];
 
 
@@ -249,7 +267,7 @@ function createQuestionDiv(num){
 	
 	// questionDiv를 생성합니다. (questionDiv는 문제 하나가 속한 div입니다. 문제별로 questionDiv가
 	// 존재합니다.)
-	questionDiv = CKEDITOR.dom.element.createFromHtml('<div id="content_div_' + num + '"></div><br>');
+	questionDiv = CKEDITOR.dom.element.createFromHtml('<div id="question_div_' + num + '"></div><br>');
 	aryQuestionDiv.push(questionDiv);
 	questionDiv.appendTo(contentDiv);
 	
@@ -263,11 +281,119 @@ function createPassageDiv(num){
 	.createFromHtml('<div id="passage_div_' + num + '"></div><br>');
 	// CKEDITOR.instances.editor1.insertElement(passageDiv);
 	aryPassageDiv.push(passageDiv);
-	passageDiv.appendTo(questionDiv);
+	passageDiv.appendTo(aryQuestionDiv[num]);
 }
 
 function createImgDiv(num){
 	
+	var imgDiv;
+	
+	imgDiv = CKEDITOR.dom.element
+	.createFromHtml('<div id="img_div_' + num + '"></div><br>');
+	// CKEDITOR.instances.editor1.insertElement(imgDiv);
+	aryImgDiv.push(imgDiv);
+	imgDiv.appendTo(aryQuestionDiv[num]);
+}
+
+function createChoiceDiv(num){
+	
+	var choiceDiv;
+	
+	choiceDiv = CKEDITOR.dom.element
+	.createFromHtml('<div id="choice_div_' + num + '"></div><br>');
+	// CKEDITOR.instances.editor1.insertElement(choiceDiv);
+	aryChoiceDiv.push(choiceDiv);
+	choiceDiv.appendTo(aryQuestionDiv[num]);
+}
+
+function createChoiceNumDiv(questionNum, choiceNum){
+	
+	var choiceNumDiv;
+	
+	choiceNumDiv = CKEDITOR.dom.element.createFromHtml('<div id="choice_div_'+ questionNum +'_' + num + '"></div><br>');
+	aryChoiceNumDiv[questionNum].push(choiceNumDiv);
+	choiceNumDiv.appendTo(aryChoiceDiv[questionNum]);
+	
+}
+
+function addQuestionToEditor(questionNum){
+	
+	createQuestionDiv(questionNum);
+	
+	// passageDiv 생성 및 값설정
+	createPassageDiv(questionNum);
+	var passage = questionCount + ". " + jsonQuestionList[questionNum].passage;
+	aryPassageDiv[questionNum].setText(passage);
+	
+	// imgDiv 생성 및 값설정 (이미지가 있을 경우에만)
+	if(jsonQuestionList[questionNum].imgLink != null){
+		createImgDiv(questionNum);
+		aryImgDiv[questionNum].setText(jsonQuestionList[questionNum].imgLink);
+	}
+	
+	// choiceDiv 생성 및 값설정 (객관식 문제인 경우에만)
+	if(jsonQuestionList[questionNum].mulORSub == 0){
+		createChoiceDiv(questionNum);
+		
+		// 1번보기
+		if(jsonQuestionList[questionNum].mulChoice_one != null){
+			createChoiceNumDiv(questionNum, 1);
+			aryChoiceNumDiv[questionNum][0].setText(jsonQuestionList[questionNum].mulChoice_one);
+		}
+		// 2번보기
+		if(jsonQuestionList[questionNum].mulChoice_two != null){
+			createChoiceNumDiv(questionNum, 2);
+			aryChoiceNumDiv[questionNum][1].setText(jsonQuestionList[questionNum].mulChoice_two);
+		}
+		// 3번보기
+		if(jsonQuestionList[questionNum].mulChoice_three != null){
+			createChoiceNumDiv(questionNum, 3);
+			aryChoiceNumDiv[questionNum][2].setText(jsonQuestionList[questionNum].mulChoice_three);
+		}
+		// 4번보기
+		if(jsonQuestionList[questionNum].mulChoice_four != null){
+			createChoiceNumDiv(questionNum, 4);
+			aryChoiceNumDiv[questionNum][3].setText(jsonQuestionList[questionNum].mulChoice_four);
+		}
+		// 5번보기
+		if(jsonQuestionList[questionNum].mulChoice_five != null){
+			createChoiceNumDiv(questionNum, 5);
+			aryChoiceNumDiv[questionNum][4].setText(jsonQuestionList[questionNum].mulChoice_four);
+		}
+	}
+}
+
+function addQuestionToAddedList(questionNum){
+	
+	// 웹페이지의 뷰에서도 추가된 리스트를 보이도록 한다.
+	addedQuestionList.push(jsonQuestionList[questionNum]);
+}
+
+function addQuestionToTestPaper(questionNum){
+	
+	questionCount++;
+	// 문제를 추가하면 추가된 목록에 포함시킨다.
+	addQuestionToAddedList(questionNum);
+	// 추가된 문제를 에디터에 출력되도록 한다.
+	addQuestionToEditor(questionNum);
+	
+}
+
+function removeQuestionFromAddedList(questionNum){
+	addedQuestionList.splice(questionNum,1);
+}
+
+function removeQuestionFromEditor(questionNum){
+	aryQuestionDiv[questionNum].remove();
+}
+
+function removeQuestionFromTestPaper(questionNum){
+
+	questionCount--;
+	// 문제를 삭제하면 추가된 목록에서 삭제시킨다.
+	removeQuestionFromAddedList(questionNum);
+	// 삭제된 문제를 에디터에서 제거되도록 한다.
+	removeQuestionFromEditor(questionNum);
 }
 
 function createDivNum(num) {
@@ -311,11 +437,11 @@ function createDivNum(num) {
 
 
 function loadQuestionList(jsonQuestionList) {
-	//이 부분을 작성해주세요.
-	//jsonQuestionList는 서버에서 전달된 문제 배열입니다.
-	//이 배열에 있는 문제를 웹페이지에 나열해주세요.
-	//+추가적으로 사용자가 문제를 선택하면 addQuestionToEditor(num)을 호출해주세요.
-	//num은 jsonQuestionList에서의 인덱스입니다.
+	// 이 부분을 작성해주세요.
+	// jsonQuestionList는 서버에서 전달된 문제 배열입니다.
+	// 이 배열에 있는 문제를 웹페이지에 나열해주세요.
+	// +추가적으로 사용자가 문제를 선택하면 addQuestionToEditor(num)을 호출해주세요.
+	// num은 jsonQuestionList에서의 인덱스입니다.
 	
 }
 
