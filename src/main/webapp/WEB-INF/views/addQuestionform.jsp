@@ -109,13 +109,14 @@
 												<form:form modelAttribute="questionVO"
 													action="registerQuestion" method="POST"
 													onSubmit="return Validate()" name="infos"
-													enctype="multipart/form-data" style="word-break: break-all">
+													enctype="multipart/form-data">
 													<div>
 														<!-- 지문 입력 -->
-														<form:input path="passage" name="passage" type="text"
-															id="passageInput" class="form-control outterB topC"
-															placeholder="지문 입력" required="" autofocus=""
-															onkeyup="onPassageChange();"></form:input>
+														<textarea cols="num" rows="num" path="passage"
+															name="passage" id="passageInput" class="outterB topC"
+															placeholder="지문을 입력해주세요" required="" autofocus=""
+															onkeyup="onPassageChange();"></textarea>
+
 														<div id="username_error" class="val_error"></div>
 													</div>
 
@@ -160,15 +161,15 @@
 													</div>
 													<div>
 														<label class="label-answer">정답 입력</label> <label
-															style="font-size: 15pt;">&nbsp;&nbsp;①&nbsp;</label><input
+															style="font-size: 18pt;">&nbsp;&nbsp;①&nbsp;</label><input
 															type="radio" name="answer" value="1" path="answer"
-															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;②&nbsp;</label><input
+															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;②&nbsp;</label><input
 															type="radio" name="answer" value="2" path="answer"
-															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;③&nbsp;</label><input
+															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;③&nbsp;</label><input
 															type="radio" name="answer" value="3" path="answer"
-															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;④&nbsp;</label><input
+															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;④&nbsp;</label><input
 															type="radio" name="answer" value="4" path="answer"
-															name="answer"></input> <label style="font-size: 15pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
+															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
 															type="radio" name="answer" value="5" path="answer"
 															name="answer"></input>
 													</div>
@@ -221,15 +222,16 @@
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="padding: 0px">
-												<form style="word-break: break-all">
-													<input class="outterB sleftC" type="text"
-														placeholder="지문을 입력해주세요" required="" autofocus="">
-												</form>
+
+												<textarea cols="num" rows="num" class="outterB sleftC"
+													placeholder="지문을 입력해주세요" required="" autofocus=""></textarea>
+
 
 												<div class="filebox2">
 													<label for="ex_filename2">이미지 업로드</label> <input
 														type="file" id="ex_filename2" class="upload-hidden2">
-													<input class="upload-name2" value="파일택" disabled="disabled">
+													<input class="upload-name2" value="파일이름"
+														disabled="disabled">
 												</div>
 
 												<div>
@@ -245,9 +247,9 @@
 													넣어!!!!!!!!!!!!!</div>
 												<div>
 													<form:form action="testform" method="POST">
-														<button class=" btn-save" type="submit">저장</button>
-                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          <button class=" btn-new"
+														<button id="sbtn-save" class="fix-savebutton btn-save"
+															type="submit">저장</button>
+														<button id="sbtn-new" class="fix-refreshbutton btn-new"
 															type="submit">새로만들기</button>
 													</form:form>
 												</div>
@@ -279,6 +281,8 @@
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
+	font-family: mbcL;
+	font-size: 15pt;
 }
 
 .custom-tab>li>a:link {
@@ -299,11 +303,11 @@
 
 i {
 	color: #000;
+	color: white;
 }
 
 .link-lable {
 	text-decoration: none;
-	color: #000;
 }
 
 @media screen and (max-width: 767px) {
@@ -335,6 +339,7 @@ i {
 	padding: 5px;
 	background: rgb(49, 207, 255);
 	cursor: pointer;
+	font-weight: lighter;
 }
 /* named upload */
 .filebox .upload-name {
@@ -358,6 +363,7 @@ i {
 .imgULB {
 	font-size: 15pt;
 	font-family: mbcL;
+	font-weight: lighter;
 	color: white;
 	text-align: center;
 	border-radius: 8px;
@@ -378,10 +384,10 @@ i {
 	margin-right: 10px;
 	margin-bottom: 5px;
 	margin-top: 15px;
+	padding: 30px;
 	height: 250px;
 	width: 470px;
-	word-break: break-all;
-	word-wrap: break-word;
+	font-size: 13pt;
 }
 
 .bottomC {
@@ -390,15 +396,16 @@ i {
 	height: 230px;
 	padding: 10px;
 	padding-top: 23px;
+	font-size: 13pt;
 }
 
 .rightC {
-	height: 530px;
+	height: 570px;
 	margin-top: 15px;
 }
 
 .bgInsert { /*객관식 보기 입력*/
-	font-size: 15px;
+	font-size: 13pt;
 	border: none;
 	width: 400px;
 }
@@ -421,11 +428,12 @@ i {
 	font-family: mbcL;
 	padding: 3px;
 	margin-top: 10px;
+	font-weight: lighter;
 }
 
 .btn-save {
 	color: white;
-	background-color: rgb(250, 217, 86);
+	background-color: rgb(7, 79, 102);
 	border-radius: 8px;
 	border: none;
 	color: #FFFFFF;
@@ -439,7 +447,7 @@ i {
 
 .btn-new {
 	color: white;
-	background-color: rgb(7, 79, 102);
+	background-color: rgb(250, 217, 86);
 	border-radius: 8px;
 	border: none;
 	color: #FFFFFF;
@@ -454,15 +462,15 @@ i {
 .fix-savebutton {
 	position: fixed;
 	top: 100px;
-	right: 550px;
-	z-index:1;
+	right: 330px;
+	z-index: 1;
 }
 
 .fix-refreshbutton {
 	position: fixed;
 	top: 100px;
-	right: 330px;
-	z-index:1;
+	right: 500px;
+	z-index: 1;
 }
 
 /*---------------주관식----------------*/
@@ -487,6 +495,7 @@ i {
 	width: 150px;
 	padding: 5px;
 	background: rgb(49, 207, 255);
+	font-weight: lighter;
 }
 /* named upload */
 .filebox2 .upload-name2 {
@@ -512,18 +521,18 @@ i {
 	margin-top: 15px;
 	height: 490px;
 	width: 470px;
-	word-break: break-all;
-	word-wrap: break-word;
+	padding: 30px;
+	font-size: 13pt;
 }
 
 .srightC {
-	height: 530px;
+	height: 580px;
 	margin-top: 15px;
 }
 
 .jdInsert { /*주관식 답 입력*/
-	font-size: 15px;
-	width: 400px;
+	font-size: 15pt;
+	width: 310px;
 }
 
 /* 전체 적용 코드 */
@@ -593,6 +602,7 @@ img {
 	color: rgb(7, 79, 102);
 	position: absolute;
 	right: 30px;
+	top: 5px;
 }
 
 .text-page {
@@ -608,16 +618,8 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                   
+		format('embedded-opentype'), /* IE 6 ~ 8 */                    
        
-       
-      
-		 
-		 
-		 
-		 
-		 
-		 
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */   
        

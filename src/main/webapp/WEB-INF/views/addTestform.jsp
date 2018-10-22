@@ -34,11 +34,11 @@
 		</div>
 	</header>
 	<section id="main_section">
-		<div style="width: 1000px; height: 580px;">
+		<div style="width: 1500px; height: 580px;">
 			<div class="container-fluid">
 				<div class="container-fluid ">
 					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
 							style="padding: 0px; text-align: center">
 							<text class="exp">사용할 문제를 선택해주세요</text>
 							<div class="outterB topC"></div>
@@ -47,10 +47,13 @@
 							<div class="outterB bottomC"></div>
 						</div>
 
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
 							style="text-align: center">
 							<text class="exp">미리보기</text>
-							<div class="outterB rightC"></div>
+							<div class="outterB rightC">
+							<textarea id="editor1" disable></textarea>
+							</div>
+
 
 							<div class="div-btn">
 								<form:form action="testform" method="POST">
@@ -64,7 +67,7 @@
 		</div>
 	</section>
 
-	<footer id="main_footer"> </footer>
+	
 </body>
 
 <style>
@@ -137,7 +140,7 @@ img {
 
 /*스타일 적용*/
 #main_header {
-	width: 1000px;
+	width: 1500px;
 	margin: 0 auto;
 	margin-bottom: 50px;
 	height: 60px;
@@ -146,16 +149,9 @@ img {
 }
 
 #main_section {
-	width: 1000px;
-	margin: 20px auto;
+	width: 1500px;
+	margin: auto;
 	position: relative;
-}
-
-#main_footer {
-	width: 1000px;
-	margin: 0 auto;
-	position: relative;
-	bottom: 10px;
 }
 
 .btn-home {
