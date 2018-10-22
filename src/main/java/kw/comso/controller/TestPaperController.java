@@ -38,7 +38,7 @@ public class TestPaperController {
 		model.addAttribute("questionList", Util.toJson(questionList));
 		
 		//시험지생성페이지의 jsp를 반환한다.
-		return null;
+		return "addTestform";
 	}
 	
 	@RequestMapping(value="/save_testpaper", method= RequestMethod.POST)
