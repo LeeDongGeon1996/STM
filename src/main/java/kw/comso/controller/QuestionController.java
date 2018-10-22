@@ -58,4 +58,17 @@ public class QuestionController {
 
 		return "test/insertquestion";
 	}
+
+	@RequestMapping(value = "/questionform", method = RequestMethod.GET)
+	public String questionform(ModelMap model, HttpSession session, HttpServletResponse response) {
+
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+
+		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
+		model.addAttribute("questionList", Util.toJson(questionList));
+
+		return "questionform";
+	}
 }

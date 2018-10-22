@@ -10,16 +10,15 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-	<div class="div-nav">
-		<button class=" btn-home">STM</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<text class="text-page">Main Page</text>
-		<p class="username">${userName}님 환영합니다.</p>
-		<form action="logout" method="POST">
-		<button class="btn-logout">Logout</button>
-		</form>
-	</div>
+   <div class="div-nav">
+      <button class=" btn-home">STM</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <text class="text-page">Main Page</text>
+      <p class="username">${userName}님 환영합니다.</p>
+      <form action="logout" method="POST">
+      <button class="btn-logout">Logout</button>
+      </form>
+   </div>
 
    <div class="div-text">
       <text class="text-smallN">시험지 제작 툴 </text>
@@ -31,24 +30,23 @@
       STM</text>
    </div>
 
-<<<<<<< HEAD
-	<!--button-->
-	<div class="div-container">
-		<div class="row">
-			<div class="div-btn">
-				
-					<button class=" btn-question" type="submit" onclick="window.location.href='./addQuestion'">내 문제</button>
-				
-			</div>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="div-btn">
-				<form:form action="testform" method="GET">
-					<button class=" btn-paper" type="submit">내 시험지</button>
-				</form:form>
-			</div>
-		</div>
-	</div>
+   <!--button-->
+   <div class="div-container">
+      <div class="row">
+         <div class="div-btn">
+            
+               <button class=" btn-question" type="submit" onclick="window.location.href='./addQuestion'">내 문제</button>
+            
+         </div>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <div class="div-btn">
+            <form:form action="testform" method="GET">
+               <button class=" btn-paper" type="submit">내 시험지</button>
+            </form:form>
+         </div>
+      </div>
+   </div>
 </body>
 
 <style>
@@ -94,6 +92,7 @@ body {
    background-color: rgb(250, 217, 86);
    border-radius: 8px;
    border: none;
+   outline: none;
    color: #FFFFFF;
    text-align: center;
    width: 150px;
@@ -103,11 +102,22 @@ body {
    cursor: pointer;
 }
 
+.btn-question:hover {background-color: rgb(249,213,61);}
+
+
+.btn-question:active {
+  background-color: rgb(248,208,40);
+  box-shadow: 0 6px #666;
+  transform: translateY(6px);
+}
+
+
 .btn-paper {
    color: white;
    background-color: rgb(7, 79, 102);
    border-radius: 8px;
    border: none;
+   outline: none;
    color: #FFFFFF;
    text-align: center;
    width: 150px;
@@ -115,7 +125,17 @@ body {
    font-family: mbcL;
    padding: 9px;
    cursor: pointer;
+   
 }
+.btn-paper:hover {background-color: rgb(6,64,82);}
+
+
+.btn-paper:active {
+  background-color: rgb(6,64,82);
+  box-shadow: 0 6px rgb(47,51,63);
+  transform: translateY(6px);
+}
+
 
 .div-btn {
    display: inline-block;
@@ -133,6 +153,7 @@ body {
    background-color: transparent;
    font-size: 21pt;
    border: none;
+   outline: none;
    cursor: pointer;
    font-family: typoSMB;
    position: absolute;
@@ -142,6 +163,7 @@ body {
 
 .btn-logout {
    border: none;
+   outline: none;
    color: rgb(7, 79, 102);
    background-color: transparent;
    font-size: 21pt;
@@ -163,18 +185,6 @@ body {
    top: -16px;
    right:15%;
    textalign:center;
-}
-
-.username {
-	border: none;
-	color: rgb(7, 79, 102);
-	font-size: 21pt;
-	font-family: typoSMB;
-	color: rgb(7, 79, 102);
-	position: fixed;
-	top: -16px;
-	right:15%;
-	textalign:center;
 }
 
 .text-page {
