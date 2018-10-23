@@ -21,7 +21,7 @@ function testScript_re(){
 	
 }
 
-
+ 
 function assignQuestion(questionList){
 	jsonQuestionList = questionList;
 }
@@ -221,33 +221,7 @@ function createTestPaper(){
 	contentDiv = editor.document.getById('content_div');
 }
 
-function createDiv() {
 
-	// 고칠필요가 있는구문이지만 아직 쓸일 이함수가 아직쓸일이 없어 서 안고치
-	if(questionDiv == null){
-		questionDiv = editor.document.getById('question_div');
-	}
-	
-	if (passageDiv == null) {
-		passageDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="passage_div"></div><br>');
-		// CKEDITOR.instances.editor1.insertElement(passageDiv);
-		passageDiv.appendTo(questionDiv);
-	}
-	if (choiceDiv == null) {
-		choiceDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="choice_div"></div><br>');
-		// CKEDITOR.instances.editor1.insertElement(choiceDiv);
-		choiceDiv.appendTo(questionDiv);
-	}
-	if (imgDiv == null) {
-		imgDiv = CKEDITOR.dom.element
-				.createFromHtml('<div id="img_div"></div><br>');
-		// CKEDITOR.instances.editor1.insertElement(imgDiv);
-		imgDiv.appendTo(questionDiv);
-	}
-
-}
 
 var aryQuestionDiv=[];
 var aryPassageDiv=[];
@@ -310,7 +284,7 @@ function createChoiceNumDiv(questionNum, choiceNum){
 	
 	var choiceNumDiv;
 	
-	choiceNumDiv = CKEDITOR.dom.element.createFromHtml('<div id="choice_div_'+ questionNum +'_' + num + '"></div><br>');
+	choiceNumDiv = CKEDITOR.dom.element.createFromHtml('<div id="choice_div_'+ questionNum +'_' + choiceNum + '"></div><br>');
 	aryChoiceNumDiv[questionNum].push(choiceNumDiv);
 	choiceNumDiv.appendTo(aryChoiceDiv[questionNum]);
 	
@@ -482,56 +456,66 @@ function removeQuestion() {
 
 
 
+function createDiv() {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	var body = CKEDITOR.instances.editor1.document.getBody();
+	
+	questionDiv = CKEDITOR.dom.element.createFromHtml('<div id="question_div"></div><br>');
+	aryQuestionDiv.push(questionDiv);
+	questionDiv.appendTo(body);
+	
+	createPassageDiv(0);
+	createImgDiv(0);
+	createChoiceDiv(0);
+	createChoiceNumDiv(0, 0);
+	createChoiceNumDiv(0, 1);
+	createChoiceNumDiv(0, 2);
+	createChoiceNumDiv(0, 3);
+	createChoiceNumDiv(0, 4);
+	
+}
 
 
 function onPassageChange() {
 
-	if (passageDiv == null) {
+	if (aryPassageDiv[0] == null) {
 		createDiv();
-		createDivNum(3);
-		createDivNum(4);
-		
 	}
 	if (passageInput == null) {
 		passageInput = document.getElementById('passageInput');
 	}
-	passageDiv.setHtml("<b>" + passageInput.value + "</b>");
+	aryPassageDiv[0].setHtml("<b>" + passageInput.value + "</b>");
 
-	passageInput.focus();
+	aryPassageDiv[0].focus();
 
 }
 
-function onChoiceChange() {
 
-	if (choiceDiv == null) {
+var passageDiv_;
+var imgDiv;
+var choiceDiv=[];
+
+
+
+function onChoiceChange(num) {
+	if (aryChoiceNumDiv[num] == null) {
 		createDiv();
 	}
-	if (choiceInput == null) {
-		choiceInput = document.getElementById('mulChoice');
-	}
-	choiceDiv.setText(choiceInput.value);
-	choiceInput.focus();
+	passageInput = document.getElementById('mulChoice_' + num);
+	
+	aryChoiceNumDiv[num].setHtml("<b>" + passageInput.value + "</b>");
+
+	aryChoiceNumDiv[num].focus();
+	
+
+	
 }
 
 function onFileSelected(file) {
 
 	// 파일의 인자로 input element의 files를 전달받습니다.
 
-	if (imgDiv == null) {
+	if (aryImgDiv[0] == null) {
 		createDiv();
 	}
 
@@ -541,7 +525,7 @@ function onFileSelected(file) {
 
 	// 파일을 다읽어오면 콜백onload합수로 이미지 태그를 에디터안에 넣어줍니다.
 	fileReader.onload = function() {
-		imgDiv.setHtml('<img id=\"preview1\" width=\'' + 300 + '\' src=\''
+		aryImgDiv[0].setHtml('<img id=\"preview1\" width=\'' + 300 + '\' src=\''
 				+ fileReader.result + '\' >');
 	}
 

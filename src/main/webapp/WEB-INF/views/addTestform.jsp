@@ -29,7 +29,7 @@
 		makeTestPaper();
 	}
 	assignQuestion(${questionList});
-	setTimeout(function(){testScript();setTimeout(function(){testScript_re();},1000);},1000);
+	setTimeout(function(){testScript();setTimeout(function(){testScript_re();},10000);},3000);
 	
 </script>
 </head>
