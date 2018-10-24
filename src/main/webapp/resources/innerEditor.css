@@ -1,22 +1,12 @@
 @charset "EUC-KR";
 
-<<<<<<< HEAD
 .cke_show_borders {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
 
-hr {
-	border: 0;
-	height: 3px;
-}
-
-#head_div {
-	text-align: center;
-=======
 img {
 	width: 280px;
->>>>>>> JMC_br
 }
 
 hr {
@@ -72,10 +62,6 @@ hr {
 	column-width: 20px;
 	column-rule: 3px solid #000;
 	column-count: 2;
-<<<<<<< HEAD
-	
 	width: 97%;
-=======
 	height: 500px;
->>>>>>> JMC_br
 }
