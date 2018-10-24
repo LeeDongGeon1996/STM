@@ -33,12 +33,13 @@
 <body onload="onLoad();">
 	<header id="main_header">
 		<div class="div-nav">
-			<button id="btn-home" class=" btn-home">STM</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<text class="text-page">시험지 만들기</text>
-			<button class="btn-logout">Logout</button>
-
-		</div>
+         <button class=" btn-home" onclick="window.location.href='./home'">STM</button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <text class="text-page">시험지 만들기</text>
+         <form style="top: 0px; bottom: 100%" action="logout" method="post">
+            <button class="btn-logout">Logout</button>
+         </form>
+      </div>
 	</header>
 	<section id="main_section">
 		<div style="width: 1500px; height: 580px;">
@@ -57,8 +58,7 @@
 									<div id="img-2"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 								</div>
-								<br>
-								<br>
+								<br> <br>
 								<div class="row">
 									<div id="img-3"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
@@ -70,13 +70,15 @@
 							</div>
 
 							<text class="exp">선택된 문제는 아래와 같습니다</text>
-							<div class="outterB bottomC"></div>
+							<div class="outterB bottomC">
+								<div class="row" id="selectedQuestions"></div>
+							</div>
 						</div>
 
-						<div id="editordiv" class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-							style="text-align: center">
+						<div id="editordiv" class="col-lg-7 col-md-8 col-sm-8 col-xs-8"
+							style="text-align: center;">
 							<text class="exp">미리보기</text>
-							<div class="outterB rightC">
+							<div class="outterB rightC" style="margin:3px;">
 								<textarea id="editor1" disable></textarea>
 							</div>
 
@@ -236,10 +238,11 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */           
+		format('embedded-opentype'), /* IE 6 ~ 8 */            
        
        
        
+		 
 		 
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */  

@@ -244,7 +244,7 @@ function createQuestionDiv(num){
    // questionDiv를 생성합니다. (questionDiv는 문제 하나가 속한 div입니다. 문제별로 questionDiv가
    // 존재합니다.)
    questionDiv = CKEDITOR.dom.element.createFromHtml('<div id="question_div_' + num + '"></div><br>');
-   //aryQuestionDiv.push(questionDiv);
+   // aryQuestionDiv.push(questionDiv);
    aryQuestionDiv[num] = questionDiv;
    questionDiv.appendTo(contentDiv);
    
@@ -257,7 +257,7 @@ function createPassageDiv(num){
    passageDiv = CKEDITOR.dom.element
    .createFromHtml('<div id="passage_div_' + num + '"></div><br>');
    // CKEDITOR.instances.editor1.insertElement(passageDiv);
-   //aryPassageDiv.push(passageDiv);
+   // aryPassageDiv.push(passageDiv);
    aryPassageDiv[num] = passageDiv;
    passageDiv.appendTo(aryQuestionDiv[num]);
 }
@@ -269,7 +269,7 @@ function createImgDiv(num){
    imgDiv = CKEDITOR.dom.element
    .createFromHtml('<div id="img_div_' + num + '"></div><br>');
    // CKEDITOR.instances.editor1.insertElement(imgDiv);
-   //aryImgDiv.push(imgDiv);
+   // aryImgDiv.push(imgDiv);
    aryImgDiv[num] = imgDiv;
    imgDiv.appendTo(aryQuestionDiv[num]);
 }
@@ -281,7 +281,7 @@ function createChoiceDiv(num){
    choiceDiv = CKEDITOR.dom.element
    .createFromHtml('<div id="choice_div_' + num + '"></div><br>');
    // CKEDITOR.instances.editor1.insertElement(choiceDiv);
-   //aryChoiceDiv.push(choiceDiv);
+   // aryChoiceDiv.push(choiceDiv);
    aryChoiceDiv[num] = choiceDiv;
    choiceDiv.appendTo(aryQuestionDiv[num]);
 }
@@ -291,7 +291,7 @@ function createChoiceNumDiv(questionNum, choiceNum){
    var choiceNumDiv;
    
    choiceNumDiv = CKEDITOR.dom.element.createFromHtml('<div id="choice_div_'+ questionNum +'_' + choiceNum + '"></div><br>');
-   //aryChoiceNumDiv[questionNum].push(choiceNumDiv);
+   // aryChoiceNumDiv[questionNum].push(choiceNumDiv);
    aryChoiceNumDiv[questionNum][choiceNum] = choiceNumDiv;
    choiceNumDiv.appendTo(aryChoiceDiv[questionNum]);
    
@@ -570,7 +570,18 @@ function hello(){
 
 function addOnclick(n){
 	console.log(n);
-	$("#capimg-"+n).attr("onclick","addQuestionToTestPaper("+n+")");
+	$("#capimg-"+n).attr("onclick","appendBottomDiv("+n+");addQuestionToTestPaper("+n+")");
+}
+
+function appendBottomDiv(n){
+	if(document.getElementById("selected-"+n)==null){
+		var img = document.createElement("img");
+		img.src=document.getElementById("capimg-"+n).src;
+		img.id="selected-"+n;
+		img.onclick = function() { removeWrapper(n) };
+		var div = document.getElementById("selectedQuestions");
+		div.append(img);
+	}
 }
 
 function appendChild(question,n) {
@@ -578,8 +589,11 @@ function appendChild(question,n) {
 	img.src=question;
 	img.id="capimg-"+n;
 	img.classList.add("image-popup-no-margins");
-	//img.type="image";
-	// img.onclick=addQuestionToTestPaper(n);
 	var div = document.getElementById("img-"+n);
 	div.append(img);
+}
+
+function removeWrapper(n){
+	removeQuestionFromTestPaper(n);
+	$("#selected-"+n).remove();
 }
