@@ -33,7 +33,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	function onLoad() {
-		$("body").fadeIn(3000);
+		$("body").fadeIn();
 		createEditor();
 
 	}
@@ -70,7 +70,7 @@
 </script>
 </head>
 
-<body onload="onLoad();fadeIn()">
+<body onload="onLoad();">
 	<header id="main_header">
 		<div class="div-nav">
 			<button class=" btn-home" onclick="window.location.href='./home'">STM</button>
@@ -91,18 +91,18 @@
 
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs custom-tab" role="tablist">
-								<li role="presentation" class="active"><a href="#home"
+								<li role="presentation" onclick="location.href='./addQuestion'"><a href="#home"
 									aria-controls="home" role="tab" data-toggle="tab"><i
 										class="glyphicon icon"></i><span class="link-lable">
 											객관식</span></a></li>
-								<li role="presentation" onclick="location.href='./addQuestion2'"><a href="#messages"
+								<li role="presentation" class="active"><a href="#messages"
 									aria-controls="messages" role="tab" data-toggle="tab"><i
 										class="glyphicon"></i><span class="link-lable"> 주관식</span></a></li>
 							</ul>
 
 							<div class="tab-content">
 								<!-- 객관식 부분 -->
-								<div role="tabpanel" class="tab-pane fade in active" id="home" >
+								<div role="tabpanel" class="tab-pane fade in active" id="messages">
 									<div class="container-fluid ">
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -114,7 +114,7 @@
 													<div>
 														<!-- 지문 입력 -->
 														<textarea cols="num" rows="num" path="passage"
-															name="passage" id="passageInput" class="outterB topC"
+															name="passage" id="passageInput" class="outterB sleftC"
 															placeholder="지문을 입력해주세요" required="" autofocus=""
 															onkeyup="onPassageChange();"></textarea>
 
@@ -128,52 +128,8 @@
 															onchange="onFileSelected(this.files)"> <input
 															class="upload-name" value="파일선택" disabled="disabled">
 													</div>
-													<div class="outterB bottomC">
-														<div>
-															<label style="font-size: 15pt;">①&nbsp</label>
-															<form:input path="mulChoiceOne" name="mulChoiceOne"
-																placeholder="1번 보기" autofocus="" required=""
-																onkeyup="onChoiceChange();" class="bgInsert" type="text"></form:input>
-														</div>
-														<div>
-															<label style="font-size: 15pt;">②&nbsp</label>
-															<form:input path="mulChoiceTwo" name="mulChoiceTwo"
-																placeholder="2번 보기" autofocus="" required=""
-																onkeyup="onChoiceChange();" class="bgInsert" type="text"></form:input>
-														</div>
-														<div>
-															<label style="font-size: 15pt;">③&nbsp</label>
-															<form:input path="mulChoiceThree" name="mulChoiceThree"
-																placeholder="3번 보기" autofocus="" required=""
-																onkeyup="onChoiceChange();" class="bgInsert" type="text"></form:input>
-														</div>
-														<div>
-															<label style="font-size: 15pt;">④&nbsp</label>
-															<form:input path="mulChoiceFour" name="mulChoiceFour"
-																placeholder="4번 보기" autofocus="" required=""
-																onkeyup="onChoiceChange();" class="bgInsert" type="text"></form:input>
-														</div>
-														<div>
-															<label style="font-size: 15pt;">⑤&nbsp</label>
-															<form:input path="mulChoiceFive" name="mulChoiceFive"
-																placeholder="5번 보기" autofocus="" required=""
-																onkeyup="onChoiceChange();" class="bgInsert" type="text"></form:input>
-														</div>
-													</div>
-													<div>
-														<label class="label-answer">정답 입력</label> <label
-															style="font-size: 18pt;">&nbsp;&nbsp;①&nbsp;</label><input
-															type="radio" name="answer" value="1" path="answer"
-															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;②&nbsp;</label><input
-															type="radio" name="answer" value="2" path="answer"
-															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;③&nbsp;</label><input
-															type="radio" name="answer" value="3" path="answer"
-															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;④&nbsp;</label><input
-															type="radio" name="answer" value="4" path="answer"
-															name="answer"></input> <label style="font-size: 18pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
-															type="radio" name="answer" value="5" path="answer"
-															name="answer"></input>
-													</div>
+													
+													
 													<form:input path="CapValue" name="CapValue" autofocus=""
 														required="" type="hidden" id="CapValue"></form:input>
 
@@ -205,6 +161,54 @@
 															</div>
 														</form>
 													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+								<!-- 주관식 부분 -->
+
+								<div role="tabpanel" class="tab-pane fade" id="messages">
+									<div class="container-fluid ">
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="padding: 0px">
+
+												<textarea cols="num" rows="num" class="outterB sleftC"
+													placeholder="지문을 입력해주세요" required="" autofocus=""></textarea>
+
+
+												<div class="filebox2">
+													<label for="ex_filename2">이미지 업로드</label> <input
+														type="file" id="ex_filename2" class="upload-hidden2">
+													<input class="upload-name2" value="파일이름"
+														disabled="disabled">
+												</div>
+
+												<div>
+													<label class="label-answer">정답 입력</label> <input
+														class="jdInsert" type="text" required="" autofocus="">
+												</div>
+											</div>
+
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="text-align: center">
+
+												<div class="outterB srightC">!!!!!!!!!!여기에 에디터
+													넣어!!!!!!!!!!!!!</div>
+												<div>
+													<form:form action="testform" method="POST">
+														<button id="sbtn-save" class="fix-savebutton btn-save"
+															type="submit">저장</button>
+														<button id="sbtn-new" class="fix-refreshbutton btn-new"
+															type="submit">새로만들기</button>
+													</form:form>
 												</div>
 											</div>
 										</div>

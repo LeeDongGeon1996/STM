@@ -76,6 +76,28 @@ public class UploadController {
 
 		return "addQuestionform";
 	}
+	@RequestMapping(value = "/addQuestion2", method = RequestMethod.GET)
+	public String addQuestion2(ModelMap modelMap, HttpSession session, HttpServletResponse response) {
+
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+
+		// VO ��ü����
+		QuestionVO questionVO = new QuestionVO();
+		// Model�� VO��ü ����
+		modelMap.addAttribute("questionVO", questionVO);
+
+		// QuestionVO ��� ����ó��
+		int tryRegiVal = 0;
+		if (session.getAttribute("tryRegiQuestion") != null) {
+			session.removeAttribute("tryRegiQuestion");
+			tryRegiVal = 1;
+		}
+		modelMap.addAttribute("try", tryRegiVal);
+
+		return "addQuestionform2";
+	}
 
 	// 제작된 문제 이미지캡쳐 컨트롤러
 	@RequestMapping(value = "/captureQuestion", method = RequestMethod.POST)
