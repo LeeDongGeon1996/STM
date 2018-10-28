@@ -36,7 +36,7 @@
 <body onload="onLoad();">
    <header id="main_header">
       <div class="div-nav">
-         <button class=" btn-home">STM</button>
+         <button class=" btn-home" onclick="window.location.href='./home'">STM</button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <text class="text-page">시험지 만들기</text>
          <button class="btn-logout">Logout</button>
