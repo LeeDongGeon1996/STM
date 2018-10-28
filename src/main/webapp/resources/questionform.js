@@ -22,7 +22,7 @@ function loadQuestionList() {
       n++;
    }
    console.log(n);
-   for(var i=0;i<n;i++){
+   for (var i = 0; i < n; i++) {
       var question = jsonQuestionList[i].capimageLink;
       console.log(i);
       setTimeout(appendChild_hover(question, i), 5000);
@@ -35,18 +35,37 @@ function appendChild(question, n) {
    img.src = question;
    img.id = "capimg-" + n;
    img.classList.add("image-popup-no-margins");
+   // img.classList.add("imgBig");
    img.classList.add("img-plus");
    var div = document.getElementById("img-" + n);
    div.append(img);
 }
 
-function appendChild_hover(question,n){
+function appendChild_hover(question, n) {
    var img_hover = document.createElement("input");
    img_hover.type = "image";
    img_hover.src = question;
    img_hover.id = "capimg_hover-" + n;
    img_hover.classList.add("image-popup-no-margins");
-   img_hover.classList.add("imgBig");
+   
+   // 시작: 이미지 왼쪽 오른쪽 나눠서 확대된 이미지 보여주기(+ 버튼 제외)
+   if(n<=4){
+   if (n == 0 || n == 1) {
+      img_hover.classList.add("imgBigL");
+   } else if (2 <= n <= 4) {
+      img_hover.classList.add("imgBigR");
+   } 
+   }
+   else if(n>4){
+       if ((n%6) == 2 || (n%6) == 3 || (n%6) == 4) {
+            img_hover.classList.add("imgBigR");
+         }
+          else if((n%6)==5 || (n%6)==0 || (n%6)==1) {
+               img_hover.classList.add("imgBigL");
+      }
+   }
+   //끝
+   // img_hover.classList.add("img-plus");
    var div = document.getElementById("img-" + n);
    div.append(img_hover);
 }

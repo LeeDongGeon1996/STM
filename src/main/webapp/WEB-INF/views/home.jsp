@@ -36,7 +36,7 @@
 			<div class="div-btn">
 
 				<button class=" btn-question" type="submit"
-					onclick="window.location.href='./addQuestion'">내 문제</button>
+					onclick="window.location.href='./questionform'">내 문제</button>
 
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

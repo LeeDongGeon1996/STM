@@ -251,10 +251,10 @@ public class UploadController {
 
 		isSucceed = questionService.registerQuestion(member.getEmail(), questionVO);
 		if (isSucceed) {
-			Util.sendRedirect(response, "addQuestion");
+			Util.sendRedirect(response, "questionform");
 		} else {
 			session.setAttribute("tryRegiQuestion", questionVO);
-			Util.sendRedirect(response, "addQuestion");
+			Util.sendRedirect(response, "questionform");
 		}
 
 		return null;

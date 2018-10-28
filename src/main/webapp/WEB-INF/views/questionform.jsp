@@ -35,7 +35,7 @@
 -->
    <header id="main_header">
       <div class="div-nav">
-         <button class=" btn-home">STM</button>
+         <button class=" btn-home" onclick="window.location.href='./home'">STM</button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <text class="text-page">내 문제함</text>
          <button class="btn-logout">Logout</button>
@@ -47,32 +47,34 @@
          <div class="container-fluid surB"
             style="width: 1000px; height: 580px; padding: 55px;">
             <div class="row">
-               <div id="img-0"
-                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img img-plus">
-                  
-               </div>
-               <div id="img-1"
-                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img img-plus">
-                  
+               <div onclick="location.href='./addQuestion'"
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img">
+                  <div class="img-plus">
+                     <input type="image" class="img-add"
+                        src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
                   </div>
+               </div>
+               <div id="img-0"
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img "></div>
+               <div id="img-1"
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img "></div>
                <div id="img-2"
-                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img img-plus"></div>
-               <div id="img-3"
-                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img img-plus"></div>
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img "></div>
+               <div id="img-3" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-4" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-               <div id="img-5" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
             </div>
             <div class="row">
+               <div id="img-5" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-6" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-7" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-8" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-9" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-10"
                   class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-               <div id="img-11"
-                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
             </div>
             <div class="row">
+               <div id="img-11"
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-12"
                   class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-13"
@@ -82,8 +84,6 @@
                <div id="img-15"
                   class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
                <div id="img-16"
-                  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-               <div id="img-17"
                   class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
             </div>
 
@@ -118,7 +118,8 @@ zoom: {
   
 }
 });
-});</script>
+});
+}</script>
 <style>
 /*초기화 코드*/
 * {
@@ -156,26 +157,53 @@ img {
    height: 150px;
 }
 
+.img-add {
+   width: 120px;
+   height: 120px;
+   padding: 0px;
+   margin: auto;
+   margin-top: 10px;
+   margin-bottom: 15px;
+   outline: none;
+   cursor: pointer;
+}
+
 .img-plus {
    width: 150px;
    height: 150px;
    padding: 0px;
    margin: auto;
+   margin-bottom: 15px;
    outline: none;
-   cursor: pointer;
+   cursor: crosshair;
 }
 
-.imgBig {
+.imgBigL {
    position: fixed;
-   left:30px;
-   top:10%;
+   right: 30px;
+   top: 10%;
    width: 0px;
    -webkit-transtition: width 0.3s linear 0s;
    z-index: 10;
 }
 
-.img-plus:hover+.imgbig {
-   width: 400px;
+.imgBigR {
+   position: fixed;
+   left: 30px;
+   top: 10%;
+   width: 0px;
+   -webkit-transtition: width 0.3s linear 0s;
+   z-index: 10;
+}
+
+.img-plus:hover+.imgBigL {
+   width: 500px;
+   height: auto;
+}
+
+.img-plus:hover+.imgBigR {
+   width: 500px;
+   height: auto;
 }
 
 /* 전체 적용 코드 */
@@ -234,13 +262,17 @@ img {
    src: url(typoSMB.eot); /* IE 호환성 보기 */
    src:
       url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-      format('embedded-opentype'), /* IE 6 ~ 8 */                     
+      format('embedded-opentype'), /* IE 6 ~ 8 */                        
        
       
-      url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
-      format('woff'), /* 모던 브라우저 */  
+      
        
-      url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
+       
+       url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+      format('woff'), /* 모던 브라우저 */   
+       
+      
+       url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
       format('truetype');
 }
 
@@ -248,9 +280,10 @@ img {
    font-family: mbcL;
    src: url(mbcL.eot); /* IE 호환성 보기 */
    src: url('${pageContext.request.contextPath}/resources/font/mbcL.eot')
-      format('embedded-opentype'), /* IE 6 ~ 8 */ 
+      format('embedded-opentype'), /* IE 6 ~ 8 */  
        
-      url('${pageContext.request.contextPath}/resources/font/mbcL.woff')
+      
+       url('${pageContext.request.contextPath}/resources/font/mbcL.woff')
       format('woff'), /* 모던 브라우저 */
       url('${pageContext.request.contextPath}/resources/font/mbcL.ttf')
       format('truetype');
