@@ -1,38 +1,33 @@
-<!-- 내 문제함 화면 -->
+<!-- 내 시험지함 화면 -->
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 
 <head>
-<title>내 문제함</title>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<title>내 시험지함</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 <script
-	src="${pageContext.request.contextPath}/resources/questionform.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jquery.magnific-popup.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/magnific-popup.css">
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <!-- Optional theme -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
-	<!-- <div class="img-plus">
-							<input type="image" class="img-plus"
-								src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
-						</div>
--->
 	<header id="main_header">
 		<div class="div-nav">
 			<button class=" btn-home">STM</button>
@@ -47,36 +42,33 @@
 			<div class="container-fluid surB"
 				style="width: 1000px; height: 580px; padding: 55px;">
 				<div class="row">
-					<div id="img-0" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-1" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-2" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-3" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-4" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-5" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img ">
+						<div class="img-plus">
+							<input type="image" class="img-plus"
+								src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 				<div class="row">
-					<div id="img-6" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-7" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-8" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-9" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-10"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-11"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 				<div class="row">
-					<div id="img-12"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-13"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-14"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-15"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-16"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div id="img-17"
-						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 
 
@@ -89,28 +81,7 @@
 			</div> -->
 </body>
 </html>
-<script>
-	assignQuestion(${questionList});
-	loadQuestionList();
-</script>
-<script>$(document).ready(function() {
 
-    $('.image-popup-no-margins').magnificPopup({
-type: 'image',
-closeOnContentClick: true,
-closeBtnInside: false,
-fixedContentPos: true,
-mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-image: {
-  verticalFit: true
-},
-zoom: {
-  enabled: true,
-  duration: 300 // don't foget to change the duration also in CSS
-  
-}
-});
-});</script>
 <style>
 /*초기화 코드*/
 * {
@@ -154,6 +125,7 @@ img {
 	padding: 0px;
 	margin: auto;
 	outline: none;
+	
 }
 /* 전체 적용 코드 */
 
@@ -211,11 +183,7 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                     
-		 
-		 
-		 
-		 
+		format('embedded-opentype'), /* IE 6 ~ 8 */                 
 		 
 		 
 		 

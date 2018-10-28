@@ -23,73 +23,74 @@ import kw.comso.util.Util;
 @Controller
 public class EditorController {
 
-	@Autowired
-	QuestionService questionService;
+   @Autowired
+   QuestionService questionService;
 
-	@Autowired
-	private MemberService memberService;
+   @Autowired
+   private MemberService memberService;
 
-	@RequestMapping(value = "/inputquestion", method = RequestMethod.GET)
-	public void inputTest(HttpSession session) {
+   @RequestMapping(value = "/inputquestion", method = RequestMethod.GET)
+   public void inputTest(HttpSession session) {
 
-		AuthMemberInfoVO member = (AuthMemberInfoVO) session.getAttribute("authMember");
+      AuthMemberInfoVO member = (AuthMemberInfoVO) session.getAttribute("authMember");
 
-		String id = "tester1";
+      String id = "tester1";
 
-		if (member != null)
-			id = member.getEmail();
+      if (member != null)
+         id = member.getEmail();
 
-		QuestionVO q = new QuestionVO();
-		q.setAnswer("1. �̰��� ���Դϴ�.");
-		q.setImageLink("1. �̹��� ��ũ�� �� ���Դϴ�.");
-		//q.setMulChoice("1. ��Ƽ���̽��� �Դϴ�.");
-		q.setMulORSub(1);
-		q.setPassage(
-				"1.���� ������ �� �����Դϴ�. ��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~");
+      QuestionVO q = new QuestionVO();
+      q.setAnswer("1. 占싱곤옙占쏙옙 占쏙옙占쌉니댐옙.");
+      q.setImageLink("1. 占싱뱄옙占쏙옙 占쏙옙크占쏙옙 占쏙옙載� 占쏙옙占쌉니댐옙.");
+      //q.setMulChoice("1. 占쏙옙티占쏙옙占싱쏙옙占쏙옙 占쌉니댐옙.");
+      q.setMulORSub(1);
+      q.setPassage(
+            "1.占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙載� 占쏙옙占쏙옙占쌉니댐옙. 占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~");
 
-		this.questionService.registerQuestion(id, q);
+      this.questionService.registerQuestion(id, q);
 
-		q = new QuestionVO();
-		q.setAnswer("2. �̰��� ���Դϴ�.");
-		q.setImageLink("2. �̹��� ��ũ�� �� ���Դϴ�.");
-		//q.setMulChoice("2. ��Ƽ���̽��� �Դϴ�.");
-		q.setMulORSub(1);
-		q.setPassage(
-				"2.���� ������ �� �����Դϴ�. ��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~");
+      q = new QuestionVO();
+      q.setAnswer("2. 占싱곤옙占쏙옙 占쏙옙占쌉니댐옙.");
+      q.setImageLink("2. 占싱뱄옙占쏙옙 占쏙옙크占쏙옙 占쏙옙載� 占쏙옙占쌉니댐옙.");
+      //q.setMulChoice("2. 占쏙옙티占쏙옙占싱쏙옙占쏙옙 占쌉니댐옙.");
+      q.setMulORSub(1);
+      q.setPassage(
+            "2.占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙載� 占쏙옙占쏙옙占쌉니댐옙. 占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~");
 
-		this.questionService.registerQuestion(id, q);
+      this.questionService.registerQuestion(id, q);
 
-		q = new QuestionVO();
-		q.setAnswer("3. �̰��� ���Դϴ�.");
-		q.setImageLink("3. �̹��� ��ũ�� �� ���Դϴ�.");
-		//q.setMulChoice("3. ��Ƽ���̽��� �Դϴ�.");
-		q.setMulORSub(1);
-		q.setPassage(
-				"3.���� ������ �� �����Դϴ�. ��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~");
+      q = new QuestionVO();
+      q.setAnswer("3. 占싱곤옙占쏙옙 占쏙옙占쌉니댐옙.");
+      q.setImageLink("3. 占싱뱄옙占쏙옙 占쏙옙크占쏙옙 占쏙옙載� 占쏙옙占쌉니댐옙.");
+      //q.setMulChoice("3. 占쏙옙티占쏙옙占싱쏙옙占쏙옙 占쌉니댐옙.");
+      q.setMulORSub(1);
+      q.setPassage(
+            "3.占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙載� 占쏙옙占쏙옙占쌉니댐옙. 占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~");
 
-		this.questionService.registerQuestion(id, q);
+      this.questionService.registerQuestion(id, q);
 
-		q = new QuestionVO();
-		q.setAnswer("4. �̰��� ���Դϴ�.");
-		q.setImageLink("4. �̹��� ��ũ�� �� ���Դϴ�.");
-		//q.setMulChoice("4. ��Ƽ���̽��� �Դϴ�.");
-		q.setMulORSub(1);
-		q.setPassage(
-				"4.���� ������ �� �����Դϴ�. ��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~��������123456789abcdef~~~~~");
-		this.questionService.registerQuestion(id, q);
-	}
+      q = new QuestionVO();
+      q.setAnswer("4. 占싱곤옙占쏙옙 占쏙옙占쌉니댐옙.");
+      q.setImageLink("4. 占싱뱄옙占쏙옙 占쏙옙크占쏙옙 占쏙옙載� 占쏙옙占쌉니댐옙.");
+      //q.setMulChoice("4. 占쏙옙티占쏙옙占싱쏙옙占쏙옙 占쌉니댐옙.");
+      q.setMulORSub(1);
+      q.setPassage(
+            "4.占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙載� 占쏙옙占쏙옙占쌉니댐옙. 占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~占쏙옙占쏙옙占쏙옙占쏙옙123456789abcdef~~~~~");
+      this.questionService.registerQuestion(id, q);
+   }
+   
+   
+   @RequestMapping(value = "/editor", method = RequestMethod.GET)
+   public String editorTest(ModelMap model, HttpSession session, HttpServletResponse response) {
 
-	@RequestMapping(value = "/editor", method = RequestMethod.GET)
-	public String editorTest(ModelMap model, HttpSession session, HttpServletResponse response) {
+      AuthMemberInfoVO member = memberService.checkAuth(session, response);
+      if (member == null)
+         return null;
 
-		AuthMemberInfoVO member = memberService.checkAuth(session, response);
-		if (member == null)
-			return null;
+      ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
+      model.addAttribute("questionList", Util.toJson(questionList));
 
-		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
-		model.addAttribute("questionList", Util.toJson(questionList));
-
-		return "test/editortest";
-	}
-	
+      return "test/insertquestion";
+   }
+   
 }

@@ -1,89 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<HTML>
-<HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<TITLE>TestPaper Form</TITLE>
-<style>
-.cke_show_borders {
-	overflow-y: scroll;
-	overflow-x: hidden;
-}
-
-hr {
-	border: 0;
-	height: 3px;
-}
-
-#head_div {
-	text-align: center;
-}
-
-.header {
-	column-span: all;
-	font-size: 50px;
-	text-align: center;
-	font-family: '궁서', '신명조', '굴림', 'Comic Sans MS';
-}
-
-.header#test_paper_page_num {
-	position: absolute;
-	right: 20px;
-	top: -20px;
-}
-
-.header#test_paper_name {
-	font-size: 25px;
-}
-
-.header#test_paper_time {
-	font-size: 25px;
-	position: absolute;
-	left: 20px;
-	border: solid black 3px;
-	border-radius: 50px;
-	padding: 5px;
-}
-
-.header#student_input_div {
-	display: inline-block;
-	margin: auto;
-}
-
-.header.student_info {
-	font-size: 25px;
-	float: left;
-	margin: 0px;
-	padding: 0px;
-	border: solid black 1px;
-}
-
-.content {
-	column-gap: 35px;
-	column-width: 20px;
-	column-rule: 3px solid #000;
-	column-count: 2;
-	width: 97%;
-}
-</style>
-
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-	<script
-	src="http://localhost:8080/st2m/resources/pagenation.js"></script>
-	
-<script>
-	function onload(){
-		
-	}
-</script>
-
-</HEAD>
-
-<BODY onload='onload();'>
-	<DIV class='page_div' id='page1_div'>
+	<DIV class='page1_div' id='page1_div'>
 	
 	<input type='button' onclick='aa();'/>
 
@@ -122,18 +38,16 @@ hr {
 		</DIV>
 		<hr color='#000' />
 		<DIV class='content' id='content_div'>
+			<div class="column" id=col_div_1_1>
 			<p>기본 텍스트입니다.</p>
+			<button onclick="aa();"> click </button>
+			</div>
+			<div class="column" id=col_div_1_2></div>
 
 		</DIV>
 		<hr color='#000' />
 
 	</DIV>
-
-</BODY>
-
-<script>
-	regilistener();
-	alert('맨끝 script');
-</script>
-
-</HTML>
+	
+	<script src="http://localhost:8080/st2m/resources/pagenation.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/pagenation.js"></script>

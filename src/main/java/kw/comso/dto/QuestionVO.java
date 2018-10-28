@@ -13,10 +13,11 @@ public class QuestionVO { // 占쏙옙 占쏙옙占쏙옙 占싹놂옙占싹놂�
 	private String mulChoice_three;
 	private String mulChoice_four;
 	private String mulChoice_five;
+	
 	private String answer; // 占쏙옙 占쏙옙占쏙옙
 	private String owner; //占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙  ex)占쏙옙占싱쏙옙占썰리占쏙옙占쏙옙占싸곤옙占� '占쏠가울옙'占쏙옙占쏙옙 占쏙옙占쏙옙
 	private String capValue;
-	
+
 	
 	private String questionImgLink; //占쏙옙占쏙옙占썰에占쏙옙 占쏙옙占쌜되억옙 캡占식듸옙 占싱뱄옙占쏙옙
 	
@@ -62,7 +63,7 @@ public class QuestionVO { // 占쏙옙 占쏙옙占쏙옙 占싹놂옙占싹놂�
 		this.questionImgLink=questionImgLink;
 	}
 	public void setCapValue(String capValue) {
-		this.capValue = capValue;
+		this.capValue=capValue;
 	}
 	
 	// getter

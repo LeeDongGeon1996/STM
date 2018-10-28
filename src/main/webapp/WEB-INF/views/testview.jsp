@@ -61,8 +61,8 @@
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="padding: 0px">
-												<form style="word-break:break-all">
-													<input  class="outterB topC" type="text"
+												<form style="word-break: break-all">
+													<input class="outterB topC" type="text"
 														placeholder="지문을 입력해주세요" required="" autofocus="">
 												</form>
 
@@ -71,51 +71,108 @@
 														id="ex_filename" class="upload-hidden"> <input
 														class="upload-name" value="파일선택" disabled="disabled">
 												</div>
-												<div class="outterB bottomC">객관식 보기 입력</div>
+												<div class="outterB bottomC">
+													<div>
+														<label style="font-size: 15pt;">①&nbsp</label> <input
+															class="bgInsert" type="text" required="" autofocus="">
+													</div>
+													<div>
+														<label style="font-size: 15pt;">②&nbsp</label> <input
+															class="bgInsert" type="text" required="" autofocus="">
+													</div>
+													<div>
+														<label style="font-size: 15pt;">③&nbsp</label> <input
+															class="bgInsert" type="text" required="" autofocus="">
+													</div>
+													<div>
+														<label style="font-size: 15pt;">④&nbsp</label> <input
+															class="bgInsert" type="text" required="" autofocus="">
+													</div>
+													<div>
+														<label style="font-size: 15pt;">⑤&nbsp</label> <input
+															class="bgInsert" type="text" required="" autofocus="">
+													</div>
+												</div>
+												<div>
+													<label class="label-answer">정답 입력</label> <label
+														style="font-size: 15pt;">&nbsp;&nbsp;①&nbsp;</label><input
+														type="radio" name="answer" value="1"> <label
+														style="font-size: 15pt;">&nbsp;&nbsp;②&nbsp;</label><input
+														type="radio" name="answer" value="2"> <label
+														style="font-size: 15pt;">&nbsp;&nbsp;③&nbsp;</label><input
+														type="radio" name="answer" value="3"> <label
+														style="font-size: 15pt;">&nbsp;&nbsp;④&nbsp;</label><input
+														type="radio" name="answer" value="4"> <label
+														style="font-size: 15pt;">&nbsp;&nbsp;⑤&nbsp;</label><input
+														type="radio" name="answer" value="5">
+												</div>
 											</div>
 
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
-												
-												<div class="outterB rightC">
-												!!!!!!!!!!여기에 에디터 넣어!!!!!!!!!!!!!
-												</div>
 
+												<div class="outterB rightC">!!!!!!!!!!여기에 에디터
+													넣어!!!!!!!!!!!!!</div>
+												<div>
+													<form:form action="testform" method="POST">
+														<button class=" btn-save" type="submit">저장</button>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<button class=" btn-new" type="submit">새로만들기</button>
+													</form:form>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- 주관식 부분 -->
 
+
+
+
+
+
+								<!-- 주관식 부분 -->
 								<div role="tabpanel" class="tab-pane fade" id="messages">
 									<div class="container-fluid ">
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="padding: 0px">
 												<form>
-													<input class="outterB topC" type="text"
-														placeholder="지문을 입력해주세요" required="" autofocus="">
+													<textarea id="sleftC" class="outterB sleftC"
+														placeholder="지문을 입력해주세요" required="" autofocus="" rows="4"
+														cols="50"></textarea>
 												</form>
 
-
-												<div class="filebox">
-													<label for="ex_filename">이미지 업로드</label> <input type="file"
-														id="ex_filename" class="upload-hidden"> <input
-														class="upload-name" value="파일선택" disabled="disabled">
+												<div class="filebox2">
+													<label for="ex_filename2">이미지 업로드</label> <input
+														type="file" id="ex_filename2" class="upload-hidden2">
+													<input class="upload-name2" value="파일선택"
+														disabled="disabled">
 												</div>
 
+												<div style="vertical-align: top;">
+													<label class="label-answer2">정답 입력</label> <input
+														id="jdInsert" class="jdInsert" type="text">
+
+												</div>
 											</div>
 
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
-												
-												<div class="outterB rightC"></div>
 
+												<div class="outterB srightC">!!!!!!!!!!여기에 에디터
+													넣어!!!!!!!!!!!!!</div>
+												<div>
+													<form:form action="testform" method="POST">
+														<button id="sbtn-save" class="sbtn-save" type="submit">저장</button>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<button id="sbtn-new" class="sbtn-new" type="submit">새로
+															만들기</button>
+													</form:form>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
 
 
 							</div>
@@ -124,32 +181,8 @@
 
 				</div>
 			</div>
-	</section>
-
-	<footer id="main_footer">
-		<div style="width: 1000px; height: 200px;">
-			<div class="container-fluid ">
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<button class=" btn-save" type="submit">정답 입력</button>
-						<label style="font-size: 15pt;">①&nbsp</label><input type="radio" name="answer" value="1">
-						<label style="font-size: 15pt;">&nbsp&nbsp②&nbsp</label><input type="radio" name="answer" value="2">
-						<label style="font-size: 15pt;">&nbsp&nbsp③&nbsp</label><input type="radio" name="answer" value="3">
-						<label style="font-size: 15pt;">&nbsp&nbsp④&nbsp</label><input type="radio" name="answer" value="4">
-						<label style="font-size: 15pt;">&nbsp&nbsp⑤&nbsp</label><input type="radio" name="answer" value="5">
-
-					</div>
-
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<form:form action="testform" method="POST">
-							<button class=" btn-save" type="submit">저장</button>
-						</form:form>
-					</div>
-
-				</div>
-			</div>
 		</div>
-	</footer>
+	</section>
 </body>
 </html>
 
@@ -179,7 +212,6 @@
 	border-right: 1px solid #00bfff;
 	border-left: 1px solid #00bfff;
 	color: #FFF;
-	background-color: #00bfff;
 }
 
 i {
@@ -188,7 +220,8 @@ i {
 
 .link-lable {
 	text-decoration: none;
-	color: #000;
+	font-size: 20px;
+	font-family: mbcL;
 }
 
 @media screen and (max-width: 767px) {
@@ -196,7 +229,7 @@ i {
 		display: none;
 	}
 }
-
+/*---------------객관식----------------*/
 .filebox input[type="file"] {
 	position: absolute;
 	width: 1px;
@@ -206,6 +239,7 @@ i {
 	overflow: hidden;
 	clip: rect(0, 0, 0, 0);
 	border: 0;
+	cursor: pointer;
 }
 
 .filebox label {
@@ -218,6 +252,7 @@ i {
 	width: 150px;
 	padding: 5px;
 	background: rgb(49, 207, 255);
+	cursor: pointer;
 }
 /* named upload */
 .filebox .upload-name {
@@ -237,43 +272,41 @@ i {
 	appearance: none;
 }
 
-.imgULB {
-	font-size: 15pt;
-	font-family: mbcL;
-	color: white;
-	text-align: center;
-	border-radius: 8px;
-	border: none;
-	width: 150px;
-	padding: 5px;
-	background: rgb(49, 207, 255);
-}
-
 .outterB {
 	border-style: solid;
 	border-width: 3pt;
 	border-color: rgb(51, 196, 241);
-	border-radius: 50px;
+	border-radius: 40px;
 }
 
 .topC {
 	margin-right: 10px;
 	margin-bottom: 5px;
 	margin-top: 15px;
-	height: 300px;
-	width: 470px;
-	word-break:break-all;word-wrap:break-word;
+	height: 250px;
+	width: 100%;
+	word-break: break-all;
+	word-wrap: break-word;
 }
 
 .bottomC {
 	margin-right: 10px;
 	margin-top: 5px;
-	height: 180px;
+	width: 100%;
+	height: 225px;
+	padding: 10px;
+	padding-top: 23px;
 }
 
 .rightC {
 	height: 530px;
 	margin-top: 15px;
+}
+
+.bgInsert { /*객관식 보기 입력*/
+	font-size: 15px;
+	border: none;
+	width: 400px;
 }
 
 .exp {
@@ -282,7 +315,35 @@ i {
 	font-size: 15pt;
 }
 
+.label-answer {
+	color: white;
+	background-color: rgb(49, 207, 255);
+	border-radius: 8px;
+	border: none;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	font-weight: lighter;
+	padding: 3px;
+	margin-top: 7px;
+}
+
 .btn-save {
+	color: white;
+	background-color: rgb(250, 217, 86);
+	border-radius: 8px;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	padding: 3px;
+	margin-top: 10px;
+}
+
+.btn-new {
 	color: white;
 	background-color: rgb(7, 79, 102);
 	border-radius: 8px;
@@ -294,7 +355,109 @@ i {
 	font-family: mbcL;
 	padding: 3px;
 	margin-top: 10px;
+}
+
+/*---------------주관식----------------*/
+.filebox2 input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox2 label {
+	color: white;
+	background-color: rgb(49, 207, 255);
+	border-radius: 8px;
+	border: none;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	font-weight: lighter;
+	padding: 3px;
+	margin-top: 10px;
 	cursor: pointer;
+}
+/* named upload */
+.filebox2 .upload-name2 {
+	width: 310px;
+	display: inline-block;
+	padding: 5px; /* label의 패딩값과 일치 */
+	font-size: inherit;
+	font-family: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f5f5f5;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.sleftC {
+	margin-right: 10px;
+	margin-bottom: 5px;
+	margin-top: 15px;
+	padding: 15px;
+	height: 480px;
+	width: 100%;
+	font-size: 18px;
+}
+
+.srightC {
+	height: 530px;
+	margin-top: 15px;
+	width: 100%;
+}
+
+.label-answer2 {
+	color: white;
+	background-color: rgb(49, 207, 255);
+	border-radius: 8px;
+	border: none;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	font-weight: lighter;
+}
+
+.jdInsert { /*주관식 답 입력*/
+	font-size: 16pt;
+	width: 310px;
+}
+
+.sbtn-save {
+	color: white;
+	background-color: rgb(250, 217, 86);
+	border-radius: 8px;
+	border: none;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	padding: 3px;
+	margin-top: 10px;
+}
+
+.sbtn-new {
+	color: white;
+	background-color: rgb(7, 79, 102);
+	border-radius: 8px;
+	border: none;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	padding: 3px;
+	margin-top: 10px;
 }
 
 /* 전체 적용 코드 */
@@ -379,13 +542,11 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */           
-       
+		format('embedded-opentype'), /* IE 6 ~ 8 */              
 		 
 		 
 		 
-		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */  
        
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
@@ -420,4 +581,24 @@ img {
 					$(this).siblings('.upload-name').val(filename);
 				});
 			});
+
+	$(document).ready(
+			function() {
+				var fileTarget = $('.filebox2 .upload-hidden2');
+				fileTarget.on('change', function() {
+					// 값이 변경되면 
+					if (window.FileReader) { // modern browser 
+						var filename = $(this)[0].files[0].name;
+					} else { // old IE 
+						var filename = $(this).val().split('/').pop().split(
+								'\\').pop(); // 파일명만 추출 
+					} // 추출한 파일명 삽입 
+					$(this).siblings('.upload-name2').val(filename);
+				});
+			});
+	document.addEventListener('keydown', function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+		}
+	}, true);
 </script>
