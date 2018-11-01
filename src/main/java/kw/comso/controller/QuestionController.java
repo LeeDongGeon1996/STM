@@ -35,27 +35,40 @@ import kw.comso.util.Util;
 @Controller
 public class QuestionController {
 
-	@Autowired
-	private QuestionService questionService;
+   @Autowired
+   private QuestionService questionService;
 
-	@Autowired
-	private MemberService memberService;
+   @Autowired
+   private MemberService memberService;
 
-	@RequestMapping(value = "/insertquestion", method = RequestMethod.GET)
-	public String loginform(ModelMap modelMap, HttpSession session) {
-		// VO Í∞ùÏ≤¥ÏÉùÏÑ±
-		QuestionVO questionVO = new QuestionVO();
-		// ModelÏóê VOÍ∞ùÏ≤¥ Ï†ÑÎã¨
-		modelMap.addAttribute("questionVO", questionVO);
+   @RequestMapping(value = "/insertquestion", method = RequestMethod.GET)
+   public String loginform(ModelMap modelMap, HttpSession session) {
+      // VO ∞¥√ºª˝º∫
+      QuestionVO questionVO = new QuestionVO();
+      // Modelø° VO∞¥√º ¿¸¥ﬁ
+      modelMap.addAttribute("questionVO", questionVO);
 
-		// QuestionVO Îì±Î°ù Ïã§Ìå®Ï≤òÎ¶¨
-		int tryRegiVal = 0;
-		if (session.getAttribute("tryRegiQuestion") != null) {
-			session.removeAttribute("tryRegiQuestion");
-			tryRegiVal = 1;
-		}
-		modelMap.addAttribute("try", tryRegiVal);
+      // QuestionVO µÓ∑œ Ω«∆–√≥∏Æ
+      int tryRegiVal = 0;
+      if (session.getAttribute("tryRegiQuestion") != null) {
+         session.removeAttribute("tryRegiQuestion");
+         tryRegiVal = 1;
+      }
+      modelMap.addAttribute("try", tryRegiVal);
 
-		return "test/insertquestion";
-	}
+      return "test/insertquestion";
+   }
+
+   @RequestMapping(value = "/questionform", method = RequestMethod.GET)
+   public String questionform(ModelMap model, HttpSession session, HttpServletResponse response) {
+
+      AuthMemberInfoVO member = memberService.checkAuth(session, response);
+      if (member == null)
+         return null;
+
+      ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
+      model.addAttribute("questionList", Util.toJson(questionList));
+
+      return "questionform";
+   }
 }

@@ -153,7 +153,9 @@ img {
 	cursor: pointer;
 	font-family: typoSMB;
 	position: absolute;
-	left: 30px;
+	position: fixed;
+	top: 100px;
+	right: 330px;
 	outline: none;
 }
 

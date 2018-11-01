@@ -111,7 +111,9 @@
 	font-size: 18pt;
 	font-family: mbcL;
 	padding: 3px;
-	margin-top: 10px;
+	position: absolute;
+	right: 30px;
+	outline: none;
 	cursor: pointer;
 }
 
