@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.QuestionVO;
+import kw.comso.dto.TestPaperVO;
 import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
@@ -36,6 +37,7 @@ public class TestPaperController {
 		//로그인한 회원의 모든 문제 검색
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
+		model.addAttribute("testPaperVO", new TestPaperVO());
 		
 		//시험지생성페이지의 jsp를 반환한다.
 		return "addTestform";

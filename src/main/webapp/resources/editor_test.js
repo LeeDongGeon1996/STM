@@ -223,8 +223,6 @@ function createEditor() {
    
 }
 
-var aryRealColumnHeight=[];
-var questionHeight = [];
 var aryColumnHeight=[[]];
 var curPageNum = 0;
 var curDivNum = 0;
@@ -240,10 +238,6 @@ function createTestPaper(){
    .then( () => aryColumnHeight[curPageNum][curDivNum+1] = editor.document.getById('col_div_0_1').getComputedStyle('height'));
    
    contentDiv = editor.document.getById('content_div');
-   // 일단 임시로
-   aryRealColumnHeight[0] = new Array(2);
-   aryRealColumnHeight[1] = new Array(2);
-
 }
 
 
@@ -266,8 +260,7 @@ function createQuestionDiv(num){
    var editor = CKEDITOR.instances.editor1;
    
    
-   // column div를 얻어옵니다. (column_div는 여러 문제들이 속해 있는 div입니다. 상하관계는 contentDiv ->
-	// columnDiv -> questionDiv)
+   // column div를 얻어옵니다. (column_div는 여러 문제들이 속해 있는 div입니다. 상하관계는 contentDiv -> columnDiv -> questionDiv)
    columnDiv = editor.document.getById('col_div_' + curPageNum + '_' + curDivNum);
    
    // questionDiv를 생성합니다. (questionDiv는 문제 하나가 속한 div입니다. 문제별로 questionDiv가
@@ -365,7 +358,7 @@ function addQuestionToEditor(questionNum){
    // choiceDiv 생성 및 값설정 (객관식 문제인 경우에만)
    if(jsonQuestionList[questionNum].mulORSub == 0){
       createChoiceDiv(questionNum);
-      aryChoiceNumDiv[questionNum] = new Array();	// 2차원 배열 선언
+      aryChoiceNumDiv[questionNum] = new Array();	//2차원 배열 선언
       
       // 1번보기
       if(jsonQuestionList[questionNum].mulChoice_one != null){
@@ -396,38 +389,18 @@ function addQuestionToEditor(questionNum){
    
 }
 
-function checkColumn_add(questionNum){
-	var curQuestionHeight = parseInt(aryQuestionDiv[questionNum].getComputedStyle('height')); 
-	questionHeight[questionNum] = curQuestionHeight;
-	curColumnHeight += parseInt(aryQuestionDiv[questionNum].getComputedStyle('height')); 
+function checkColumn(questionNum){
+	curColumnHeight += parseInt(aryQuestionDiv[questionNum].getComputedStyle('height'));   
 	   if(parseInt(aryColumnHeight[curPageNum][curDivNum]) < curColumnHeight){
 		   
 		   // 칸을 넘겼으니 그려진 문제들을 지우고 다음 div에 다시그립니다.
-		   aryRealColumnHeight[curPageNum][curDivNum] = (curColumnHeight-curQuestionHeight);
-		   curColumnHeight = curQuestionHeight;
+		   curColumnHeight = 0;
 		   removeQuestionFromEditor(questionNum);
 		   curDivNum++;
-		   addQuestionToEditor(questionNum);
+		   addQuestionToTestPaper(questionNum);
 	   }
 	
 }
-
-function checkColumn_remove(questionNum){
-	alert("111REMOVE curColumnHeight :  " + curColumnHeight + " : " + parseInt(aryQuestionDiv[questionNum].getComputedStyle('height')));
-	curColumnHeight = (curColumnHeight - parseInt(questionHeight[questionNum])); 
-	alert("222REMOVE curColumnHeight :  " + curColumnHeight);
-	if(curColumnHeight < 100){ // 대략 100
-		alert("칸 이전");
-		// 칸을 넘겼으니 그려진 문제들을 지우고 다음 div에 다시그립니다.
-		aryRealColumnHeight[curPageNum][curDivNum] = 0;
-		curDivNum--;
-		if(curDivNum < 0)
-			curDivNum = 0;
-		curColumnHeight = aryRealColumnHeight[curPageNum][curDivNum];
-	   }
-	
-}
-
 
 function addQuestionToAddedList(questionNum){
    
@@ -436,14 +409,14 @@ function addQuestionToAddedList(questionNum){
 }
 
 function addQuestionToTestPaper(questionNum){
-   alert("cnrk : " + curColumnHeight);
+   
    questionCount++;
    // 문제를 추가하면 추가된 목록에 포함시킨다.
    addQuestionToAddedList(questionNum);
    // 추가된 문제를 에디터에 출력되도록 한다.
-   // addQuestionToEditor(questionNum).then(checkColumn(questionNum));
+   //addQuestionToEditor(questionNum).then(checkColumn(questionNum));
    addQuestionToEditor(questionNum);
-   setTimeout(function() {checkColumn_add(questionNum)}, 800);
+   setTimeout(function() {checkColumn(questionNum)}, 800);
 }
 
 function removeQuestionFromAddedList(questionNum){
@@ -460,9 +433,7 @@ function removeQuestionFromTestPaper(questionNum){
    // 문제를 삭제하면 추가된 목록에서 삭제시킨다.
    removeQuestionFromAddedList(questionNum);
    // 삭제된 문제를 에디터에서 제거되도록 한다.
-   checkColumn_remove(questionNum);
-   setTimeout(function(){removeQuestionFromEditor(questionNum)}, 800);
-   
+   removeQuestionFromEditor(questionNum);
 }
 
 function createDivNum(num) {

@@ -1,7 +1,12 @@
 @charset "EUC-KR";
+
 .cke_show_borders {
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+
+img {
+	width: 280px;
 }
 
 hr {
@@ -11,6 +16,7 @@ hr {
 
 #head_div {
 	text-align: center;
+	height: 18%;
 }
 
 .header {
@@ -18,6 +24,7 @@ hr {
 	font-size: 50px;
 	text-align: center;
 	font-family: '±√º≠', 'Ω≈∏Ì¡∂', '±º∏≤', 'Comic Sans MS';
+	
 }
 
 .header#test_paper_page_num {
@@ -57,9 +64,9 @@ hr {
 	column-width: 20px;
 	column-rule: 3px solid #000;
 	column-count: 2;
-	
+
 	width: 97%;
-	height: 100%;
+	height: 75%;
 	
 }
 
@@ -67,14 +74,12 @@ hr {
 	display:block;
 	height:297mm;
 	width:210mm;
-	border : 4px solid red;
 }
 
 .column {
     float: left;
     width: 100%;
-    height:100%;
-    border: 4px solid blue;
+    height:99%;	
 }
 
 /* Clear floats after the columns */

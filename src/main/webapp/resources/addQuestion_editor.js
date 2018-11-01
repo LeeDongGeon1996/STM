@@ -95,7 +95,7 @@ function createEditor() {
 		// Note: it is recommended to keep your own styles in a separate file in
 		// order to make future updates painless.
 		contentsCss : [ 'https://cdn.ckeditor.com/4.8.0/full-all/contents.css',
-				'mystyles.css', 'resources/innerEditor.css' ],
+				'resources/innerEditor.css' ],
 		// This is optional, but will let us define multiple different styles
 		// for
 		// multiple editors using the same CSS file.
@@ -331,9 +331,9 @@ function onChoiceChange_1() {
 	if (mulChoice_1 == null) {
 		createDiv();
 	}
-	if (choiceInput == null) {
-		choiceInput = document.getElementById('mulChoice_1');
-	}
+
+	choiceInput = document.getElementById('mulChoice_1');
+	
 	mulChoice_1.setText(choiceInput.value);
 	choiceInput.focus();
 }
@@ -343,9 +343,9 @@ function onChoiceChange_2() {
 	if (mulChoice_2 == null) {
 		createDiv();
 	}
-	if (choiceInput == null) {
-		choiceInput = document.getElementById('mulChoice_2');
-	}
+
+	choiceInput = document.getElementById('mulChoice_2');
+
 	mulChoice_2.setText(choiceInput.value);
 	choiceInput.focus();
 }
@@ -355,9 +355,9 @@ function onChoiceChange_3() {
 	if (mulChoice_3 == null) {
 		createDiv();
 	}
-	if (choiceInput == null) {
-		choiceInput = document.getElementById('mulChoice_3');
-	}
+
+	choiceInput = document.getElementById('mulChoice_3');
+
 	mulChoice_3.setText(choiceInput.value);
 	choiceInput.focus();
 }
@@ -367,9 +367,9 @@ function onChoiceChange_4() {
 	if (mulChoice_4 == null) {
 		createDiv();
 	}
-	if (choiceInput == null) {
-		choiceInput = document.getElementById('mulChoice_4');
-	}
+
+	choiceInput = document.getElementById('mulChoice_4');
+
 	mulChoice_4.setText(choiceInput.value);
 	choiceInput.focus();
 }
@@ -379,9 +379,9 @@ function onChoiceChange_5() {
 	if (mulChoice_5 == null) {
 		createDiv();
 	}
-	if (choiceInput == null) {
-		choiceInput = document.getElementById('mulChoice_5');
-	}
+
+	choiceInput = document.getElementById('mulChoice_5');
+
 	mulChoice_5.setText(choiceInput.value);
 	choiceInput.focus();
 }
