@@ -316,6 +316,7 @@ public class UploadController {
     * 
     * }
     */
+   // uuid ����
    public static String getUuid() {
       return UUID.randomUUID().toString().replaceAll("-", "");
    }
