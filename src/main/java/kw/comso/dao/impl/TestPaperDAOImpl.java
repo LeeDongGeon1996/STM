@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
 import kw.comso.dao.TestPaperDAO;
+import kw.comso.dto.QuestionVO;
 import kw.comso.dto.TestPaperVO;
 
 public class TestPaperDAOImpl implements TestPaperDAO {
@@ -90,6 +91,20 @@ public class TestPaperDAOImpl implements TestPaperDAO {
 
 	public ArrayList<TestPaperVO> findAll() {
 		ArrayList<TestPaperVO> found = (ArrayList<TestPaperVO>) this.mongoTemplate.findAll(TestPaperVO.class,
+				TABLE_NAME);
+
+		return found;
+	}
+
+	@Override
+	public ArrayList<TestPaperVO> findWithRegex(String key, String regex) {
+
+		Query query = new Query();
+		query.addCriteria(Criteria.where(key).regex(regex));
+		System.out.println(regex);
+		
+		//만약 결과가 없어도 비어있는 리스트를 반환한다!!!!!!
+		ArrayList<TestPaperVO> found = (ArrayList<TestPaperVO>) this.mongoTemplate.find(query, TestPaperVO.class,
 				TABLE_NAME);
 
 		return found;

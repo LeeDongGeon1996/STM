@@ -690,3 +690,5 @@ function removeWrapper(n){
 	removeQuestionFromTestPaper(n);
 	$("#selected-"+n).remove();
 }
+
+

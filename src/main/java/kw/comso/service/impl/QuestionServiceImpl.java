@@ -64,6 +64,16 @@ public class QuestionServiceImpl implements QuestionService {
 		
 		return questionList;
 	}
+	
+	@Override
+	public ArrayList<TestPaperVO> getTestPaper(String memberID) {
+		
+		//해당사용자로 등록된 문항 모두 가져오기.
+		String regex = "^" + String.valueOf(memberID.hashCode()).substring(1);
+		ArrayList<TestPaperVO> questionList = this.testPaperDAO.findWithRegex("testPaperIDNum", regex);
+
+		return questionList;
+	}
 
 	@Override
 	public boolean registerQuestion(String memberID, QuestionVO question) {
@@ -78,7 +88,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public boolean registerTestPaper(String memberID, TestPaperVO testPaper) {
 		
-		//testPaper.setTestPaperIDNum(Util.createID(memberID));
+		testPaper.setTestPaperIDNum(Util.createID(memberID));
 		
 		//중복처리???
 		return this.testPaperDAO.insertTestPaper(testPaper);

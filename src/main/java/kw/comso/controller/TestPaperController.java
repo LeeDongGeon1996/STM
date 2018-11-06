@@ -26,36 +26,47 @@ public class TestPaperController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value="/testpaper_editor", method= RequestMethod.GET)
+	@RequestMapping(value = "/testpaper_editor", method = RequestMethod.GET)
 	public String editTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
-		
-		//로그인 확인
+
+		// 로그인 확인
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 		if (member == null)
 			return null;
-		
-		//로그인한 회원의 모든 문제 검색
+
+		// 로그인한 회원의 모든 문제 검색
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
 		model.addAttribute("testPaperVO", new TestPaperVO());
-		
-		//시험지생성페이지의 jsp를 반환한다.
+
+		// 시험지생성페이지의 jsp를 반환한다.
 		return "addTestform";
 	}
-	
-	@RequestMapping(value="/save_testpaper", method= RequestMethod.POST)
-	public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
-		
-		//로그인 확인
+
+	@RequestMapping(value = "/save_testpaper", method = RequestMethod.POST)
+	public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,
+			TestPaperVO testPaper) {
+
+		// 로그인 확인
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 		if (member == null)
 			return null;
+
+		// 사용자측으로부터 받은 시험지의 문항목록을 저장.
+		testPaper.setHtml(testPaper.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
+		boolean isSucceed = questionService.registerTestPaper(member.getEmail(), testPaper);
+		//저장 실패 처리
+		/*
+		if (isSucceed) {
+			Util.sendRedirect(response, "testpaper_editor");
+		} else {
+			session.setAttribute("tryRegiTestPaper", testPaper);
+			Util.sendRedirect(response, "testpaper_editor");
+		}
+		 */
+		// 시험지생성페이지의 jsp를 반환한다.
+		Util.sendRedirect(response, "testpaper_editor");
 		
-		//사용자측으로부터 받은 시험지의 문항목록을 저장.
-		
-		
-		
-		//시험지생성페이지의 jsp를 반환한다.
 		return null;
 	}
 

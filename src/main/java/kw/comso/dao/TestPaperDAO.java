@@ -3,6 +3,7 @@ package kw.comso.dao;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import kw.comso.dto.QuestionVO;
 import kw.comso.dto.TestPaperVO;
 
 public interface TestPaperDAO {
@@ -21,4 +22,6 @@ public interface TestPaperDAO {
 	ArrayList<TestPaperVO> findAll(String key, Object value);
 	
 	ArrayList<TestPaperVO> findAll(String key, Object value, String[] fields);
+	
+	ArrayList<TestPaperVO> findWithRegex(String key, String regex);
 }
