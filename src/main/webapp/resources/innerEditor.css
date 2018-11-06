@@ -62,7 +62,7 @@ hr {
 .content {
 	column-gap: 35px;
 	column-width: 20px;
-	column-rule: 3px solid #000;
+	column-rule: 4px solid;
 	column-count: 2;
 
 	width: 97%;

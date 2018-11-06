@@ -196,7 +196,7 @@
                                        </div>
                                        <div id="ck">
                                           <form name="capimgForm" id="capimgForm"
-                                             enctype="multipart/form-data" action="captureQuestion"
+                                             enctype="multipart/form-data"
                                              method="post">
                                              <input type="hidden" id="capimgData" name="capimgData">
                                              <div id="captureDiv">

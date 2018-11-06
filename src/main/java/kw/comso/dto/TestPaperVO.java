@@ -3,15 +3,23 @@ package kw.comso.dto;
 import java.util.ArrayList;
 
 public class TestPaperVO {
-	private Long testPaperIDNum; // °¢ ½ÃÇèÁöÀÇ °íÀ¯¹øÈ£
-	private ArrayList<Long> testInfo; // ½ÃÇèÁö ¹®Á¦ Á¤º¸°¡ ÀúÀåµÇ¾î ÀÖÀ½, ¸î¹ø ¹®Á¦°¡ ÀúÀåµÇ¾î ÀÖ´ÂÁö Á¤º¸ ÀúÀå
-
+	private Long testPaperIDNum; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private ArrayList<Long> testInfo; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String captestLink;
+	private String captestValue;
 	// setter
 	public void setTestPaperIDNum(Long testPaperIDNum) {
 		this.testPaperIDNum = testPaperIDNum;
 	}
 	public void setTestInfo(ArrayList<Long> testInfo) {
 		this.testInfo = testInfo;
+	}
+	
+	public void setCapTestLink(String captestLink) {
+		this.captestLink=captestLink;
+	}
+	public void setCapTestValue(String captestValue) {
+		this.captestValue=captestValue;
 	}
 
 	// getter
@@ -20,6 +28,12 @@ public class TestPaperVO {
 	}
 	public ArrayList<Long> getTestInfo() {
 		return this.testInfo;
+	}
+	public String getCapTestLink() {
+		return this.captestLink;
+	}
+	public String getCapTestValue() {
+		return this.captestValue;
 	}
 
 }

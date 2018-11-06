@@ -667,7 +667,9 @@ function appendBottomDiv(n){
 		img.id="selected-"+n;
 		img.onclick = function() { removeWrapper(n) };
 		var div = document.getElementById("selectedQuestions");
-		div.append(img);
+		if(img.src!=null){
+			div.append(img);
+		}
 	}
 	
 	// 테스트용 코드
@@ -684,7 +686,9 @@ function appendChild(question,n) {
 	img.id="capimg-"+n;
 	img.classList.add("image-popup-no-margins");
 	var div = document.getElementById("img-"+n);
-	div.append(img);
+	if(img.src!=null){
+		div.append(img);
+	}
 }
 
 function removeWrapper(n){
