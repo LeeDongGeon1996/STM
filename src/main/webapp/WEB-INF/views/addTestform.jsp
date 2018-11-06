@@ -51,6 +51,9 @@
                                                 .val(image));
                                           document
                                                 .getElementById("captestValue").value = image;
+                                      
+                                          		//html값 넘겨주는 함수 // editor.js 에 있다
+                                      			submit_testpaper();
                                           $("#btnfinal").trigger(
                                                 'click');
                                        })
@@ -122,10 +125,12 @@
 								</form>
 							</div>
 						</div>
-						
+
 						<form:form modelAttribute="testpaperVO" action="registerTest"
 							method="POST" onSubmit="return Validate()" name="infos"
-							enctype="multipart/form-data">
+							enctype="multipart/form-data" id="form_testpaper_html">
+							<form:input type="hidden" path="html" name="html" autofocus=""
+								required="" id="testpaper_html"></form:input>
 							<form:input path="CapTestValue" name="captestValue" autofocus=""
 								required="" type="hidden" id="captestValue"></form:input>
 
@@ -289,7 +294,7 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */               
+		format('embedded-opentype'), /* IE 6 ~ 8 */                
        
        
        
@@ -297,6 +302,7 @@ img {
        
        
        
+		 
 		 
 		 
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')

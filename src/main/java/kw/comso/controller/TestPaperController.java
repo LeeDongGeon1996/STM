@@ -64,21 +64,32 @@ public class TestPaperController {
 		return "addTestform";
 	}
 	
-	@RequestMapping(value="/save_testpaper", method= RequestMethod.POST)
-	public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
-		
-		//�α��� Ȯ��
-		AuthMemberInfoVO member = memberService.checkAuth(session, response);
-		if (member == null)
-			return null;
-		
-		//����������κ��� ���� �������� ���׸���� ����.
-		
-		
-		
-		//������������������ jsp�� ��ȯ�Ѵ�.
-		return null;
-	}
+	@RequestMapping(value = "/save_testpaper", method = RequestMethod.POST)
+	   public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,
+	         TestPaperVO testPaper) {
+
+	      // 로그인 확인
+	      AuthMemberInfoVO member = memberService.checkAuth(session, response);
+	      if (member == null)
+	         return null;
+
+	      // 사용자측으로부터 받은 시험지의 문항목록을 저장.
+	      testPaper.setHtml(testPaper.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
+	      boolean isSucceed = questionService.registerTestPaper(member.getEmail(), testPaper);
+	      //저장 실패 처리
+	      /*
+	      if (isSucceed) {
+	         Util.sendRedirect(response, "testpaper_editor");
+	      } else {
+	         session.setAttribute("tryRegiTestPaper", testPaper);
+	         Util.sendRedirect(response, "testpaper_editor");
+	      }
+	       */
+	      // 시험지생성페이지의 jsp를 반환한다.
+	      Util.sendRedirect(response, "testpaper_editor");
+	      
+	      return null;
+	   }
 	
 	@RequestMapping(value = "/registerTest")
 	public Map registerTest(TestPaperVO testpaperVO, ModelMap modelMap, HttpServletRequest request,
@@ -124,6 +135,8 @@ public class TestPaperController {
 		testpaperVO.setCapTestLink("http://localhost:8181/st2m/captestimg" + "/" + uuid + ".png");
 		System.out.println(testpaperVO.getCapTestLink());
 
+		
+		testpaperVO.setHtml(testpaperVO.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
 		isSucceed = questionService.registerTestPaper(member.getEmail(), testpaperVO);
 		System.out.println("here");
 		if (isSucceed) {
@@ -143,10 +156,15 @@ public class TestPaperController {
 		if (member == null)
 			return null;
 
-		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
-		model.addAttribute("questionList", Util.toJson(questionList));
+		ArrayList<TestPaperVO> testList = this.questionService.getTestPaper(member.getEmail());
+		model.addAttribute("testList", Util.toJson(testList));
 
 		return "testform";
+	}
+	
+	@RequestMapping(value="/test_download")
+	public void test_download() {
+		
 	}
 	
 	public static String getUuid() {
