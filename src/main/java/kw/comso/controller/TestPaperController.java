@@ -127,14 +127,28 @@ public class TestPaperController {
 		isSucceed = questionService.registerTestPaper(member.getEmail(), testpaperVO);
 		System.out.println("here");
 		if (isSucceed) {
-			Util.sendRedirect(response, "addtestform");
+			Util.sendRedirect(response, "testform");
 		} else {
 			//session.setAttribute("tryRegiQuestion", questionVO);
-			Util.sendRedirect(response, "addtestform");
+			Util.sendRedirect(response, "testform");
 		}
 
 		return null;
 	}
+	
+	@RequestMapping(value = "/testform")
+	public String testform(ModelMap model,HttpSession session, HttpServletResponse response) {
+		
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+
+		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
+		model.addAttribute("questionList", Util.toJson(questionList));
+
+		return "testform";
+	}
+	
 	public static String getUuid() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}

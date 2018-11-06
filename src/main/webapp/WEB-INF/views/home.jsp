@@ -44,7 +44,7 @@
 			<div class="div-btn">
 
 				<button class=" btn-paper" type="submit"
-					onclick="window.location.href='./addtestform'">내 시험지</button>
+					onclick="window.location.href='./testform'">내 시험지</button>
 
 			</div>
 		</div>
