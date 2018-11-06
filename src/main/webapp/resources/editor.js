@@ -22,12 +22,13 @@ var curColumnHeight = 0;
 
 function testScript(){
    
-   addQuestionToTestPaper(0);
-   
+   //addQuestionToTestPaper(0);
+   addPage(1);
+	
 }
 function testScript_re(){
    
-   removeQuestionFromTestPaper(0);
+   //removeQuestionFromTestPaper(0);
    
 }
 
@@ -225,14 +226,16 @@ function createEditor() {
 
 var aryRealColumnHeight=[];
 var questionHeight = [];
-var aryColumnHeight=[[]];
+var aryColumnHeight=[];
 var curPageNum = 0;
 var curDivNum = 0;
 
 function createTestPaper(){
 	
-	// 시험지 양식을 문제지에 로드하고 css값을 저장합니다.
-	
+	aryColumnHeight[0] = new Array(2);
+	aryRealColumnHeight[0] = new Array(2);
+
+	// 시험지 양식을 문제지에 로드
    fetch("resources/dd2.html")
    .then( response => response.text() )
    .then( text => editor.document.getBody().setHtml(text))
@@ -240,10 +243,7 @@ function createTestPaper(){
    .then( () => aryColumnHeight[curPageNum][curDivNum+1] = editor.document.getById('col_div_0_1').getComputedStyle('height'));
    
    contentDiv = editor.document.getById('content_div');
-   // 일단 임시로
-   aryRealColumnHeight[0] = new Array(2);
-   aryRealColumnHeight[1] = new Array(2);
-
+   
 }
 
 
@@ -254,6 +254,56 @@ var aryChoiceDiv=[];   // 해당문항의 모든 보기를 포함하는 Div
 var aryChoiceNumDiv=[];   // 해당문항의 보기 각각을 포함하는 Div배열의 배열 (2차원 배열)
 var aryImgDiv=[];
 
+
+function addPage(pageNum){
+	
+	var editor = CKEDITOR.instances.editor1;
+	
+	var page_div = CKEDITOR.dom.element.createFromHtml('<div class="page_div" id="page' + pageNum +'_div"></div>');
+	
+	var header_div = CKEDITOR.dom.element.createFromHtml('<div class="sub_header"></div>');
+	header_div.appendTo(page_div);
+	CKEDITOR.dom.element.createFromHtml('<hr color="#000" />').appendTo(page_div);
+	var content_div = CKEDITOR.dom.element.createFromHtml('<DIV class="content" id="content_div_'+ pageNum +'"></div>');
+	content_div.appendTo(page_div);
+	
+	var col_0 = CKEDITOR.dom.element.createFromHtml('<div class="column" id=col_div_'+ pageNum +'_0>');
+	col_0.appendTo(content_div);
+	var col_1 = CKEDITOR.dom.element.createFromHtml('<div class="column" id=col_div_'+ pageNum +'_1>');
+	col_1.appendTo(content_div);
+	CKEDITOR.dom.element.createFromHtml('<hr color="#000" />').appendTo(page_div);
+	
+	page_div.appendTo(editor.document.getBody());
+	
+	aryColumnHeight[pageNum] = new Array(2);
+	aryRealColumnHeight[pageNum] = new Array(2);
+	aryColumnHeight[pageNum][0] = col_0.getComputedStyle('height');
+	aryColumnHeight[pageNum][1] = col_1.getComputedStyle('height');
+	alert(aryColumnHeight[pageNum][1]);
+	
+	//아래와 같은 html코드를 에디터 안에 생성합니다.
+	/*
+	<DIV class='page_div' id='page1_div'>
+	<hr color='#000' />
+		<DIV class='content' id='content_div'>
+			<div class="column" id=col_div_0_0>
+
+			</div>
+			<div class="column" id=col_div_0_1></div>
+
+		</DIV>
+		<hr color='#000' />
+	*/
+	
+	//기능과는 연관도가 낮은 추가적인 element들을 추가합니다.
+	var sub_title = CKEDITOR.dom.element.createFromHtml('<div class="sub_header sub_title"></div>');
+	sub_title.setText(editor.document.getById('test_paper_name').getText() + "<"+ editor.document.getById('subject').getText() + ">");
+	sub_title.appendTo(header_div);
+	CKEDITOR.dom.element.createFromHtml('<div class="sub_header sub_page_num">'+ (pageNum+1) +'</div>').appendTo(header_div);
+	
+	
+	
+}
 
 // 새로페이지가 만들어지면 column div를 생성합니다.
 function createColumnDiv(){
@@ -407,6 +457,13 @@ function checkColumn_add(questionNum){
 		   curColumnHeight = curQuestionHeight;
 		   removeQuestionFromEditor(questionNum);
 		   curDivNum++;
+		   
+		   //다음페이지로 넘어 가야하는 경우.
+		   if(curDivNum >= 2){
+			   curDivNum = 0;
+			   curPageNum++;
+			   addPage(curPageNum);
+		   }
 		   addQuestionToEditor(questionNum);
 	   }
 	
@@ -525,7 +582,6 @@ function loadQuestionList_old2(jsonQuestionList) {
    alert(jsonQuestionList[0].passage);
 
 }
-
 
 function createForm() {
    var editor = CKEDITOR.instances.editor1;

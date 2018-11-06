@@ -30,8 +30,6 @@
 	}
 	
 	function submit_testpaper(){
-		console.log(CKEDITOR.instances.editor1.document.getBody().getHtml());
-		alert(CKEDITOR.instances.editor1.document.getBody().getHtml());
 		document.getElementById('testpaper_html').value = CKEDITOR.instances.editor1.document.getBody().getHtml();
 		document.getElementById('form_testpaper_html').submit();
 		
