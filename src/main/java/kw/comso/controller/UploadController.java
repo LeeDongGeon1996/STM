@@ -1,3 +1,5 @@
+//Upload Controller
+
 package kw.comso.controller;
 
 import java.io.BufferedWriter;
@@ -317,7 +319,8 @@ public class UploadController {
     * }
     */
    // uuid ����
-   public static String getUuid() {
-      return UUID.randomUUID().toString().replaceAll("-", "");
-   }
+
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
 }

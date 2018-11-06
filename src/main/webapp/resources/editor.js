@@ -651,6 +651,13 @@ function loadQuestionList() {
 	}
 }
 
+//시험지 html 정보 모두 전송
+function submit_testpaper(){
+    document.getElementById('testpaper_html').value = CKEDITOR.instances.editor1.document.getBody().getHtml();
+    document.getElementById('form_testpaper_html').submit();
+    
+ }
+
 function hello(){
 	console.log("hello");
 }
@@ -667,7 +674,9 @@ function appendBottomDiv(n){
 		img.id="selected-"+n;
 		img.onclick = function() { removeWrapper(n) };
 		var div = document.getElementById("selectedQuestions");
-		div.append(img);
+		if(img.src!=null){
+			div.append(img);
+		}
 	}
 	
 	// 테스트용 코드
@@ -684,7 +693,9 @@ function appendChild(question,n) {
 	img.id="capimg-"+n;
 	img.classList.add("image-popup-no-margins");
 	var div = document.getElementById("img-"+n);
-	div.append(img);
+	if(img.src!=null){
+		div.append(img);
+	}
 }
 
 function removeWrapper(n){

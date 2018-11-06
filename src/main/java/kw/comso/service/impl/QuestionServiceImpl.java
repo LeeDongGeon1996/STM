@@ -14,86 +14,96 @@ import kw.comso.util.Util;
 
 public class QuestionServiceImpl implements QuestionService {
 
-	@Autowired
-	private QuestionDAO questionDAO;
-	@Autowired
-	private TestPaperDAO testPaperDAO;
+   @Autowired
+   private QuestionDAO questionDAO;
+   @Autowired
+   private TestPaperDAO testPaperDAO;
 
-	public void setQuestionDAO(QuestionDAOImpl questionDAO) {
-		this.questionDAO = questionDAO;
-	}
+   public void setQuestionDAO(QuestionDAOImpl questionDAO) {
+      this.questionDAO = questionDAO;
+   }
 
-	public void setTestPaperDAO(TestPaperDAO testPaperDAO) {
-		this.testPaperDAO = testPaperDAO;
-	}
+   public void setTestPaperDAO(TestPaperDAO testPaperDAO) {
+      this.testPaperDAO = testPaperDAO;
+   }
 
-	@Override
-	public QuestionVO getQuestion(int questionID) {
+   @Override
+   public QuestionVO getQuestion(int questionID) {
 
-		//questionVOÀÇ ¾ÆÀÌµğ·Î ¹®Ç×À» °¡Á®¿È, ¾ÆÁ÷±îÁö ÇÊ¿ä¾ø´Â ¸Ş¼Òµå..
-		QuestionVO target = this.questionDAO.findOne("questionIDNum", questionID);
-		if (target == null)
-			return null;
+      //questionVOì˜ ì•„ì´ë””ë¡œ ë¬¸í•­ì„ ê°€ì ¸ì˜´, ì•„ì§ê¹Œì§€ í•„ìš”ì—†ëŠ” ë©”ì†Œë“œ..
+      QuestionVO target = this.questionDAO.findOne("questionIDNum", questionID);
+      if (target == null)
+         return null;
 
-		return target;
-	}
+      return target;
+   }
 
-	@Override
-	public ArrayList<QuestionVO> getQuestion(String memberID) {
-		
-		//ÇØ´ç»ç¿ëÀÚ·Î µî·ÏµÈ ¹®Ç× ¸ğµÎ °¡Á®¿À±â.
-		String regex = "^" + String.valueOf(memberID.hashCode()).substring(1);
-		ArrayList<QuestionVO> questionList = this.questionDAO.findWithRegex("questionIDNum", regex);
+   @Override
+   public ArrayList<QuestionVO> getQuestion(String memberID) {
+      
+      //í•´ë‹¹ì‚¬ìš©ìë¡œ ë“±ë¡ëœ ë¬¸í•­ ëª¨ë‘ ê°€ì ¸ì˜¤ê¸°.
+      String regex = "^" + String.valueOf(memberID.hashCode()).substring(1);
+      ArrayList<QuestionVO> questionList = this.questionDAO.findWithRegex("questionIDNum", regex);
 
-		return questionList;
-	}
+      return questionList;
+   }
 
-	@Override
-	public ArrayList<QuestionVO> getTestPaper(int testPaperID) {
+   @Override
+   public ArrayList<QuestionVO> getTestPaper(int testPaperID) {
 
-		//½ÃÇèÁö Á¸Àç °Ë»ç.
-		TestPaperVO targetTestPaper = this.testPaperDAO.findOne("testPaperIDNum", testPaperID);
-		if (targetTestPaper == null)
-			return null;
+      //ì‹œí—˜ì§€ ì¡´ì¬ ê²€ì‚¬.
+      TestPaperVO targetTestPaper = this.testPaperDAO.findOne("testPaperIDNum", testPaperID);
+      if (targetTestPaper == null)
+         return null;
 
-		//½ÃÇèÁö¿¡ Æ÷ÇÔµÈ ¹®Ç×°¡Á®¿À±â.
-		ArrayList<Long> IDList = targetTestPaper.getTestInfo();
-		ArrayList<QuestionVO> questionList  = new ArrayList<QuestionVO>();
-		for(Long questionID : IDList)
-			questionList.add(this.questionDAO.findOne("questionIDNum", questionID));
-		
-		return questionList;
-	}
+      //ì‹œí—˜ì§€ì— í¬í•¨ëœ ë¬¸í•­ê°€ì ¸ì˜¤ê¸°.
+      ArrayList<Long> IDList = targetTestPaper.getTestInfo();
+      ArrayList<QuestionVO> questionList  = new ArrayList<QuestionVO>();
+      for(Long questionID : IDList)
+         questionList.add(this.questionDAO.findOne("questionIDNum", questionID));
+      
+      return questionList;
+   }
+   
+   @Override
+   public ArrayList<TestPaperVO> getTestPaper(String memberID) {
+      
+      //í•´ë‹¹ì‚¬ìš©ìë¡œ ë“±ë¡ëœ ë¬¸í•­ ëª¨ë‘ ê°€ì ¸ì˜¤ê¸°.
+      String regex = "^" + String.valueOf(memberID.hashCode()).substring(1);
+      ArrayList<TestPaperVO> questionList = this.testPaperDAO.findWithRegex("testPaperIDNum", regex);
 
-	@Override
-	public boolean registerQuestion(String memberID, QuestionVO question) {
+      return questionList;
+   }
 
-		question.setQuestionIDNum(Util.createID(memberID));
+   @Override
+   public boolean registerQuestion(String memberID, QuestionVO question) {
 
-		// »ç¿ëÀÚ°¡ µî·ÏÇÏ´Â ¹®Á¦µµ Áßº¹Ã³¸®¸¦ ÇØ¾ßÇÏ³ª?
-		return this.questionDAO.insertQuestion(question);
+      question.setQuestionIDNum(Util.createID(memberID));
 
-	}
+      // ì‚¬ìš©ìê°€ ë“±ë¡í•˜ëŠ” ë¬¸ì œë„ ì¤‘ë³µì²˜ë¦¬ë¥¼ í•´ì•¼í•˜ë‚˜?
+      return this.questionDAO.insertQuestion(question);
 
-	@Override
-	public boolean registerTestPaper(String memberID, TestPaperVO testPaper) {
-		
-		//testPaper.setTestPaperIDNum(Util.createID(memberID));
-		
-		//Áßº¹Ã³¸®???
-		return this.testPaperDAO.insertTestPaper(testPaper);
-	}
-	
-	@Override
-	public boolean deleteQuestion(Long questionID) {
-		// ¹®Á¦°¡ »ç¶óÁö¸é ±× ¹®Á¦¸¦ °¡Áö°íÀÖ´ø ½ÃÇèÁö °´Ã¼µµ ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ®ÇØ¾ß ÇÔ.
-		return this.questionDAO.removeQuestion(
-				this.questionDAO.findOne("questionIDNum", questionID));
-	}
+   }
 
-	@Override
-	public boolean deleteTestPaper(Long testPaperID) {
-		return this.testPaperDAO.removeTestPaper(
-				this.testPaperDAO.findOne("testPaperIDNum", testPaperID));
-	}
+   @Override
+   public boolean registerTestPaper(String memberID, TestPaperVO testPaper) {
+      
+      testPaper.setTestPaperIDNum(Util.createID(memberID));
+      
+      //ì¤‘ë³µì²˜ë¦¬???
+      return this.testPaperDAO.insertTestPaper(testPaper);
+   }
+   
+   @Override
+   public boolean deleteQuestion(Long questionID) {
+      // ë¬¸ì œê°€ ì‚¬ë¼ì§€ë©´ ê·¸ ë¬¸ì œë¥¼ ê°€ì§€ê³ ìˆë˜ ì‹œí—˜ì§€ ê°ì²´ë„ ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸í•´ì•¼ í•¨.
+      return this.questionDAO.removeQuestion(
+            this.questionDAO.findOne("questionIDNum", questionID));
+   }
+
+   @Override
+   public boolean deleteTestPaper(Long testPaperID) {
+      return this.testPaperDAO.removeTestPaper(
+            this.testPaperDAO.findOne("testPaperIDNum", testPaperID));
+   }
 }

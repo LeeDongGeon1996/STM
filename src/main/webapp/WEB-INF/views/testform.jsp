@@ -5,34 +5,38 @@
 <html>
 
 <head>
-<title>내 시험지함</title>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+<title>내 문제함</title>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/testform.js"></script>
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/jquery.magnific-popup.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/magnific-popup.css">
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 <!-- Optional theme -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
+	<!-- <div class="img-plus">
+                     <input type="image" class="img-plus"
+                        src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
+                  </div>
+-->
 	<header id="main_header">
 		<div class="div-nav">
-			<button class=" btn-home">STM</button>
+			<button class=" btn-home" onclick="window.location.href='./home'">STM</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<text class="text-page">내 문제함</text>
+			<text class="text-page">내 시험지함</text>
 			<button class="btn-logout">Logout</button>
 		</div>
 	</header>
@@ -41,47 +45,83 @@
 		<div>
 			<div class="container-fluid surB"
 				style="width: 1000px; height: 580px; padding: 55px;">
+				<div>
+					<button id="btn_adj" class="btn-adj">수정</button>
+				</div>
+				<div>
+					<a id="a_download" download>
+						<button id="btn_download" class="btn-download">다운로드</button>
+					</a>
+				</div>
+
 				<div class="row">
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img ">
+					<div onclick="window.location.href='./addtestform'"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img">
 						<div class="img-plus">
-							<input type="image" class="img-plus"
+							<input type="image" class="img-add"
 								src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-0" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-1" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-2" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-3" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-4" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 				<div class="row">
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-5" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-6" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-7" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-8" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-9" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-10"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 				<div class="row">
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-11"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-12"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-13"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-14"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-15"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
+					<div id="img-16"
+						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 
 
 			</div>
 		</div>
 	</section>
-	<!--  <div class="img-plus">
-				<input type="image" class="img-plus"
-					src="${pageContext.request.contextPath}/resources/image/plusImg.png" />
-			</div> -->
 </body>
 </html>
+<script>
+assignTest(${testList});
+loadTestList();
+/*---------------------------------------------여기 다시 수정하면 돼---------------------------------------------*/
+</script>
+<script>$(document).ready(function() {
 
+    $('.image-popup-no-margins').magnificPopup({
+type: 'image',
+closeOnContentClick: true,
+closeBtnInside: false,
+fixedContentPos: true,
+mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+image: {
+  verticalFit: true
+},
+zoom: {
+  enabled: true,
+  duration: 300 // don't foget to change the duration also in CSS
+  
+}
+});
+});
+}</script>
 <style>
 /*초기화 코드*/
 * {
@@ -119,14 +159,57 @@ img {
 	height: 150px;
 }
 
-.img-plus {
-	width: 80px;
-	height: 80px;
+.img-add {
+	width: 120px;
+	height: 120px;
 	padding: 0px;
 	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 15px;
 	outline: none;
-	
+	cursor: pointer;
 }
+
+.img-plus {
+	width: 150px;
+	height: 150px;
+	padding: 0px;
+	margin: auto;
+	margin-bottom: 15px;
+	outline: none;
+	cursor: crosshair;
+}
+
+.imgBigL {
+	position: fixed;
+	right: 30px;
+	top: 10%;
+	width: 0px;
+	-webkit-transtition: width 0.3s linear 0s;
+	z-index: 10;
+	border: solid;
+}
+
+.imgBigR {
+	position: fixed;
+	left: 30px;
+	top: 10%;
+	width: 0px;
+	-webkit-transtition: width 0.3s linear 0s;
+	z-index: 10;
+	border: solid;
+}
+
+.img-plus:hover+.imgBigL {
+	width: 800px;
+	height: auto;
+}
+
+.img-plus:hover+.imgBigR {
+	width: 800px;
+	height: auto;
+}
+
 /* 전체 적용 코드 */
 
 /*스타일 적용*/
@@ -143,6 +226,42 @@ img {
 	width: 1000px;
 	margin: 20px auto;
 	position: relative;
+}
+
+.btn-download {
+	color: white;
+	background-color: rgb(7, 79, 102);
+	border-radius: 8px;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	padding: 3px;
+	position: absolute;
+	top: -45px;
+	right: 30px;
+	outline: none;
+	cursor: pointer;
+}
+
+.btn-adj {
+	color: white;
+	background-color: rgb(250, 217, 86);
+	border-radius: 8px;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	width: 150px;
+	font-size: 18pt;
+	font-family: mbcL;
+	padding: 3px;
+	position: absolute;
+	top: -45px;
+	right: 200px;
+	outline: none;
+	cursor: pointer;
 }
 
 .btn-home { /*왼쪽 위 홈으로 가는 버튼*/
@@ -180,18 +299,24 @@ img {
 	margin-left: 90px;
 }
 
+.border-checked {
+	border: solid 4px #5a5a5b;
+	border-radius: 9px;
+}
+
 @font-face {
 	font-family: typoSMB;
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                 
+		format('embedded-opentype'), /* IE 6 ~ 8 */                          
+       
+      
 		 
-		 
-		 
-		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
-		format('woff'), /* 모던 브라우저 */  
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		format('woff'), /* 모던 브라우저 */    
+       
+      
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.ttf')
 		format('truetype');
 }
@@ -200,7 +325,9 @@ img {
 	font-family: mbcL;
 	src: url(mbcL.eot); /* IE 호환성 보기 */
 	src: url('${pageContext.request.contextPath}/resources/font/mbcL.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */ 
+		format('embedded-opentype'), /* IE 6 ~ 8 */   
+       
+      
 		 url('${pageContext.request.contextPath}/resources/font/mbcL.woff')
 		format('woff'), /* 모던 브라우저 */
       url('${pageContext.request.contextPath}/resources/font/mbcL.ttf')
