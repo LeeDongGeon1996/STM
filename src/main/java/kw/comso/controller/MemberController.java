@@ -29,7 +29,7 @@ public class MemberController {
 		// Model�� VO��ü ����
 		modelMap.addAttribute("infoVO", infoVO);
 
-		return "signupform";
+		return "testform";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
