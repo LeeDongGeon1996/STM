@@ -79,8 +79,11 @@
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
 							style="padding: 0px; text-align: center">
 							<text class="exp">사용할 문제를 선택해주세요</text>
-							<div class="outterB topC">
-								<div class="row">
+							<div class="outterB topC" id="row-container">
+							<button class="arrow-button btn-left"><img src="${pageContext.request.contextPath}/resources/image/left_arrow.png"></button>
+							<button class="arrow-button btn-right"><img src="${pageContext.request.contextPath}/resources/image/right_arrow.png"></button>
+							<br>
+								<div class="row row-question row-0" id="row-up">
 									<div id="img-0"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 									<div id="img-1"
@@ -89,7 +92,7 @@
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 								</div>
 								<br> <br>
-								<div class="row">
+								<div class="row row-question row-0" id="row-down">
 									<div id="img-3"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 									<div id="img-4"
@@ -196,7 +199,27 @@ img {
 	color: rgb(64);
 	font-size: 15pt;
 }
-
+.arrow-button {
+	position:absolute;
+	width:40px;
+	opacity:0.8;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+.btn-left{
+	top:190px;
+	left:10px;
+	z-index:100;
+}
+.btn-right{
+	top:190px;
+	right:10px;
+	z-index:100;
+}
 .btn-save {
 	color: white;
 	background-color: rgb(7, 79, 102);
