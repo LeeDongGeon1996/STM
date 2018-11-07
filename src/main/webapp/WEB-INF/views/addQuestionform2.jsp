@@ -199,9 +199,6 @@
 
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
-
-												<div class="outterB srightC">!!!!!!!!!!여기에 에디터
-													넣어!!!!!!!!!!!!!</div>
 												<div>
 													<form:form action="testform" method="POST">
 														<button id="sbtn-save" class="fix-savebutton btn-save"
@@ -335,25 +332,6 @@ i {
 	border-radius: 50px;
 }
 
-.topC {
-	margin-right: 10px;
-	margin-bottom: 5px;
-	margin-top: 15px;
-	padding: 30px;
-	height: 250px;
-	width: 470px;
-	font-size: 13pt;
-}
-
-.bottomC {
-	margin-right: 10px;
-	margin-top: 5px;
-	height: 230px;
-	padding: 10px;
-	padding-top: 23px;
-	font-size: 13pt;
-}
-
 .rightC {
 	height: 570px;
 	margin-top: 15px;
@@ -474,15 +452,10 @@ i {
 	margin-right: 10px;
 	margin-bottom: 5px;
 	margin-top: 15px;
-	height: 490px;
+	height: 530px;
 	width: 470px;
 	padding: 30px;
 	font-size: 13pt;
-}
-
-.srightC {
-	height: 580px;
-	margin-top: 15px;
 }
 
 .jdInsert { /*주관식 답 입력*/

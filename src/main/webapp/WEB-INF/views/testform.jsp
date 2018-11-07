@@ -278,6 +278,16 @@ img {
 	outline: none;
 }
 
+.btn-home {
+	color: rgb(246, 129, 112);
+	background-color: transparent;
+	font-size: 21pt;
+	border: none;
+	cursor: pointer;
+	font-family: typoSMB;
+	position: absolute;
+	left: 30px;
+}
 .btn-logout { /*오른쪽 위 로그인하는 버튼*/
 	border: none;
 	color: rgb(7, 79, 102);

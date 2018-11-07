@@ -14,7 +14,7 @@
 		<button class=" btn-home">STM</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<text class="text-page">Main Page</text>
-		<p class="username">${userName}님환영합니다.</p>
+		<p class="username">${userName}님 환영합니다.</p>
 		<form action="logout" method="POST">
 			<button class="btn-logout">Logout</button>
 		</form>
