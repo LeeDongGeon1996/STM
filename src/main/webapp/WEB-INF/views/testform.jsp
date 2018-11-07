@@ -91,8 +91,6 @@
 					<div id="img-16"
 						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
-
-
 			</div>
 		</div>
 	</section>
@@ -206,12 +204,12 @@ transform: translate(3px, 3px);
 }
 
 .img-plus:hover+.imgBigL {
-	width: 800px;
+	width: 600px;
 	height: auto;
 }
 
 .img-plus:hover+.imgBigR {
-	width: 800px;
+	width: 600px;
 	height: auto;
 }
 
