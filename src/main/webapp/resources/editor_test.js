@@ -1,11 +1,3 @@
-/*
- * 
- * 
- *  editor.js의 테스트용 JS파일입니다. 지워도 됨
- * 
- * 
- * 
- * */
 
 var editor;
 var QuestionList;
@@ -22,12 +14,13 @@ var curColumnHeight = 0;
 
 function testScript(){
    
-   addQuestionToTestPaper(0);
-   
+   // addQuestionToTestPaper(0);
+   addPage(1);
+	
 }
 function testScript_re(){
    
-   removeQuestionFromTestPaper(0);
+   // removeQuestionFromTestPaper(0);
    
 }
 
@@ -223,14 +216,18 @@ function createEditor() {
    
 }
 
-var aryColumnHeight=[[]];
+var aryRealColumnHeight=[];
+var questionHeight = [];
+var aryColumnHeight=[];
 var curPageNum = 0;
 var curDivNum = 0;
 
 function createTestPaper(){
 	
-	// 시험지 양식을 문제지에 로드하고 css값을 저장합니다.
-	
+	aryColumnHeight[0] = new Array(2);
+	aryRealColumnHeight[0] = new Array(2);
+
+	// 시험지 양식을 문제지에 로드
    fetch("resources/dd2.html")
    .then( response => response.text() )
    .then( text => editor.document.getBody().setHtml(text))
@@ -238,6 +235,7 @@ function createTestPaper(){
    .then( () => aryColumnHeight[curPageNum][curDivNum+1] = editor.document.getById('col_div_0_1').getComputedStyle('height'));
    
    contentDiv = editor.document.getById('content_div');
+   
 }
 
 
@@ -247,7 +245,53 @@ var aryPassageDiv=[];
 var aryChoiceDiv=[];   // 해당문항의 모든 보기를 포함하는 Div
 var aryChoiceNumDiv=[];   // 해당문항의 보기 각각을 포함하는 Div배열의 배열 (2차원 배열)
 var aryImgDiv=[];
+var questionPosition=[]; // questionDiv의 페이지와 column번호를 저장하는 배열 (2차원배열);
 
+function addPage(pageNum){
+	
+	var editor = CKEDITOR.instances.editor1;
+	
+	var page_div = CKEDITOR.dom.element.createFromHtml('<div class="page_div" id="page' + pageNum +'_div"></div>');
+	
+	var header_div = CKEDITOR.dom.element.createFromHtml('<div class="sub_header"></div>');
+	header_div.appendTo(page_div);
+	CKEDITOR.dom.element.createFromHtml('<hr color="#000" />').appendTo(page_div);
+	var content_div = CKEDITOR.dom.element.createFromHtml('<DIV class="content" id="content_div_'+ pageNum +'"></div>');
+	content_div.appendTo(page_div);
+	
+	var col_0 = CKEDITOR.dom.element.createFromHtml('<div class="column" id=col_div_'+ pageNum +'_0>');
+	col_0.appendTo(content_div);
+	var col_1 = CKEDITOR.dom.element.createFromHtml('<div class="column" id=col_div_'+ pageNum +'_1>');
+	col_1.appendTo(content_div);
+	CKEDITOR.dom.element.createFromHtml('<hr color="#000" />').appendTo(page_div);
+	
+	page_div.appendTo(editor.document.getBody());
+	
+	aryColumnHeight[pageNum] = new Array(2);
+	aryRealColumnHeight[pageNum] = new Array(2);
+	aryColumnHeight[pageNum][0] = col_0.getComputedStyle('height');
+	aryColumnHeight[pageNum][1] = col_1.getComputedStyle('height');
+
+	
+	// 아래와 같은 html코드를 에디터 안에 생성합니다.
+	/*
+	 * <DIV class='page_div' id='page1_div'> <hr color='#000' /> <DIV
+	 * class='content' id='content_div'> <div class="column" id=col_div_0_0>
+	 * 
+	 * </div> <div class="column" id=col_div_0_1></div>
+	 * 
+	 * </DIV> <hr color='#000' />
+	 */
+	
+	// 기능과는 연관도가 낮은 추가적인 element들을 추가합니다.
+	var sub_title = CKEDITOR.dom.element.createFromHtml('<div class="sub_header sub_title"></div>');
+	sub_title.setText(editor.document.getById('test_paper_name').getText() + "<"+ editor.document.getById('subject').getText() + ">");
+	sub_title.appendTo(header_div);
+	CKEDITOR.dom.element.createFromHtml('<div class="sub_header sub_page_num">'+ (pageNum+1) +'</div>').appendTo(header_div);
+	
+	
+	
+}
 
 // 새로페이지가 만들어지면 column div를 생성합니다.
 function createColumnDiv(){
@@ -260,7 +304,8 @@ function createQuestionDiv(num){
    var editor = CKEDITOR.instances.editor1;
    
    
-   // column div를 얻어옵니다. (column_div는 여러 문제들이 속해 있는 div입니다. 상하관계는 contentDiv -> columnDiv -> questionDiv)
+   // column div를 얻어옵니다. (column_div는 여러 문제들이 속해 있는 div입니다. 상하관계는 contentDiv ->
+   // columnDiv -> questionDiv)
    columnDiv = editor.document.getById('col_div_' + curPageNum + '_' + curDivNum);
    
    // questionDiv를 생성합니다. (questionDiv는 문제 하나가 속한 div입니다. 문제별로 questionDiv가
@@ -269,6 +314,9 @@ function createQuestionDiv(num){
    // aryQuestionDiv.push(questionDiv);
    aryQuestionDiv[num] = questionDiv;
    questionDiv.appendTo(columnDiv);
+   
+   // questionDiv가 생성되는 위치를 저장.
+   questionPosition[num] = [curPageNum, curDivNum];
    
 }
 
@@ -341,66 +389,140 @@ function createChoiceNumDiv(questionNum, choiceNum){
 
 function addQuestionToEditor(questionNum){
    
-   createQuestionDiv(questionNum);
+   createQuestionDiv(questionCount);
    
    // passageDiv 생성 및 값설정
-   createPassageDiv(questionNum);
+   createPassageDiv(questionCount);
    var passage = questionCount + ". " + jsonQuestionList[questionNum].passage;
-   aryPassageDiv[questionNum].setText(passage);
+   aryPassageDiv[questionCount].setText(passage);
    
    // imgDiv 생성 및 값설정 (이미지가 있을 경우에만)
    
    if(jsonQuestionList[questionNum].imageLink != null){
-      createImgDiv(questionNum);
-      aryImgDiv[questionNum].setHtml("<img src='" + jsonQuestionList[questionNum].imageLink + "' />");
+      createImgDiv(questionCount);
+      aryImgDiv[questionCount].setHtml("<img src='" + jsonQuestionList[questionNum].imageLink + "' />");
    }
    
    // choiceDiv 생성 및 값설정 (객관식 문제인 경우에만)
    if(jsonQuestionList[questionNum].mulORSub == 0){
-      createChoiceDiv(questionNum);
-      aryChoiceNumDiv[questionNum] = new Array();	//2차원 배열 선언
+      createChoiceDiv(questionCount);
+      aryChoiceNumDiv[questionCount] = new Array();	// 2차원 배열 선언
       
       // 1번보기
       if(jsonQuestionList[questionNum].mulChoice_one != null){
-         createChoiceNumDiv(questionNum, 0);
-         aryChoiceNumDiv[questionNum][0].setText(jsonQuestionList[questionNum].mulChoice_one);
+         createChoiceNumDiv(questionCount, 0);
+         aryChoiceNumDiv[questionCount][0].setText(jsonQuestionList[questionNum].mulChoice_one);
       }
       // 2번보기
       if(jsonQuestionList[questionNum].mulChoice_two != null){
-         createChoiceNumDiv(questionNum, 1);
-         aryChoiceNumDiv[questionNum][1].setText(jsonQuestionList[questionNum].mulChoice_two);
+         createChoiceNumDiv(questionCount, 1);
+         aryChoiceNumDiv[questionCount][1].setText(jsonQuestionList[questionNum].mulChoice_two);
       }
       // 3번보기
       if(jsonQuestionList[questionNum].mulChoice_three != null){
-         createChoiceNumDiv(questionNum, 2);
-         aryChoiceNumDiv[questionNum][2].setText(jsonQuestionList[questionNum].mulChoice_three);
+         createChoiceNumDiv(questionCount, 2);
+         aryChoiceNumDiv[questionCount][2].setText(jsonQuestionList[questionNum].mulChoice_three);
       }
       // 4번보기
       if(jsonQuestionList[questionNum].mulChoice_four != null){
-         createChoiceNumDiv(questionNum, 3);
-         aryChoiceNumDiv[questionNum][3].setText(jsonQuestionList[questionNum].mulChoice_four);
+         createChoiceNumDiv(questionCount, 3);
+         aryChoiceNumDiv[questionCount][3].setText(jsonQuestionList[questionNum].mulChoice_four);
       }
       // 5번보기
       if(jsonQuestionList[questionNum].mulChoice_five != null){
-         createChoiceNumDiv(questionNum, 4);
-         aryChoiceNumDiv[questionNum][4].setText(jsonQuestionList[questionNum].mulChoice_four);
+         createChoiceNumDiv(questionCount, 4);
+         aryChoiceNumDiv[questionCount][4].setText(jsonQuestionList[questionNum].mulChoice_four);
       }
    }
    
 }
 
-function checkColumn(questionNum){
-	curColumnHeight += parseInt(aryQuestionDiv[questionNum].getComputedStyle('height'));   
+
+function checkColumn_add(questionNum){
+	
+	var curQuestionHeight = parseInt(aryQuestionDiv[questionCount].getComputedStyle('height')); 
+	questionHeight[questionCount] = curQuestionHeight;
+	curColumnHeight += parseInt(aryQuestionDiv[questionCount].getComputedStyle('height')); 
 	   if(parseInt(aryColumnHeight[curPageNum][curDivNum]) < curColumnHeight){
 		   
 		   // 칸을 넘겼으니 그려진 문제들을 지우고 다음 div에 다시그립니다.
-		   curColumnHeight = 0;
-		   removeQuestionFromEditor(questionNum);
+		   aryRealColumnHeight[curPageNum][curDivNum] = (curColumnHeight-curQuestionHeight);
+		   curColumnHeight = curQuestionHeight;
+		   removeQuestionFromEditor(questionCount);
 		   curDivNum++;
-		   addQuestionToTestPaper(questionNum);
+		   
+		   // 다음페이지로 넘어 가야하는 경우.
+		   if(curDivNum >= 2){
+			   curDivNum = 0;
+			   curPageNum++;
+			   addPage(curPageNum);
+		   }
+		   addQuestionToEditor(questionNum);
 	   }
 	
 }
+
+function checkColumn_remove(questionNum){
+
+	if(questionNum != null){
+		aryRealColumnHeight[questionPosition[questionNum][0]][questionPosition[questionNum][1]] -= parseInt(questionHeight[questionNum]);
+	}
+	if(curColumnHeight < 100){ // 대략 100
+
+		// 칸을 넘겼으니 그려진 문제들을 지우고 다음 div에 다시그립니다.
+		aryRealColumnHeight[curPageNum][curDivNum] = 0;
+		curDivNum--;
+		if(curDivNum < 0)
+			curDivNum = 0;
+		curColumnHeight = aryRealColumnHeight[curPageNum][curDivNum];
+		
+		//재귀적으로 col체크
+		checkColumn_remove(null);
+	}
+	
+}
+
+function alignQuestions(){
+	// 정렬 대상
+	// var aryQuestionDiv=[]; //index1 부터 사용됨
+	// var aryPassageDiv=[];
+	// var aryChoiceDiv=[]; // 해당문항의 모든 보기를 포함하는 Div
+	// var aryChoiceNumDiv=[]; // 해당문항의 보기 각각을 포함하는 Div배열의 배열 (2차원 배열)
+	// var aryImgDiv=[];
+	// var questionHeight = []; //index1 부터 사용됨
+	
+	// var questionPosition = [] //2차원배열
+	// var aryColumnHeight=[];
+	
+	// 아래와 같은 로직이 작동하기위해서는 문제를 제거한 뒤 해당 인덱스를 null값으로 지정해야함.
+	for(var i=1; i<=questionCount; i++){
+		
+		if(aryQuestionDiv[i] == null){
+			for(var j=i+1; j <=questionCount+1; j++){
+				aryQuestionDiv[j].removeAttribute('id');
+				aryQuestionDiv[j].setAttribute('id', 'question_div_'+(j-1));
+
+				aryPassageDiv[j].setText(aryPassageDiv[j].getText().replace(j,(j-1)));
+				
+				// 배열을 중간에 없어진 문제의 인덱스부터 한칸씩 당김.
+				aryQuestionDiv[j-1] = aryQuestionDiv[j];
+				aryPassageDiv[j-1] = aryPassageDiv[j];
+				aryChoiceDiv[j-1] = aryChoiceDiv[j];
+				aryChoiceNumDiv[j-1] = aryChoiceNumDiv[j];
+				aryImgDiv[j-1] = aryImgDiv[j];
+				
+				questionPosition[j-1] = questionPosition[j];
+				questionHeight[j-1] = questionHeight[j];
+				
+				// 이벤트 리스너도 변경함.
+				$("#selected-"+j).attr("onclick","removeWrapper(" + (j-1) + ")");
+				$("#selected-"+j).attr("id", "selected-"+(j-1));
+				
+			}
+		}
+	}
+}
+
 
 function addQuestionToAddedList(questionNum){
    
@@ -409,14 +531,12 @@ function addQuestionToAddedList(questionNum){
 }
 
 function addQuestionToTestPaper(questionNum){
-   
    questionCount++;
    // 문제를 추가하면 추가된 목록에 포함시킨다.
    addQuestionToAddedList(questionNum);
    // 추가된 문제를 에디터에 출력되도록 한다.
-   //addQuestionToEditor(questionNum).then(checkColumn(questionNum));
    addQuestionToEditor(questionNum);
-   setTimeout(function() {checkColumn(questionNum)}, 800);
+   setTimeout(function() {checkColumn_add(questionNum)}, 100);
 }
 
 function removeQuestionFromAddedList(questionNum){
@@ -425,6 +545,7 @@ function removeQuestionFromAddedList(questionNum){
 
 function removeQuestionFromEditor(questionNum){
    aryQuestionDiv[questionNum].remove();
+   
 }
 
 function removeQuestionFromTestPaper(questionNum){
@@ -433,7 +554,13 @@ function removeQuestionFromTestPaper(questionNum){
    // 문제를 삭제하면 추가된 목록에서 삭제시킨다.
    removeQuestionFromAddedList(questionNum);
    // 삭제된 문제를 에디터에서 제거되도록 한다.
-   removeQuestionFromEditor(questionNum);
+   checkColumn_remove(questionNum);
+   setTimeout(function(){
+	   removeQuestionFromEditor(questionNum);
+	   aryQuestionDiv[questionNum] = null;
+	   alignQuestions();
+	   }, 300);
+   
 }
 
 function createDivNum(num) {
@@ -475,17 +602,6 @@ function createDivNum(num) {
       
 }
 
-
-function loadQuestionList(jsonQuestionList) {
-   // 이 부분을 작성해주세요.
-   // jsonQuestionList는 서버에서 전달된 문제 배열입니다.
-   // 이 배열에 있는 문제를 웹페이지에 나열해주세요.
-   // +추가적으로 사용자가 문제를 선택하면 addQuestionToEditor(num)을 호출해주세요.
-   // num은 jsonQuestionList에서의 인덱스입니다.
-   
-}
-
-
 function loadQuestionList_old2(jsonQuestionList) {
    for(var i=0; i<jsonQuestionList.length; i++){
       createDivNum(i);
@@ -493,15 +609,13 @@ function loadQuestionList_old2(jsonQuestionList) {
       imgDiv[i].setHtml("<img id='question_img_" + i + "' width='" + 300 + "' src='" + jsonQuestionList[i].imageLink + "' >");
       choiceDiv[i].setText(jsonQuestionList[i].mulChoice_one);
    }
-   alert(jsonQuestionList[0].passage);
 
 }
-
 
 function createForm() {
    var editor = CKEDITOR.instances.editor1;
 
-   setTimeout(function(){questionDiv = editor.document.getById('question_div');alert(questionDiv)}, 3000)
+   setTimeout(function(){questionDiv = editor.document.getById('question_div');}, 3000)
    // questionDiv = editor.document.getById('question_div');
 }
 
@@ -509,7 +623,7 @@ function loadQuestionList_old(jsonQuestionList) {
    document.getElementById('editor1').innerHTML = "<div id=\'question"
          + questionCount + "\'>" + jsonQuestionList[0].passage + "</div>";
    document.getElementById('editor1').innerHTML = "<img src=  \'"  + jsonQuestionList[0].imageLink  + "\' />";
-   alert(jsonQuestionList[0].passage);
+ 
 
 }
 
@@ -627,26 +741,26 @@ function hello(){
 
 function addOnclick(n){
 	console.log(n);
-	$("#capimg-"+n).attr("onclick","appendBottomDiv("+n+");addQuestionToTestPaper("+n+")");
+	$("#capimg-"+n).attr("onclick","appendBottomDiv("+n+");");
 }
 
 function appendBottomDiv(n){
-	if(document.getElementById("selected-"+n)==null){
-		var img = document.createElement("img");
-		img.src=document.getElementById("capimg-"+n).src;
-		img.id="selected-"+n;
-		img.onclick = function() { removeWrapper(n) };
-		var div = document.getElementById("selectedQuestions");
-		div.append(img);
-	}
 	
-	// 테스트용 코드
-	// var height =
-	// CKEDITOR.instances.editor1.document.getById('col_div_1_1').getStyle('height');
-	// alert(CKEDITOR.instances.editor1.document.getById('col_div_1_1').style.height);
+	// QuestionCount를 먼저 증가시킨다.
+	addQuestionToTestPaper(n);
 	
+	var img = document.createElement("img");
+	img.src=document.getElementById("capimg-"+n).src;
+	img.id="selected-"+questionCount;
+	// img.onclick = function() { removeWrapper(questionCount) };
+	var div = document.getElementById("selectedQuestions");
+	div.append(img);
+	
+	
+	$("#selected-"+questionCount).attr("onclick","removeWrapper(" + questionCount + ")");
 	
 }
+
 
 function appendChild(question,n) {
 	var img = document.createElement("img");
