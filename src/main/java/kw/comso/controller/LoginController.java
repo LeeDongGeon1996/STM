@@ -33,7 +33,7 @@ public class LoginController {
 			session.removeAttribute("tryLogin");
 			tryLoginVal = 1;
 		}
-		modelMap.addAttribute("try", tryLoginVal);
+		modelMap.addAttribute("tryLoginVal", tryLoginVal);
 
 		return "loginform";
 	}
