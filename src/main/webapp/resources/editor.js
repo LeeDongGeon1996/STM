@@ -641,7 +641,11 @@ function loadQuestionList() {
 		
 		var question = jsonQuestionList[n].capimageLink;
 		// 이미지 태그 제작
-		
+		if(n%6==0 && n>0){
+			appendRow(n);
+			$(".row-question").hide();
+			$(".row-0").fadeIn(2000);
+		}
 		console.log(question);
 		setTimeout(appendChild(question,n),2000);
 		n++;
@@ -651,7 +655,7 @@ function loadQuestionList() {
 	}
 }
 
-//시험지 html 정보 모두 전송
+// 시험지 html 정보 모두 전송
 function submit_testpaper(){
     document.getElementById('testpaper_html').value = CKEDITOR.instances.editor1.document.getBody().getHtml();
     document.getElementById('form_testpaper_html').submit();
@@ -678,15 +682,58 @@ function appendBottomDiv(n){
 			div.append(img);
 		}
 	}
-	
 	// 테스트용 코드
 	// var height =
 	// CKEDITOR.instances.editor1.document.getById('col_div_1_1').getStyle('height');
 	// alert(CKEDITOR.instances.editor1.document.getById('col_div_1_1').style.height);
-	
-	
 }
 
+// 새 row생성
+function appendRow(n){
+	var row_no=n/6;
+	var br=document.createElement("br");
+	// 윗줄 문제 컨테이너 row
+	var row_up = document.createElement("div");
+	row_up.classList.add("row");
+	row_up.classList.add("row-question");
+	row_up.classList.add("row-"+row_no);
+	row_up.id="row-up";
+	// 아랫줄 문제 컨테이너 row
+	var row_down = document.createElement("div");
+	row_down.classList.add("row");
+	row_down.classList.add("row-question");
+	row_down.classList.add("row-"+row_no);
+	row_down.id="row-down";
+	
+	var row_container = document.getElementById("row-container");
+	row_container.append(row_up);
+	row_container.append(br);
+	row_container.append(br);
+	row_container.append(row_down);
+	
+	// row 안의 img div들 생성
+	for(var i=0;i<3;i++){
+		// 윗열
+		var img_div_up=document.createElement("div");
+		img_div_up.id="img-"+(n+i);
+		img_div_up.classList.add("col-lg-4");
+		img_div_up.classList.add("col-md-4");
+		img_div_up.classList.add("col-sm-4");
+		img_div_up.classList.add("col-xs-4");
+		img_div_up.classList.add("div-img");
+		row_up.append(img_div_up);
+		// 아랫열
+		var img_div_down=document.createElement("div");
+		img_div_down.id="img-"+(n+i+3);
+		img_div_down.classList.add("col-lg-4");
+		img_div_down.classList.add("col-md-4");
+		img_div_down.classList.add("col-sm-4");
+		img_div_down.classList.add("col-xs-4");
+		img_div_down.classList.add("div-img");
+		row_down.append(img_div_down);
+	}
+}
+// 문제리스트 생성
 function appendChild(question,n) {
 	var img = document.createElement("img");
 	img.src=question;
