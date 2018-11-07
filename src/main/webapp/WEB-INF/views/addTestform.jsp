@@ -80,13 +80,6 @@
 							style="padding: 0px; text-align: center">
 							<text class="exp">사용할 문제를 선택해주세요</text>
 							<div class="outterB topC" id="row-container">
-<<<<<<< HEAD
-								<button class="arrow-button btn-left">
-									<img
-										src="${pageContext.request.contextPath}/resources/image/left_arrow.png">
-								</button>
-								<button class="arrow-button btn-right">
-=======
 								<button class="arrow-button btn-left"
 									onclick="btnOnclick_left()">
 									<img
@@ -94,16 +87,11 @@
 								</button>
 								<button class="arrow-button btn-right"
 									onclick="btnOnclick_right()">
->>>>>>> JMC_br
 									<img
 										src="${pageContext.request.contextPath}/resources/image/right_arrow.png">
 								</button>
 								<br>
-<<<<<<< HEAD
-								<div class="row row-question row-0" id="row-up">
-=======
 								<div class="row row-question row-0 on" id="row-up" value="0">
->>>>>>> JMC_br
 									<div id="img-0"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 									<div id="img-1"
@@ -214,10 +202,8 @@ img {
 
 .rightC {
 	height: 1300px;
-<<<<<<< HEAD
 	padding-left: 35px;
-=======
->>>>>>> JMC_br
+
 }
 
 .exp {
@@ -229,7 +215,6 @@ img {
 .arrow-button {
 	position: absolute;
 	width: 40px;
-<<<<<<< HEAD
 	background-color: Transparent;
 	border: none;
 	cursor: pointer;
@@ -252,27 +237,6 @@ img {
 
 .btn-right:active {
 	transform: translateX(5px);
-=======
-	opacity: 0.8;
-	background-color: Transparent;
-	background-repeat: no-repeat;
-	border: none;
-	cursor: pointer;
-	overflow: hidden;
-	outline: none;
-}
-
-.btn-left {
-	top: 190px;
-	left: 10px;
-	z-index: 100;
-}
-
-.btn-right {
-	top: 190px;
-	right: 10px;
-	z-index: 100;
->>>>>>> JMC_br
 }
 
 .btn-save {
@@ -397,20 +361,10 @@ img {
        
        
        
-       
-       
-<<<<<<< HEAD
-       
-       
-       
-      
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
-=======
-		 
+	 
 		 
 		 
 		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
->>>>>>> JMC_br
 		format('woff'), /* 모던 브라우저 */   
        
        
