@@ -163,6 +163,11 @@ body {
 	left: 30px;
 }
 
+.btn-home:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
 .btn-logout {
 	border: none;
 	outline: none;
@@ -175,6 +180,11 @@ body {
 	top: 10px;
 	right: 30px;
 	cursor: pointer;
+}
+
+.btn-logout:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
 }
 
 .username {

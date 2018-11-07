@@ -517,6 +517,12 @@ img {
 	left: 30px;
 }
 
+.btn-home:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
+
 .btn-logout {
 	border: none;
 	color: rgb(7, 79, 102);
@@ -528,6 +534,12 @@ img {
 	position: absolute;
 	right: 30px;
 }
+
+.btn-logout:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
 
 .text-page {
 	font-family: typoSMB;
