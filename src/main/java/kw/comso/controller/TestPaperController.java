@@ -63,6 +63,24 @@ public class TestPaperController {
 		//������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
 	}
+	@RequestMapping(value="/edittestform", method= RequestMethod.GET)
+	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
+		
+		//�α��� Ȯ��
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+		
+		//�α����� ȸ���� ��� ���� �˻�
+		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
+		model.addAttribute("questionList", Util.toJson(questionList));
+		
+		TestPaperVO testpaperVO = new TestPaperVO();
+		model.addAttribute("testpaperVO",testpaperVO);
+		
+		//������������������ jsp�� ��ȯ�Ѵ�.
+		return "addTestform";
+	}
 	
 	@RequestMapping(value = "/save_testpaper", method = RequestMethod.POST)
 	   public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,

@@ -91,8 +91,6 @@
 					<div id="img-16"
 						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
-
-
 			</div>
 		</div>
 	</section>
