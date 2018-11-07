@@ -201,12 +201,12 @@ img {
 }
 
 .img-plus:hover+.imgBigL {
-	width: 800px;
+	width: 600px;
 	height: auto;
 }
 
 .img-plus:hover+.imgBigR {
-	width: 800px;
+	width: 600px;
 	height: auto;
 }
 

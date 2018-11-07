@@ -644,7 +644,7 @@ function loadQuestionList() {
 		if(n%6==0 && n>0){
 			appendRow(n);
 			$(".row-question").hide();
-			$(".row-0").fadeIn(2000);
+			$(".row-0").fadeIn(1000);
 		}
 		console.log(question);
 		setTimeout(appendChild(question,n),2000);
@@ -669,6 +669,43 @@ function hello(){
 function addOnclick(n){
 	console.log(n);
 	$("#capimg-"+n).attr("onclick","appendBottomDiv("+n+");addQuestionToTestPaper("+n+")");
+}
+
+var current_row=0;
+function btnOnclick_left(){
+	var next_row=current_row-1;
+	if(current_row!=0){
+		$(".row-question").fadeOut(500);
+		setTimeout(function(){$(".row-"+next_row).fadeIn(500)},500);
+		$(".row-"+current_row).removeClass('on');
+		$(".row-"+current_row).addClass('off');
+		$(".row-"+next_row).removeClass('off');
+		$(".row-"+next_row).addClass('on');
+		current_row-=1;
+		
+		$(".btn-right").show();
+		if(current_row==0){
+			$(".btn-left").hide();
+		}
+	}
+}
+function btnOnclick_right(){
+	var next_row=current_row+1;
+	console.log(next_row);
+	if($(".row-"+next_row).val()!=null){
+		$(".row-question").fadeOut(500);
+		setTimeout(function(){$(".row-"+next_row).fadeIn(500)},500);
+		$(".row-"+current_row).removeClass('on');
+		$(".row-"+current_row).addClass('off');
+		$(".row-"+next_row).removeClass('off');
+		$(".row-"+next_row).addClass('on');
+		current_row+=1;
+
+		$(".btn-left").show();
+		if($(".row-"+(next_row+1)).val()==null){
+			$(".btn-right").hide();
+		}
+	}
 }
 
 function appendBottomDiv(n){
@@ -697,13 +734,17 @@ function appendRow(n){
 	row_up.classList.add("row");
 	row_up.classList.add("row-question");
 	row_up.classList.add("row-"+row_no);
+	row_up.classList.add("off");
 	row_up.id="row-up";
+	row_up.setAttribute("value",row_no);
 	// 아랫줄 문제 컨테이너 row
 	var row_down = document.createElement("div");
 	row_down.classList.add("row");
 	row_down.classList.add("row-question");
 	row_down.classList.add("row-"+row_no);
+	row_down.classList.add("off");
 	row_down.id="row-down";
+	row_down.setAttribute("value",row_no);
 	
 	var row_container = document.getElementById("row-container");
 	row_container.append(row_up);

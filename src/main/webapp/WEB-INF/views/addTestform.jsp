@@ -80,10 +80,18 @@
 							style="padding: 0px; text-align: center">
 							<text class="exp">사용할 문제를 선택해주세요</text>
 							<div class="outterB topC" id="row-container">
-							<button class="arrow-button btn-left"><img src="${pageContext.request.contextPath}/resources/image/left_arrow.png"></button>
-							<button class="arrow-button btn-right"><img src="${pageContext.request.contextPath}/resources/image/right_arrow.png"></button>
-							<br>
-								<div class="row row-question row-0" id="row-up">
+								<button class="arrow-button btn-left"
+									onclick="btnOnclick_left()">
+									<img
+										src="${pageContext.request.contextPath}/resources/image/left_arrow.png">
+								</button>
+								<button class="arrow-button btn-right"
+									onclick="btnOnclick_right()">
+									<img
+										src="${pageContext.request.contextPath}/resources/image/right_arrow.png">
+								</button>
+								<br>
+								<div class="row row-question row-0 on" id="row-up" value="0">
 									<div id="img-0"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 									<div id="img-1"
@@ -92,7 +100,7 @@
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 								</div>
 								<br> <br>
-								<div class="row row-question row-0" id="row-down">
+								<div class="row row-question row-0 on" id="row-down" value="0">
 									<div id="img-3"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
 									<div id="img-4"
@@ -144,13 +152,12 @@
 			</div>
 		</div>
 	</section>
-
-
 </body>
 
 <script>
 	assignQuestion(${questionList});
 	loadQuestionList();
+	$(".btn-left").hide();
 </script>
 <style>
 img {
@@ -176,12 +183,15 @@ img {
 	border-width: 3pt;
 	border-color: rgb(51, 196, 241);
 	border-radius: 50px;
+	padding-left: 35px;
+	padding-right: 30px;
 }
 
 .topC {
 	margin-right: 10px;
 	margin-bottom: 5px;
 	height: 350px;
+	z-index:100;
 }
 
 .bottomC {
@@ -191,7 +201,7 @@ img {
 }
 
 .rightC {
-	height: 530px;
+	height: 1300px;
 }
 
 .exp {
@@ -199,27 +209,31 @@ img {
 	color: rgb(64);
 	font-size: 15pt;
 }
+
 .arrow-button {
-	position:absolute;
-	width:40px;
-	opacity:0.8;
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
+	position: absolute;
+	width: 40px;
+	opacity: 0.8;
+	background-color: Transparent;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	outline: none;
 }
-.btn-left{
-	top:190px;
-	left:10px;
-	z-index:100;
+
+.btn-left {
+	top: 190px;
+	left: 10px;
+	z-index: 100;
 }
-.btn-right{
-	top:190px;
-	right:10px;
-	z-index:100;
+
+.btn-right {
+	top: 190px;
+	right: 10px;
+	z-index: 100;
 }
+
 .btn-save {
 	color: white;
 	background-color: rgb(7, 79, 102);
@@ -240,6 +254,10 @@ img {
 
 .row {
 	height: 40%;
+}
+
+.row-question{
+	z-index:-1;
 }
 
 /* 전체 적용 코드 */
@@ -317,7 +335,7 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                
+		format('embedded-opentype'), /* IE 6 ~ 8 */                 
        
        
        
@@ -328,7 +346,7 @@ img {
 		 
 		 
 		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */   
        
        
