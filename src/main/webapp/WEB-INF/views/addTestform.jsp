@@ -201,7 +201,8 @@ img {
 }
 
 .rightC {
-	height: 1300px;
+   height: 1300px;
+   padding-left: 35px;
 }
 
 .exp {
@@ -222,6 +223,29 @@ img {
 	outline: none;
 }
 
+.btn-left:active {
+   transform: translateX(-5px);
+}
+
+.btn-right:active {
+   transform: translateX(5px);
+}
+
+.btn-save:active {
+   box-shadow: 2px 2px 1px rgb(118, 113, 113);
+   transform: translateY(4px);
+}
+
+.btn-home:active {
+   text-shadow: 2px 2px 2px rgb(47, 51, 63);
+   transform: translateY(3px);
+}
+
+.btn-logout:active {
+   text-shadow: 2px 2px 2px rgb(47, 51, 63);
+   transform: translateY(3px);
+}
+
 .btn-left {
 	top: 190px;
 	left: 10px;
@@ -230,7 +254,7 @@ img {
 
 .btn-right {
 	top: 190px;
-	right: 10px;
+	right: 20px;
 	z-index: 100;
 }
 

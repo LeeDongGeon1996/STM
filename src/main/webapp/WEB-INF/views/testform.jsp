@@ -157,6 +157,31 @@ img {
 	height: 150px;
 }
 
+.img-add:active{
+filter: drop-shadow(10px 10px 3px rgb(175,171,171));
+transform: translate(3px, 3px);
+}
+
+.btn-download:active {
+box-shadow: 2px 2px 1px rgb(118, 113, 113);
+transform: translateY(4px);
+}
+
+.btn-adj:active {
+box-shadow: 2px 2px 1px rgb(118, 113, 113);
+transform: translateY(4px);
+}
+
+.btn-home:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
+.btn-logout:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
 .img-add {
 	width: 120px;
 	height: 120px;

@@ -156,6 +156,12 @@ body {
 								<!-- button -->
 								<hr class="my-4">
 								<div class="form-label-group">
+
+									<script>      
+                        				if (${tryLoginVal} == 1) {
+                       					alert("이메일 또는 비밀번호가 잘못되었습니다.");
+                        			}
+                        			</script>
 									<button class="btn btn-lg btn-primary btn-block text-uppercase"
 										type="submit">Login</button>
 								</div>

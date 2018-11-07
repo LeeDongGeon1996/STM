@@ -14,7 +14,7 @@
 		<button class=" btn-home">STM</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<text class="text-page">Main Page</text>
-		<p class="username">${userName}님환영합니다.</p>
+		<p class="username">${userName}님 환영합니다.</p>
 		<form action="logout" method="POST">
 			<button class="btn-logout">Logout</button>
 		</form>
@@ -34,15 +34,12 @@
 	<div class="div-container">
 		<div class="row">
 			<div class="div-btn">
-
 				<button class=" btn-question" type="submit"
 					onclick="window.location.href='./questionform'">내 문제</button>
-
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<div class="div-btn">
-
 				<button class=" btn-paper" type="submit"
 					onclick="window.location.href='./testform'">내 시험지</button>
 
@@ -87,6 +84,16 @@ body {
 	width: 500px;
 	margin: auto;
 	margin-top: 90px;
+}
+
+.btn-home:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
+.btn-logout:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
 }
 
 .btn-question {

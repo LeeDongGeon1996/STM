@@ -203,6 +203,20 @@ img {
 	height: auto;
 }
 
+.img-add:active{
+filter: drop-shadow(10px 10px 3px rgb(175,171,171));
+transform: translate(3px, 3px);
+}
+
+.btn-home:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
+
+.btn-logout:active {
+text-shadow: 2px 2px 2px rgb(47, 51, 63);
+transform: translateY(3px);
+}
 /* 전체 적용 코드 */
 
 /*스타일 적용*/

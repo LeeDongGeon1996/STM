@@ -91,8 +91,8 @@
 
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs custom-tab" role="tablist">
-								<li role="presentation" onclick="location.href='./addQuestion'"><a href="#home"
-									aria-controls="home" role="tab" data-toggle="tab"><i
+								<li role="presentation" onclick="location.href='./addQuestion'"><a
+									href="#home" aria-controls="home" role="tab" data-toggle="tab"><i
 										class="glyphicon icon"></i><span class="link-lable">
 											객관식</span></a></li>
 								<li role="presentation" class="active"><a href="#messages"
@@ -102,7 +102,8 @@
 
 							<div class="tab-content">
 								<!-- 객관식 부분 -->
-								<div role="tabpanel" class="tab-pane fade in active" id="messages">
+								<div role="tabpanel" class="tab-pane fade in active"
+									id="messages">
 									<div class="container-fluid ">
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -128,14 +129,15 @@
 															onchange="onFileSelected(this.files)"> <input
 															class="upload-name" value="파일선택" disabled="disabled">
 													</div>
-													
-													
+
+
 													<form:input path="CapValue" name="CapValue" autofocus=""
 														required="" type="hidden" id="CapValue"></form:input>
 
-													<button id="btnfinal" type="submit"></button>
-													<button class="fix-refreshbutton btn-new" type="submit">새로만들기</button>
+
 												</form:form>
+												<button onclick="location.href='./addQuestion2'"
+													class="fix-refreshbutton btn-new">새로만들기</button>
 											</div>
 
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -386,6 +388,26 @@ i {
 	font-weight: lighter;
 }
 
+.btn-save:active {
+	box-shadow: 5px 5px 5px rgb(118, 113, 113);
+	transform: translateY(5px);
+}
+
+.btn-new:active {
+	box-shadow: 5px 5px 5px rgb(118, 113, 113);
+	transform: translateY(5px);
+}
+
+.btn-home:active {
+	text-shadow: 2px 2px 2px rgb(47, 51, 63);
+	transform: translateY(3px);
+}
+
+.btn-logout:active {
+	text-shadow: 2px 2px 2px rgb(47, 51, 63);
+	transform: translateY(3px);
+}
+
 .btn-save {
 	color: white;
 	background-color: rgb(7, 79, 102);
@@ -471,13 +493,13 @@ i {
 }
 
 .sLeftC {
-	margin-right: 10px;
-	margin-bottom: 5px;
-	margin-top: 15px;
-	height: 490px;
-	width: 470px;
-	padding: 30px;
-	font-size: 13pt;
+   margin-right: 10px;
+   margin-bottom: 5px;
+   margin-top: 15px;
+   height: 530px;
+   width: 470px;
+   padding: 30px;
+   font-size: 13pt;
 }
 
 .srightC {
@@ -573,12 +595,12 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                      
+		format('embedded-opentype'), /* IE 6 ~ 8 */                       
        
        
 		 
 		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */    
        
        

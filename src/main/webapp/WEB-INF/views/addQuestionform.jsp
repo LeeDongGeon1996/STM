@@ -177,9 +177,10 @@
                                        <form:input path="CapValue" name="CapValue" autofocus=""
                                           required="" type="hidden" id="CapValue"></form:input>
 
-                                       <button id="btnfinal" type="submit"></button>
-                                       <button class="fix-refreshbutton btn-new" type="submit">새로만들기</button>
+                                       
                                     </form:form>
+                                    <button onclick="location.href='./addQuestion'" 
+                                       class="fix-refreshbutton btn-new">새로만들기</button>
                                  </div>
 
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -380,6 +381,26 @@ i {
    padding: 3px;
    margin-top: 10px;
    font-weight: lighter;
+}
+
+.btn-save:active {
+   box-shadow: 5px 5px 5px rgb(118, 113, 113);
+   transform: translateY(5px);
+}
+
+.btn-new:active {
+   box-shadow: 5px 5px 5px rgb(118, 113, 113);
+   transform: translateY(5px);
+}
+
+.btn-home:active {
+   text-shadow: 2px 2px 2px rgb(47, 51, 63);
+   transform: translateY(3px);
+}
+
+.btn-logout:active {
+   text-shadow: 2px 2px 2px rgb(47, 51, 63);
+   transform: translateY(3px);
 }
 
 .btn-save {
