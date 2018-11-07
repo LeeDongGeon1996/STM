@@ -170,6 +170,11 @@ img {
 	cursor: pointer;
 }
 
+.img-add:active{
+filter: drop-shadow(10px 10px 3px rgb(175,171,171));
+transform: translate(3px, 3px);
+}
+
 .img-plus {
 	width: 150px;
 	height: 150px;
@@ -240,10 +245,15 @@ img {
 	font-family: mbcL;
 	padding: 3px;
 	position: absolute;
-	top: -45px;
+	top: -48px;
 	right: 30px;
 	outline: none;
 	cursor: pointer;
+}
+
+.btn-download:active {
+box-shadow: 2px 2px 1px rgb(118, 113, 113);
+transform: translateY(4px);
 }
 
 .btn-adj {
@@ -258,10 +268,15 @@ img {
 	font-family: mbcL;
 	padding: 3px;
 	position: absolute;
-	top: -45px;
+	top: -48px;
 	right: 200px;
 	outline: none;
 	cursor: pointer;
+}
+
+.btn-adj:active {
+box-shadow: 2px 2px 1px rgb(118, 113, 113);
+transform: translateY(4px);
 }
 
 .btn-home { /*왼쪽 위 홈으로 가는 버튼*/

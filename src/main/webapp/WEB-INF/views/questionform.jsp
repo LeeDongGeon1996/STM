@@ -164,7 +164,10 @@ img {
 	outline: none;
 	cursor: pointer;
 }
-
+.img-add:active{
+filter: drop-shadow(10px 10px 3px rgb(175,171,171));
+transform: translate(3px, 3px);
+}
 .img-plus {
 	width: 150px;
 	height: 150px;

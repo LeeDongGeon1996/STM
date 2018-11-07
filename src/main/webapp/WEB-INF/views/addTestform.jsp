@@ -216,10 +216,18 @@ img {
    left:10px;
    z-index:100;
 }
+
+.btn-left:active {
+transform: translateX(-5px);
+}
 .btn-right{
    top:190px;
    right:20px;
    z-index:100;
+}
+
+.btn-right:active {
+transform: translateX(5px);
 }
 .btn-save {
    color: white;
@@ -233,12 +241,15 @@ img {
    font-family: mbcL;
    padding: 3px;
    position: absolute;
-   top: -15px;
+   top: -20px;
    right: 30px;
    outline: none;
    cursor: pointer;
 }
-
+.btn-save:active {
+box-shadow: 2px 2px 1px rgb(118, 113, 113);
+transform: translateY(4px);
+}
 .row {
    height: 40%;
 }

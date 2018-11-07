@@ -91,8 +91,8 @@
 
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs custom-tab" role="tablist">
-								<li role="presentation" onclick="location.href='./addQuestion'"><a href="#home"
-									aria-controls="home" role="tab" data-toggle="tab"><i
+								<li role="presentation" onclick="location.href='./addQuestion'"><a
+									href="#home" aria-controls="home" role="tab" data-toggle="tab"><i
 										class="glyphicon icon"></i><span class="link-lable">
 											객관식</span></a></li>
 								<li role="presentation" class="active"><a href="#messages"
@@ -102,7 +102,8 @@
 
 							<div class="tab-content">
 								<!-- 객관식 부분 -->
-								<div role="tabpanel" class="tab-pane fade in active" id="messages">
+								<div role="tabpanel" class="tab-pane fade in active"
+									id="messages">
 									<div class="container-fluid ">
 										<div class="row">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -123,19 +124,19 @@
 
 													<div class="filebox">
 														<label for="ex_filename">이미지 업로드</label> <input
-															type="file" id="ex_filename" class="upload-hidden"
+															type="file" id="ex_filename" class="upload-hidden2"
 															type="file" name="file" placeholder="파일 선택"
 															onchange="onFileSelected(this.files)"> <input
 															class="upload-name" value="파일선택" disabled="disabled">
 													</div>
-													
-													
+
+
 													<form:input path="CapValue" name="CapValue" autofocus=""
-														required="" type="hidden" id="CapValue"></form:input>												
-											 </form:form>
-                                    <button onclick="location.href='./addQuestion2'" 
-                                       class="fix-refreshbutton btn-new">새로만들기</button>
-                                 </div>
+														required="" type="hidden" id="CapValue"></form:input>
+												</form:form>
+												<button onclick="location.href='./addQuestion2'"
+													class="fix-refreshbutton btn-new">새로만들기</button>
+											</div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
 
@@ -184,7 +185,7 @@
 
 												<div class="filebox2">
 													<label for="ex_filename2">이미지 업로드</label> <input
-														type="file" id="ex_filename2" class="upload-hidden2">
+														type="file" id="ex_filename2" class=" ">
 													<input class="upload-name2" value="파일이름"
 														disabled="disabled">
 												</div>
@@ -203,7 +204,7 @@
 															type="submit">저장</button>
 														<button id="sbtn-new" class="fix-refreshbutton btn-new"
 															type="submit">새로만들기</button>
-													</form:form>
+														</form:form>
 												</div>
 											</div>
 										</div>
@@ -291,6 +292,11 @@ i {
 	cursor: pointer;
 	font-weight: lighter;
 }
+
+.filebox : hover{
+box-shadow: 5px 5px 5px rgb(118, 113, 113);
+transform: translateY(5px);
+}
 /* named upload */
 .filebox .upload-name {
 	width: 310px;
@@ -310,18 +316,7 @@ i {
 	padding: 5px;
 }
 
-.imgULB {
-	font-size: 15pt;
-	font-family: mbcL;
-	font-weight: lighter;
-	color: white;
-	text-align: center;
-	border-radius: 8px;
-	border: none;
-	width: 150px;
-	padding: 5px;
-	background: rgb(49, 207, 255);
-}
+
 
 .outterB {
 	border-style: solid;
@@ -333,33 +328,6 @@ i {
 .rightC {
 	height: 570px;
 	margin-top: 15px;
-}
-
-.bgInsert { /*객관식 보기 입력*/
-	font-size: 13pt;
-	border: none;
-	width: 400px;
-}
-
-.exp {
-	font-family: mbcL;
-	color: rgb(64);
-	font-size: 15pt;
-}
-
-.label-answer {
-	color: white;
-	background-color: rgb(49, 207, 255);
-	border-radius: 8px;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	width: 150px;
-	font-size: 18pt;
-	font-family: mbcL;
-	padding: 3px;
-	margin-top: 10px;
-	font-weight: lighter;
 }
 
 .btn-save {
@@ -376,6 +344,11 @@ i {
 	margin-top: 10px;
 }
 
+.btn-save:active {
+box-shadow: 5px 5px 5px rgb(118, 113, 113);
+transform: translateY(5px);
+}
+
 .btn-new {
 	color: white;
 	background-color: rgb(250, 217, 86);
@@ -389,6 +362,12 @@ i {
 	padding: 3px;
 	margin-top: 10px;
 }
+
+.btn-new:active {
+box-shadow: 5px 5px 5px rgb(118, 113, 113);
+transform: translateY(5px);
+}
+
 
 .fix-savebutton {
 	position: fixed;
@@ -519,8 +498,8 @@ img {
 }
 
 .btn-home:active {
-text-shadow: 2px 2px 2px rgb(47, 51, 63);
-transform: translateY(3px);
+	text-shadow: 2px 2px 2px rgb(47, 51, 63);
+	transform: translateY(3px);
 }
 
 .btn-logout {
@@ -537,8 +516,8 @@ transform: translateY(3px);
 }
 
 .btn-logout:active {
-text-shadow: 2px 2px 2px rgb(47, 51, 63);
-transform: translateY(3px);
+	text-shadow: 2px 2px 2px rgb(47, 51, 63);
+	transform: translateY(3px);
 }
 
 .text-page {
@@ -554,12 +533,12 @@ transform: translateY(3px);
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                      
+		format('embedded-opentype'), /* IE 6 ~ 8 */                       
        
        
 		 
 		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */    
        
        
@@ -586,21 +565,7 @@ transform: translateY(3px);
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				var fileTarget = $('.filebox .upload-hidden');
-				fileTarget.on('change', function() {
-					// 값이 변경되면 
-					if (window.FileReader) { // modern browser 
-						var filename = $(this)[0].files[0].name;
-					} else { // old IE 
-						var filename = $(this).val().split('/').pop().split(
-								'\\').pop(); // 파일명만 추출 
-					} // 추출한 파일명 삽입 
-					$(this).siblings('.upload-name').val(filename);
-				});
-			});
-	$(document).ready(
-			function() {
-				var fileTarget = $('.filebox2 .upload-hidden2');
+				var fileTarget = $('.filebox .upload-hidden2');
 				fileTarget.on('change', function() {
 					// 값이 변경되면 
 					if (window.FileReader) { // modern browser 
