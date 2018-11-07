@@ -191,7 +191,8 @@ img {
 }
 
 .rightC {
-   height: 530px;
+	height: 1300px;
+	padding-left: 35px;
 }
 
 .exp {
@@ -217,7 +218,7 @@ img {
 }
 .btn-right{
    top:190px;
-   right:10px;
+   right:20px;
    z-index:100;
 }
 .btn-save {

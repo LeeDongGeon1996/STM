@@ -48,19 +48,19 @@ public class TestPaperController {
 	@RequestMapping(value="/addtestform", method= RequestMethod.GET)
 	public String editTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
 		
-		//�α��� Ȯ��
+		//占싸깍옙占쏙옙 확占쏙옙
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 		if (member == null)
 			return null;
 		
-		//�α����� ȸ���� ��� ���� �˻�
+		//占싸깍옙占쏙옙占쏙옙 회占쏙옙占쏙옙 占쏙옙占� 占쏙옙占쏙옙 占싯삼옙
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
 		
 		TestPaperVO testpaperVO = new TestPaperVO();
 		model.addAttribute("testpaperVO",testpaperVO);
 		
-		//������������������ jsp�� ��ȯ�Ѵ�.
+		//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 jsp占쏙옙 占쏙옙환占싼댐옙.
 		return "addTestform";
 	}
 	
@@ -68,15 +68,15 @@ public class TestPaperController {
 	   public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,
 	         TestPaperVO testPaper) {
 
-	      // 로그인 확인
+	      // 濡쒓렇�씤 �솗�씤
 	      AuthMemberInfoVO member = memberService.checkAuth(session, response);
 	      if (member == null)
 	         return null;
 
-	      // 사용자측으로부터 받은 시험지의 문항목록을 저장.
+	      // �궗�슜�옄痢≪쑝濡쒕��꽣 諛쏆� �떆�뿕吏��쓽 臾명빆紐⑸줉�쓣 ���옣.
 	      testPaper.setHtml(testPaper.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
 	      boolean isSucceed = questionService.registerTestPaper(member.getEmail(), testPaper);
-	      //저장 실패 처리
+	      //���옣 �떎�뙣 泥섎━
 	      /*
 	      if (isSucceed) {
 	         Util.sendRedirect(response, "testpaper_editor");
@@ -85,7 +85,7 @@ public class TestPaperController {
 	         Util.sendRedirect(response, "testpaper_editor");
 	      }
 	       */
-	      // 시험지생성페이지의 jsp를 반환한다.
+	      // �떆�뿕吏��깮�꽦�럹�씠吏��쓽 jsp瑜� 諛섑솚�븳�떎.
 	      Util.sendRedirect(response, "testpaper_editor");
 	      
 	      return null;
@@ -100,33 +100,33 @@ public class TestPaperController {
 
 		String uuid = getUuid();
 
-		Path cap_path = Paths.get("C:\\Users\\junma\\Desktop\\captestimgPath\\" + uuid + ".png");
-		String pathwd = "C:\\Users\\junma\\Desktop\\captestimgPath\\" + uuid + ".png";
+		Path cap_path = Paths.get("C:\\Users\\KHR\\Desktop\\captestimgPath\\" + uuid + ".png");
+		String pathwd = "C:\\Users\\KHR\\Desktop\\captestimgPath\\" + uuid + ".png";
 		File addfile = new File(pathwd);
 
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(addfile, true));
 
-			// 파일안에 문자열 쓰기
+			// �뙆�씪�븞�뿉 臾몄옄�뿴 �벐湲�
 
 			fw.flush();
 
-			// 객체 닫기
+			// 媛앹껜 �떕湲�
 			fw.close();
 
-			// 이미지 정보 받아오기 && 불필요한 정보 제거
+			// �씠誘몄� �젙蹂� 諛쏆븘�삤湲� && 遺덊븘�슂�븳 �젙蹂� �젣嫄�
 			String capimgData = testpaperVO.getCapTestValue();
 			System.out.print(capimgData);
 			capimgData = capimgData.replaceAll("data:image/png;base64,", "");
-			// 이미지 디코딩(codec 라이브러리 사용 - base64)
+			// �씠誘몄� �뵒肄붾뵫(codec �씪�씠釉뚮윭由� �궗�슜 - base64)
 			byte[] file = Base64.decodeBase64(capimgData);
 			ByteArrayInputStream is = new ByteArrayInputStream(file);
 
-			// 이미지 정보 재작성
+			// �씠誘몄� �젙蹂� �옱�옉�꽦
 			response.setContentType("image/png");
 			response.setHeader("Content-Disposition", "attachment; filename=" + uuid + ".png");
 
-			// 이미지 서버 업로드
+			// �씠誘몄� �꽌踰� �뾽濡쒕뱶
 			Files.copy(is, cap_path, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

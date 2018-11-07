@@ -108,8 +108,8 @@ public class UploadController {
       boolean isSucceed = false;
       String uuid = getUuid();
 
-      Path path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png");
-      String pathwd = "C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png";
+      Path path = Paths.get("C:\\Users\\KHR\\Desktop\\capimgPath\\" + uuid + ".png");
+      String pathwd = "C:\\Users\\KHR\\Desktop\\capimgPath\\" + uuid + ".png";
       File addfile = new File(pathwd);
 
       try {
@@ -155,8 +155,8 @@ public class UploadController {
 
       String uuid = getUuid();
 
-      Path cap_path = Paths.get("C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png");
-      String pathwd = "C:\\Users\\junma\\Desktop\\capimgPath\\" + uuid + ".png";
+      Path cap_path = Paths.get("C:\\Users\\KHR\\Desktop\\capimgPath\\" + uuid + ".png");
+      String pathwd = "C:\\Users\\KHR\\Desktop\\capimgPath\\" + uuid + ".png";
       File addfile = new File(pathwd);
 
       try {
@@ -191,7 +191,7 @@ public class UploadController {
       System.out.println(questionVO.getCapImageLink());
 
       // �̹���
-      String path = "C:\\Users\\junma\\Desktop\\imgPath";
+      String path = "C:\\Users\\KHR\\Desktop\\imgPath";
       System.out.println(path);
       Map returnObject = new HashMap();
 
@@ -267,7 +267,7 @@ public class UploadController {
     * fileUpload(HttpServletRequest req, HttpServletResponse rep, HttpSession
     * session) {
     * 
-    * String path = "C:\\Users\\junma\\Desktop\\imgPath"; System.out.println(path);
+    * String path = "C:\\Users\\KHR\\Desktop\\imgPath"; System.out.println(path);
     * Map returnObject = new HashMap();
     * 
     * try { // multiparthttpservletrequest ���� MultipartHttpServletRequest mhsr =

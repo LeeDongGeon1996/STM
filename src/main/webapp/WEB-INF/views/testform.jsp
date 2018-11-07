@@ -272,13 +272,11 @@ img {
 	cursor: pointer;
 	font-family: typoSMB;
 	position: absolute;
-	position: fixed;
-	top: 100px;
-	right: 330px;
+	left: 30px;
 	outline: none;
 }
 
-.btn-home {
+.btn-home { /*왼쪽 위 홈으로 가는 버튼*/
 	color: rgb(246, 129, 112);
 	background-color: transparent;
 	font-size: 21pt;
@@ -287,7 +285,9 @@ img {
 	font-family: typoSMB;
 	position: absolute;
 	left: 30px;
+	outline: none;
 }
+
 .btn-logout { /*오른쪽 위 로그인하는 버튼*/
 	border: none;
 	color: rgb(7, 79, 102);

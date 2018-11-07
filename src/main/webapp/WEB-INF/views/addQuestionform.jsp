@@ -174,12 +174,13 @@
                                              type="radio" name="answer" value="5" path="answer"
                                              name="answer"></input>
                                        </div>
-                                       <form:input path="CapValue" name="CapValue" autofocus=""
+                                      <form:input path="CapValue" name="CapValue" autofocus=""
                                           required="" type="hidden" id="CapValue"></form:input>
 
-                                       <button id="btnfinal" type="submit"></button>
-                                       <button class="fix-refreshbutton btn-new" type="submit">새로만들기</button>
+                                       
                                     </form:form>
+                                    <button onclick="location.href='./addQuestion'" 
+                                       class="fix-refreshbutton btn-new">새로만들기</button>
                                  </div>
 
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"

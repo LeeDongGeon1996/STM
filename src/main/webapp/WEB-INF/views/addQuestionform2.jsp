@@ -131,13 +131,11 @@
 													
 													
 													<form:input path="CapValue" name="CapValue" autofocus=""
-														required="" type="hidden" id="CapValue"></form:input>
-
-													<button id="btnfinal" type="submit"></button>
-													<button class="fix-refreshbutton btn-new" type="submit">새로만들기</button>
-												</form:form>
-											</div>
-
+														required="" type="hidden" id="CapValue"></form:input>												
+											 </form:form>
+                                    <button onclick="location.href='./addQuestion2'" 
+                                       class="fix-refreshbutton btn-new">새로만들기</button>
+                                 </div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
 												style="text-align: center">
 

@@ -142,6 +142,11 @@ body {
 							<form class="form-signin">
 
 								<div class="form-label-group">
+								<script>		
+								if (${tryLoginVal} == 1) {
+								alert("이메일 또는 비밀번호가 잘못되었습니다.");
+								}
+								</script>
 									<form:input path="email" type="email" id="email"
 										class="form-control" placeholder="Type your email" required=""
 										autofocus=""></form:input>
