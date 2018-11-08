@@ -62,96 +62,95 @@
 </script>
 </head>
 <body onload="onLoad();">
-   <header id="main_header">
-      <div class="div-nav">
-         <button class=" btn-home" onclick="window.location.href='./home'">STM</button>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <text class="text-page">시험지 만들기</text>
-         <button class="btn-logout">Logout</button>
+	<header id="main_header">
+		<div class="div-nav">
+			<button class=" btn-home" onclick="window.location.href='./home'">STM</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<text class="text-page">시험지 만들기</text>
+			<button class="btn-logout">Logout</button>
 
-      </div>
-   </header>
-   <section id="main_section">
-      <div style="width: 1500px; height: 580px;">
-         <div class="container-fluid">
-            <div class="container-fluid ">
-               <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
-                     style="padding: 0px; text-align: center">
-                     <text class="exp">사용할 문제를 선택해주세요</text>
-                     <div class="outterB topC" id="row-container">
-                        <button class="arrow-button btn-left"
-                           onclick="btnOnclick_left()">
-                           <img
-                              src="${pageContext.request.contextPath}/resources/image/left_arrow.png">
-                        </button>
-                        <button class="arrow-button btn-right"
-                           onclick="btnOnclick_right()">
-                           <img
-                              src="${pageContext.request.contextPath}/resources/image/right_arrow.png">
-                        </button>
-                        <br>
-                        <div class="row row-question row-0 on" id="row-up" value="0">
-                           <div id="img-0"
-                              class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
-                           <div id="img-1"
-                              class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
-                           <div id="img-2"
-                              class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
-                        </div>
-                        <br> <br>
-                        <div class="row row-question row-0 on" id="row-down" value="0">
-                           <div id="img-3"
-                              class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
-                           <div id="img-4"
-                              class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
-                           <div id="img-5"
-                              class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
-                        </div>
-                     </div>
+		</div>
+	</header>
+	<section id="main_section">
+		<div style="width: 1500px; height: 580px;">
+			<div class="container-fluid">
+				<div class="container-fluid ">
+					<div class="row">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+							style="padding: 0px; text-align: center">
+							<text class="exp">사용할 문제를 선택해주세요</text>
+							<div class="outterB topC" id="row-container">
+								<button class="arrow-button btn-left"
+									onclick="btnOnclick_left()">
+									<img
+										src="${pageContext.request.contextPath}/resources/image/left_arrow.png">
+								</button>
+								<button class="arrow-button btn-right"
+									onclick="btnOnclick_right()">
+									<img
+										src="${pageContext.request.contextPath}/resources/image/right_arrow.png">
+								</button>
+								<br>
+								<div class="row row-question row-0 on" id="row-up" value="0">
+									<div id="img-0"
+										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
+									<div id="img-1"
+										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
+									<div id="img-2"
+										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
+								</div>
+								<br> <br>
+								<div class="row row-question row-0 on" id="row-down" value="0">
+									<div id="img-3"
+										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
+									<div id="img-4"
+										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
+									<div id="img-5"
+										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>
+								</div>
+							</div>
 
-                     <text class="exp">선택된 문제는 아래와 같습니다</text>
-                     <div class="outterB bottomC innerPad">
-                        <div class="row" id="selectedQuestions"></div>
-                     </div>
-                  </div>
+							<text class="exp">선택된 문제는 아래와 같습니다</text>
+							<div class="outterB bottomC innerPad">
+								<div class="row" id="selectedQuestions"></div>
+							</div>
+						</div>
 
-                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
-                     style="text-align: center">
-                     <div class="printBtnZone" align="right">
-                        <button id="btn_submit" class="fix-savebutton btn-save">저장</button>
-                     </div>
-                     <div id="ck">
-                        <text class="exp">미리보기</text>
-                        <form name="captestForm" id="captestForm"
-                           enctype="multipart/form-data" method="post">
-                           <input type="hidden" id="captestData" name="captestData">
-                           <div class="outterB rightC">
+						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+							style="text-align: center">
+							<div class="printBtnZone" align="right">
+								<button id="btn_submit" class="fix-savebutton btn-save">저장</button>
+							</div>
+							<div id="ck">
+								<text class="exp">미리보기</text>
+								<form name="captestForm" id="captestForm"
+									enctype="multipart/form-data" method="post">
+									<input type="hidden" id="captestData" name="captestData">
+									<div class="outterB rightC">
+										<div>
+											<br>
+											<textarea id="editor1" disable></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
 
-                              <div>
-                                 <br>
-                                 <textarea id="editor1" disable></textarea>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
+						<form:form modelAttribute="testpaperVO" action="registerTest"
+							method="POST" onSubmit="return Validate()" name="infos"
+							enctype="multipart/form-data" id="form_testpaper_html">
+							<form:input type="hidden" path="html" name="html" autofocus=""
+								required="" id="testpaper_html"></form:input>
+							<form:input path="CapTestValue" name="captestValue" autofocus=""
+								required="" type="hidden" id="captestValue"></form:input>
 
-                  <form:form modelAttribute="testpaperVO" action="registerTest"
-                     method="POST" onSubmit="return Validate()" name="infos"
-                     enctype="multipart/form-data" id="form_testpaper_html">
-                     <form:input type="hidden" path="html" name="html" autofocus=""
-                        required="" id="testpaper_html"></form:input>
-                     <form:input path="CapTestValue" name="captestValue" autofocus=""
-                        required="" type="hidden" id="captestValue"></form:input>
-
-                     <button id="btnfinal" type="submit"></button>
-                  </form:form>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
+							<button id="btnfinal" type="submit"></button>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 
 <script>

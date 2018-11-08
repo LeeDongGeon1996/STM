@@ -71,159 +71,159 @@
 </head>
 
 <body onload="onLoad();">
-   <header id="main_header">
-      <div class="div-nav">
-         <button class=" btn-home" onclick="window.location.href='./home'">STM</button>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <text class="text-page">문제 추가하기</text>
-         <form style="top: 0px; bottom: 100%" action="logout" method="post">
-            <button class="btn-logout">Logout</button>
-         </form>
-      </div>
-   </header>
-   <!-- 섹션 부분 시작 -->
-   <section id="main_section">
-      <div style="width: 1000px; height: 580px;">
-         <div class="container-fluid">
-            <div class="container-fluid">
-               <div class="tab-content custom-tab-content">
-                  <div>
+	<header id="main_header">
+		<div class="div-nav">
+			<button class=" btn-home" onclick="window.location.href='./home'">STM</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<text class="text-page">문제 추가하기</text>
+			<form style="top: 0px; bottom: 100%" action="logout" method="post">
+				<button class="btn-logout">Logout</button>
+			</form>
+		</div>
+	</header>
+	<!-- 섹션 부분 시작 -->
+	<section id="main_section">
+		<div style="width: 1000px; height: 580px;">
+			<div class="container-fluid">
+				<div class="container-fluid">
+					<div class="tab-content custom-tab-content">
+						<div>
 
-                     <!-- Nav tabs -->
-                     <ul class="nav nav-tabs custom-tab" role="tablist">
-                        <li role="presentation" onclick="location.href='./addQuestion'"><a
-                           href="#home" aria-controls="home" role="tab" data-toggle="tab"><i
-                              class="glyphicon icon"></i><span class="link-lable">
-                                 객관식</span></a></li>
-                        <li role="presentation" class="active"><a href="#messages"
-                           aria-controls="messages" role="tab" data-toggle="tab"><i
-                              class="glyphicon"></i><span class="link-lable"> 주관식</span></a></li>
-                     </ul>
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs custom-tab" role="tablist">
+								<li role="presentation" onclick="location.href='./addQuestion'"><a
+									href="#home" aria-controls="home" role="tab" data-toggle="tab"><i
+										class="glyphicon icon"></i><span class="link-lable">
+											객관식</span></a></li>
+								<li role="presentation" class="active"><a href="#messages"
+									aria-controls="messages" role="tab" data-toggle="tab"><i
+										class="glyphicon"></i><span class="link-lable"> 주관식</span></a></li>
+							</ul>
 
-                     <div class="tab-content">
-                        <!-- 객관식 부분 -->
-                        <div role="tabpanel" class="tab-pane fade in active"
-                           id="messages">
-                           <div class="container-fluid ">
-                              <div class="row">
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
-                                    style="padding: 0px">
-                                    <form:form modelAttribute="questionVO"
-                                       action="registerQuestion" method="POST"
-                                       onSubmit="return Validate()" name="infos"
-                                       enctype="multipart/form-data">
-                                       <div>
-                                          <!-- 지문 입력 -->
-                                          <textarea cols="num" rows="num" path="passage"
-                                             name="passage" id="passageInput" class="outterB sleftC"
-                                             placeholder="지문을 입력해주세요" required="" autofocus=""
-                                             onkeyup="onPassageChange();"></textarea>
+							<div class="tab-content">
+								<!-- 객관식 부분 -->
+								<div role="tabpanel" class="tab-pane fade in active"
+									id="messages">
+									<div class="container-fluid ">
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="padding: 0px">
+												<form:form modelAttribute="questionVO"
+													action="registerQuestion" method="POST"
+													onSubmit="return Validate()" name="infos"
+													enctype="multipart/form-data">
+													<div>
+														<!-- 지문 입력 -->
+														<textarea cols="num" rows="num" path="passage"
+															name="passage" id="passageInput" class="outterB sleftC"
+															placeholder="지문을 입력해주세요" required="" autofocus=""
+															onkeyup="onPassageChange();"></textarea>
 
-                                          <div id="username_error" class="val_error"></div>
-                                       </div>
+														<div id="username_error" class="val_error"></div>
+													</div>
 
-                                       <div class="filebox">
-                                          <label for="ex_filename">이미지 업로드</label> <input
-                                             type="file" id="ex_filename" class="upload-hidden"
-                                             type="file" name="file" placeholder="파일 선택"
-                                             onchange="onFileSelected(this.files)"> <input
-                                             class="upload-name" value="파일선택" disabled="disabled">
-                                       </div>
-
-
-                                       <form:input path="CapValue" name="CapValue" autofocus=""
-                                          required="" type="hidden" id="CapValue"></form:input>
+													<div class="filebox">
+														<label for="ex_filename">이미지 업로드</label> <input
+															type="file" id="ex_filename" class="upload-hidden"
+															type="file" name="file" placeholder="파일 선택"
+															onchange="onFileSelected(this.files)"> <input
+															class="upload-name" value="파일선택" disabled="disabled">
+													</div>
 
 
-                                    </form:form>
-                                    <button onclick="location.href='./addQuestion2'"
-                                       class="fix-refreshbutton btn-new">새로만들기</button>
-                                 </div>
+													<form:input path="CapValue" name="CapValue" autofocus=""
+														required="" type="hidden" id="CapValue"></form:input>
+														
+														<button id="btnfinal" type="submit"></button>
+												</form:form>
+												<button onclick="location.href='./addQuestion2'"
+													class="fix-refreshbutton btn-new">새로만들기</button>
+											</div>
 
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
-                                    style="text-align: center">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="text-align: center">
 
-                                    <div class="outterB rightC" id="editordiv">
-                                       <div id="capimgLabel">
-                                          <h2>
-                                             <label for="editor1">문제 프리뷰</label>
-                                          </h2>
-                                       </div>
-                                       <div class="printBtnZone" align="right">
-                                          <button id="btn_submit" class="fix-savebutton btn-save">저장</button>
-                                       </div>
-                                       <div id="ck">
-                                          <form name="capimgForm" id="capimgForm"
-                                             enctype="multipart/form-data" action="captureQuestion"
-                                             method="post">
-                                             <input type="hidden" id="capimgData" name="capimgData">
-                                             <div id="captureDiv">
-                                                <br>
-                                                <div id="editor1" contenteditable="true"></div>
-                                             </div>
-                                          </form>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
-
+												<div class="outterB rightC" id="editordiv">
+													<div id="capimgLabel">
+														<h2>
+															<label for="editor1">문제 프리뷰</label>
+														</h2>
+													</div>
+													<div class="printBtnZone" align="right">
+														<button id="btn_submit" class="fix-savebutton btn-save">저장</button>
+													</div>
+													<div id="ck">
+														<form name="capimgForm" id="capimgForm"
+															enctype="multipart/form-data" action="captureQuestion"
+															method="post">
+															<input type="hidden" id="capimgData" name="capimgData">
+															<div id="captureDiv">
+																<br>
+																<div id="editor1" contenteditable="true"></div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
 
 
 
-                        <!-- 주관식 부분 -->
-
-                        <div role="tabpanel" class="tab-pane fade" id="messages">
-                           <div class="container-fluid ">
-                              <div class="row">
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
-                                    style="padding: 0px">
-
-                                    <textarea cols="num" rows="num" class="outterB sleftC"
-                                       placeholder="지문을 입력해주세요" required="" autofocus=""></textarea>
 
 
-                                    <div class="filebox2">
-                                       <label for="ex_filename2">이미지 업로드</label> <input
-                                          type="file" id="ex_filename2" class="upload-hidden2">
-                                       <input class="upload-name2" value="파일이름"
-                                          disabled="disabled">
-                                    </div>
+								<!-- 주관식 부분 -->
 
-                                    <div>
-                                       <label class="label-answer">정답 입력</label> <input
-                                          class="jdInsert" type="text" required="" autofocus="">
-                                    </div>
-                                 </div>
+								<div role="tabpanel" class="tab-pane fade" id="messages">
+									<div class="container-fluid ">
+										<div class="row">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="padding: 0px">
 
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
-                                    style="text-align: center">
+												<textarea cols="num" rows="num" class="outterB sleftC"
+													placeholder="지문을 입력해주세요" required="" autofocus=""></textarea>
 
-                                    <div class="outterB srightC">!!!!!!!!!!여기에 에디터
-                                       넣어!!!!!!!!!!!!!</div>
-                                    <div>
-                                       <form:form action="testform" method="POST">
-                                          <button id="sbtn-save" class="fix-savebutton btn-save"
-                                             type="submit">저장</button>
-                                          <button id="sbtn-new" class="fix-refreshbutton btn-new"
-                                             type="submit">새로만들기</button>
-                                       </form:form>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
 
-            </div>
-         </div>
-      </div>
-   </section>
+												<div class="filebox2">
+													<label for="ex_filename2">이미지 업로드</label> <input
+														type="file" id="ex_filename2" class="upload-hidden2">
+													<input class="upload-name2" value="파일이름"
+														disabled="disabled">
+												</div>
+
+												<div>
+													<label class="label-answer">정답 입력</label> <input
+														class="jdInsert" type="text" required="" autofocus="">
+												</div>
+											</div>
+
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="text-align: center">
+
+												<div class="outterB srightC">!!!!!!!!!!여기에 에디터
+													넣어!!!!!!!!!!!!!</div>
+												<div>
+													<form:form action="testform" method="POST">
+														<button id="sbtn-save" class="fix-savebutton btn-save"
+															type="submit">저장</button>
+														<button id="sbtn-new" class="fix-refreshbutton btn-new"
+															type="submit">새로만들기</button>
+													</form:form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
 

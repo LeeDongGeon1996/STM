@@ -33,6 +33,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.QuestionVO;
 import kw.comso.dto.TestPaperVO;
+import kw.comso.dao.TestPaperDAO;
+import kw.comso.dao.impl.TestPaperDAOImpl;
 import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
@@ -58,56 +60,37 @@ public class TestPaperController {
 		model.addAttribute("questionList", Util.toJson(questionList));
 		
 		TestPaperVO testpaperVO = new TestPaperVO();
-		model.addAttribute("testpaperVO",testpaperVO);
-		
-		//������������������ jsp�� ��ȯ�Ѵ�.
-		return "addTestform";
-	}
-	@RequestMapping(value="/edittestform", method= RequestMethod.GET)
-	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
-		
-		//�α��� Ȯ��
-		AuthMemberInfoVO member = memberService.checkAuth(session, response);
-		if (member == null)
-			return null;
-		
-		//�α����� ȸ���� ��� ���� �˻�
-		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
-		model.addAttribute("questionList", Util.toJson(questionList));
-		
-		TestPaperVO testpaperVO = new TestPaperVO();
+		testpaperVO.setHtml(null);
 		model.addAttribute("testpaperVO",testpaperVO);
 		
 		//������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
 	}
 	
-	@RequestMapping(value = "/save_testpaper", method = RequestMethod.POST)
-	   public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,
-	         TestPaperVO testPaper) {
-
-	      // 로그인 확인
-	      AuthMemberInfoVO member = memberService.checkAuth(session, response);
-	      if (member == null)
-	         return null;
-
-	      // 사용자측으로부터 받은 시험지의 문항목록을 저장.
-	      testPaper.setHtml(testPaper.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
-	      boolean isSucceed = questionService.registerTestPaper(member.getEmail(), testPaper);
-	      //저장 실패 처리
-	      /*
-	      if (isSucceed) {
-	         Util.sendRedirect(response, "testpaper_editor");
-	      } else {
-	         session.setAttribute("tryRegiTestPaper", testPaper);
-	         Util.sendRedirect(response, "testpaper_editor");
-	      }
-	       */
-	      // 시험지생성페이지의 jsp를 반환한다.
-	      Util.sendRedirect(response, "testpaper_editor");
-	      
-	      return null;
-	   }
+	@Autowired
+	   private TestPaperDAO testPaperDAO;
+	
+	@RequestMapping(value="/edittestform")
+	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response, TestPaperVO testpaperVO) {
+		
+		//�α��� Ȯ��
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		
+		if (member == null)
+			return null;
+		System.out.println("hello"+testpaperVO.getTestPaperIDNum()+"hihi");
+		String testId = testpaperVO.getTestPaperIDNum();
+		
+		testpaperVO=questionService.getTestPaper_one(testId);
+		model.addAttribute("testpaperVO",testpaperVO);
+		
+		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
+		model.addAttribute("questionList", Util.toJson(questionList));
+		
+		
+		//������������������ jsp�� ��ȯ�Ѵ�.
+		return "addTestform";
+	}
 	
 	@RequestMapping(value = "/registerTest")
 	public Map registerTest(TestPaperVO testpaperVO, ModelMap modelMap, HttpServletRequest request,
@@ -154,7 +137,7 @@ public class TestPaperController {
 		System.out.println(testpaperVO.getCapTestLink());
 
 		
-		testpaperVO.setHtml(testpaperVO.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
+		testpaperVO.setHtml(testpaperVO.getHtml());
 		isSucceed = questionService.registerTestPaper(member.getEmail(), testpaperVO);
 		System.out.println("here");
 		if (isSucceed) {
@@ -176,6 +159,9 @@ public class TestPaperController {
 
 		ArrayList<TestPaperVO> testList = this.questionService.getTestPaper(member.getEmail());
 		model.addAttribute("testList", Util.toJson(testList));
+		
+		TestPaperVO testpaperVO = new TestPaperVO();
+		model.addAttribute("testpaperVO",testpaperVO);
 
 		return "testform";
 	}
