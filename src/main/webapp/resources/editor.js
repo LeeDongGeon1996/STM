@@ -28,11 +28,11 @@ function testScript_re(){
 function assignQuestion(questionList){
    jsonQuestionList = questionList;
 }
-function makeTestPaper(){
+function makeTestPaper(htmlLink){
 
    createEditor();
    setTimeout(function(){
-      createTestPaper();
+      createTestPaper(htmlLink);
    },1000);
    
 }
@@ -223,19 +223,27 @@ var curPageNum = 0;
 var curDivNum = 0;
 
 
-function createTestPaper(){
+function createTestPaper(htmlLink){
    
    aryColumnHeight[0] = new Array(2);
    aryRealColumnHeight[0] = new Array(2);
    pageQuestionList[0] = new Array(2);
    
    // 시험지 양식을 문제지에 로드
-   fetch("resources/dd2.html")
-   .then( response => response.text() )
-   .then( text => editor.document.getBody().setHtml(text))
-   .then( () => aryColumnHeight[curPageNum][curDivNum] = editor.document.getById('col_div_0_0').getComputedStyle('height'))
-   .then( () => aryColumnHeight[curPageNum][curDivNum+1] = editor.document.getById('col_div_0_1').getComputedStyle('height'));
-   
+   if(htmlLink=="1"){
+	   fetch("resources/dd2.html")
+	   .then( response => response.text() )
+   		.then( text => editor.document.getBody().setHtml(text))
+   		.then( () => aryColumnHeight[curPageNum][curDivNum] = editor.document.getById('col_div_0_0').getComputedStyle('height'))
+   		.then( () => aryColumnHeight[curPageNum][curDivNum+1] = editor.document.getById('col_div_0_1').getComputedStyle('height'));
+   }
+   else if(htmlLink!="1"){
+	   fetch(htmlLink)
+	   .then( response => response.text() )
+	   .then( text => editor.document.getBody().setHtml(text))
+	   .then( () => aryColumnHeight[curPageNum][curDivNum] = editor.document.getById('col_div_0_0').getComputedStyle('height'))
+	   .then( () => aryColumnHeight[curPageNum][curDivNum+1] = editor.document.getById('col_div_0_1').getComputedStyle('height'));
+   }
    contentDiv = editor.document.getById('content_div');
    
 }
@@ -316,13 +324,13 @@ function addPage(pageNum){
    
    // 아래와 같은 html코드를 에디터 안에 생성합니다.
    /*
-    * <DIV class='page_div' id='page1_div'> <hr color='#000' /> <DIV
-    * class='content' id='content_div'> <div class="column" id=col_div_0_0>
-    * 
-    * </div> <div class="column" id=col_div_0_1></div>
-    * 
-    * </DIV> <hr color='#000' />
-    */
+	 * <DIV class='page_div' id='page1_div'> <hr color='#000' /> <DIV
+	 * class='content' id='content_div'> <div class="column" id=col_div_0_0>
+	 * 
+	 * </div> <div class="column" id=col_div_0_1></div>
+	 * 
+	 * </DIV> <hr color='#000' />
+	 */
    
    // 기능과는 연관도가 낮은 추가적인 element들을 추가합니다.
    var sub_title = CKEDITOR.dom.element.createFromHtml('<div class="sub_header sub_title"></div>');
@@ -552,10 +560,9 @@ function correctQuestionOrder(){
                k=0;
             }
             /*
-            for(var g=k; g<aryChild.length; g++){
-               if(aryChild[k].children[0][0] >aryChild[g].children[0][0] 
-            }
-            */
+			 * for(var g=k; g<aryChild.length; g++){
+			 * if(aryChild[k].children[0][0] >aryChild[g].children[0][0] }
+			 */
          }
       }
    }
@@ -897,7 +904,7 @@ function loadQuestionList() {
 
 // 시험지 html 정보 모두 전송
 function submit_testpaper(){
-    document.getElementById('testpaper_html').value = CKEDITOR.instances.editor1.document.getBody().getHtml();
+    document.getElementById('testpaper_html').value = "<link rel='stylesheet' href='http://localhost:8080/st2m/resources/innerEditor.css'>" + CKEDITOR.instances.editor1.document.getBody().getHtml();
     document.getElementById('form_testpaper_html').submit();
     
  }
@@ -988,8 +995,7 @@ function appendRow(n){
 	
 	var row_container = document.getElementById("row-container");
 	row_container.append(row_up);
-	row_container.append(br);
-	row_container.append(br);
+	// row_container.append(br);
 	row_container.append(row_down);
 	
 	// row 안의 img div들 생성

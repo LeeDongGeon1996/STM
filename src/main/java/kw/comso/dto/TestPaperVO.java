@@ -8,6 +8,7 @@ public class TestPaperVO {
 	private String captestLink;
 	private String captestValue;
 	private String html;
+	private String htmlLink;
 
 	// setter
 	public void setTestPaperIDNum(String testPaperIDNum) {
@@ -29,6 +30,9 @@ public class TestPaperVO {
 	public void setHtml(String html) {
 		this.html = html;
 	}
+	public void setHtmlLink(String htmlLink) {
+		this.htmlLink = htmlLink;
+	}
 
 	// getter
 	public String getTestPaperIDNum() {
@@ -49,6 +53,10 @@ public class TestPaperVO {
 
 	public String getHtml() {
 		return this.html;
+	}
+
+	public String getHtmlLink() {
+		return this.htmlLink;
 	}
 
 }

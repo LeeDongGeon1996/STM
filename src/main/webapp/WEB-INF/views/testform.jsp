@@ -93,7 +93,7 @@
 				method="POST" onSubmit="return Validate()" name="infos"
 				enctype="multipart/form-data" id="sendform">
 				<form:input id="testPaperIDNum" path="TestPaperIDNum" name="testPaperIDNum"
-					autofocus="" required=""></form:input>
+					autofocus="" required="" type="hidden"></form:input>
 				<div>
 					<button id="btn_adj" class="btn-adj" onclick="document.getElementById('sendform').submit()">수정</button>
 				</div>

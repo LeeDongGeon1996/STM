@@ -27,6 +27,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/js/**" location="/js/"/>
 	<resources mapping="C:/Users/junma/Desktop/imgPath/**" location="/img/**" />
+	<resources mapping="C:/Users/junma/Desktop/htmlPath/**" location="/htmltxt/**" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
