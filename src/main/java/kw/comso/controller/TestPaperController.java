@@ -60,6 +60,7 @@ public class TestPaperController {
 		model.addAttribute("questionList", Util.toJson(questionList));
 		
 		TestPaperVO testpaperVO = new TestPaperVO();
+		testpaperVO.setHtml(null);
 		model.addAttribute("testpaperVO",testpaperVO);
 		
 		//������������������ jsp�� ��ȯ�Ѵ�.
@@ -90,33 +91,6 @@ public class TestPaperController {
 		//������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
 	}
-	
-	@RequestMapping(value = "/save_testpaper", method = RequestMethod.POST)
-	   public String saveTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,
-	         TestPaperVO testPaper) {
-
-	      // 로그인 확인
-	      AuthMemberInfoVO member = memberService.checkAuth(session, response);
-	      if (member == null)
-	         return null;
-
-	      // 사용자측으로부터 받은 시험지의 문항목록을 저장.
-	      testPaper.setHtml(testPaper.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
-	      boolean isSucceed = questionService.registerTestPaper(member.getEmail(), testPaper);
-	      //저장 실패 처리
-	      /*
-	      if (isSucceed) {
-	         Util.sendRedirect(response, "testpaper_editor");
-	      } else {
-	         session.setAttribute("tryRegiTestPaper", testPaper);
-	         Util.sendRedirect(response, "testpaper_editor");
-	      }
-	       */
-	      // 시험지생성페이지의 jsp를 반환한다.
-	      Util.sendRedirect(response, "testpaper_editor");
-	      
-	      return null;
-	   }
 	
 	@RequestMapping(value = "/registerTest")
 	public Map registerTest(TestPaperVO testpaperVO, ModelMap modelMap, HttpServletRequest request,
@@ -163,7 +137,7 @@ public class TestPaperController {
 		System.out.println(testpaperVO.getCapTestLink());
 
 		
-		testpaperVO.setHtml(testpaperVO.getHtml().replaceAll(" ", "").replaceAll("\n", ""));
+		testpaperVO.setHtml(testpaperVO.getHtml());
 		isSucceed = questionService.registerTestPaper(member.getEmail(), testpaperVO);
 		System.out.println("here");
 		if (isSucceed) {

@@ -127,7 +127,6 @@
 									enctype="multipart/form-data" method="post">
 									<input type="hidden" id="captestData" name="captestData">
 									<div class="outterB rightC">
-
 										<div>
 											<br>
 											<textarea id="editor1" disable></textarea>
