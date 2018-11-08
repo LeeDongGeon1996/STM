@@ -174,6 +174,21 @@ public class TestPaperController {
 
 		return null;
 	}
+	
+	@RequestMapping(value="/testpaperprint")
+	public String testpaperprint(ModelMap model, HttpSession session, HttpServletResponse response, TestPaperVO testpaperVO) {
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
+		
+		String testId = testpaperVO.getTestPaperIDNum();
+
+		testpaperVO = questionService.getTestPaper_one(testId);
+		model.addAttribute("testpaperVO", testpaperVO);
+		
+		return "print";
+		//Util.sendRedirect(response, "print");
+	}
 
 	@RequestMapping(value = "/testform")
 	public String testform(ModelMap model, HttpSession session, HttpServletResponse response) {

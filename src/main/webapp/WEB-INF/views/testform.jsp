@@ -47,8 +47,20 @@
 				style="width: 1000px; height: 580px; padding: 55px;">
 				<div>
 					<a id="a_download" download>
+
 						<button id="btn_download" class="btn-download">다운로드</button>
+
 					</a>
+					<form:form modelAttribute="testpaperVO" action="testpaperprint"
+						method="POST" onSubmit="return Validate()" name="infos"
+						enctype="multipart/form-data" id="downform">
+						<form:input id="testPaperIDNum" path="TestPaperIDNum"
+							name="testPaperIDNum" autofocus="" required="" type="hidden"></form:input>
+						<div>
+							<button id="btn_download" class="btn-download"
+						onclick="document.getElementById('downform').submit()">다운로드</button>
+						</div>
+					</form:form>
 				</div>
 
 				<div class="row">
@@ -92,10 +104,11 @@
 			<form:form modelAttribute="testpaperVO" action="edittestform"
 				method="POST" onSubmit="return Validate()" name="infos"
 				enctype="multipart/form-data" id="sendform">
-				<form:input id="testPaperIDNum" path="TestPaperIDNum" name="testPaperIDNum"
-					autofocus="" required="" type="hidden"></form:input>
+				<form:input id="testPaperIDNum" path="TestPaperIDNum"
+					name="testPaperIDNum" autofocus="" required="" type="hidden"></form:input>
 				<div>
-					<button id="btn_adj" class="btn-adj" onclick="document.getElementById('sendform').submit()">수정</button>
+					<button id="btn_adj" class="btn-adj"
+						onclick="document.getElementById('sendform').submit()">수정</button>
 				</div>
 			</form:form>
 		</div>
@@ -318,14 +331,14 @@ img {
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */
+		format('embedded-opentype'), /* IE 6 ~ 8 */ 
 		                           
        
       
 		 
 		 
 		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */    
        
       

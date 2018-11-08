@@ -902,9 +902,21 @@ function loadQuestionList() {
 	}
 }
 
+//pdf저장&프린트 제공
+function print_testpaper(){
+	   var popupWindow = window.open("", "_blank" );
+
+	   popupWindow.document.write(editor.document.getHead().getHtml());
+	   popupWindow.document.write(editor.document.getBody().getHtml());
+	   
+	   popupWindow.document.close();
+	   popupWindow.onload = function(){popupWindow.print();};
+	   
+	}
+
 // 시험지 html 정보 모두 전송
 function submit_testpaper(){
-    document.getElementById('testpaper_html').value = "<link rel='stylesheet' href='http://localhost:8080/st2m/resources/innerEditor.css'>" + CKEDITOR.instances.editor1.document.getBody().getHtml();
+    document.getElementById('testpaper_html').value = "<link rel='stylesheet' href='http://localhost:8181/st2m/resources/innerEditor.css'>" + CKEDITOR.instances.editor1.document.getBody().getHtml();
     document.getElementById('form_testpaper_html').submit();
     
  }
