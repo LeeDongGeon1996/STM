@@ -51,16 +51,11 @@
 						<button id="btn_download" class="btn-download">다운로드</button>
 
 					</a>
-					<form:form modelAttribute="testpaperVO" action="testpaperprint"
-						method="POST" onSubmit="return Validate()" name="infos"
-						enctype="multipart/form-data" id="downform">
-						<form:input id="testPaperIDNum" path="TestPaperIDNum"
-							name="testPaperIDNum" autofocus="" required="" type="hidden"></form:input>
-						<div>
+					
+					<div>
 							<button id="btn_download" class="btn-download"
-						onclick="document.getElementById('downform').submit()">다운로드</button>
+						onclick="testformsubmit(0)">다운로드</button>
 						</div>
-					</form:form>
 				</div>
 
 				<div class="row">
@@ -101,16 +96,16 @@
 						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 			</div>
-			<form:form modelAttribute="testpaperVO" action="edittestform"
-				method="POST" onSubmit="return Validate()" name="infos"
+			<form modelAttribute="testpaperVO" 
+				method="POST"  name="infos"
 				enctype="multipart/form-data" id="sendform">
-				<form:input id="testPaperIDNum" path="TestPaperIDNum"
-					name="testPaperIDNum" autofocus="" required="" type="hidden"></form:input>
+				<input id="testPaperIDNum" path="TestPaperIDNum"
+					name="testPaperIDNum" autofocus="" required="" type="hidden"></input>
 				<div>
 					<button id="btn_adj" class="btn-adj"
-						onclick="document.getElementById('sendform').submit()">수정</button>
+						onclick="testformsubmit(1)">수정</button>
 				</div>
-			</form:form>
+			</form>
 		</div>
 	</section>
 </body>
@@ -119,6 +114,18 @@
 assignTest(${testList});
 loadTestList();
 /*---------------------------------------------여기 다시 수정하면 돼---------------------------------------------*/
+
+function testformsubmit(mode){
+	
+	if(mode == 0){
+		
+		$("#sendform").attr("action", "testpaperprint");
+	}
+	else if(mode == 1){
+		$("#sendform").attr("action", "edittestform");
+	}
+	$("#sendform").submit();
+}
 </script>
 <script>function nclick(){$("#testPaperIDNum").submit();}</script>
 <style>
