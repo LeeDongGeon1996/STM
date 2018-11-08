@@ -27,9 +27,9 @@
 <script
    src="${pageContext.request.contextPath}/resources/html2canvas.js"></script>
 <script>
-   function onLoad() {
-      makeTestPaper();
-   }
+	function onLoad() {
+		makeTestPaper("${testpaperVO.htmlLink}");
+	}
 </script>
 <script language="javascript">
    $(
@@ -90,7 +90,6 @@
 									<img
 										src="${pageContext.request.contextPath}/resources/image/right_arrow.png">
 								</button>
-								<br>
 								<div class="row row-question row-0 on" id="row-up" value="0">
 									<div id="img-0"
 										class="col-lg-4 col-md-4 col-sm-4 col-xs-4 div-img"></div>

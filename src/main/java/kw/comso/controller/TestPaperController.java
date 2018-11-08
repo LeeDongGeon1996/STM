@@ -47,51 +47,52 @@ public class TestPaperController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value="/addtestform", method= RequestMethod.GET)
+	@RequestMapping(value = "/addtestform", method = RequestMethod.GET)
 	public String editTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
-		
-		//�α��� Ȯ��
+
+		// �α��� Ȯ��
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 		if (member == null)
 			return null;
-		
-		//�α����� ȸ���� ��� ���� �˻�
+
+		// �α����� ȸ���� ��� ���� �˻�
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
-		
+
 		TestPaperVO testpaperVO = new TestPaperVO();
-		testpaperVO.setHtml(null);
-		model.addAttribute("testpaperVO",testpaperVO);
-		
-		//������������������ jsp�� ��ȯ�Ѵ�.
+		testpaperVO.setHtml("1");
+		testpaperVO.setHtmlLink("1");
+		model.addAttribute("testpaperVO", testpaperVO);
+
+		// ������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
 	}
-	
+
 	@Autowired
-	   private TestPaperDAO testPaperDAO;
-	
-	@RequestMapping(value="/edittestform")
-	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response, TestPaperVO testpaperVO) {
-		
-		//�α��� Ȯ��
+	private TestPaperDAO testPaperDAO;
+
+	@RequestMapping(value = "/edittestform")
+	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response,
+			TestPaperVO testpaperVO) {
+
+		// �α��� Ȯ��
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
-		
+
 		if (member == null)
 			return null;
-		System.out.println("hello"+testpaperVO.getTestPaperIDNum()+"hihi");
+		System.out.println("hello" + testpaperVO.getTestPaperIDNum() + "hihi");
 		String testId = testpaperVO.getTestPaperIDNum();
-		
-		testpaperVO=questionService.getTestPaper_one(testId);
-		model.addAttribute("testpaperVO",testpaperVO);
-		
+
+		testpaperVO = questionService.getTestPaper_one(testId);
+		model.addAttribute("testpaperVO", testpaperVO);
+
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
-		
-		
-		//������������������ jsp�� ��ȯ�Ѵ�.
+
+		// ������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
 	}
-	
+
 	@RequestMapping(value = "/registerTest")
 	public Map registerTest(TestPaperVO testpaperVO, ModelMap modelMap, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
@@ -132,45 +133,84 @@ public class TestPaperController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
-		
+
 		testpaperVO.setCapTestLink("http://localhost:8181/st2m/captestimg" + "/" + uuid + ".png");
 		System.out.println(testpaperVO.getCapTestLink());
 
-		
 		testpaperVO.setHtml(testpaperVO.getHtml());
+
+		//html 담긴 텍스트 파일 생성
+		String htmltxt = testpaperVO.getHtml();
+		String html_uuid=getUuid();
+		String path_html = "C:\\Users\\junma\\Desktop\\htmlPath\\" + html_uuid + ".html";
+		File html_file = new File(path_html);
+		FileWriter writer = null;
+		
+
+		try {
+			writer = new FileWriter(html_file,false);
+			writer.write(htmltxt);
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(writer != null) writer.close();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		testpaperVO.setHtmlLink("http://localhost:8181/st2m/htmltxt" + "/" + html_uuid + ".html");
+		
 		isSucceed = questionService.registerTestPaper(member.getEmail(), testpaperVO);
 		System.out.println("here");
 		if (isSucceed) {
 			Util.sendRedirect(response, "testform");
 		} else {
-			//session.setAttribute("tryRegiQuestion", questionVO);
+			// session.setAttribute("tryRegiQuestion", questionVO);
 			Util.sendRedirect(response, "testform");
 		}
 
 		return null;
 	}
 	
-	@RequestMapping(value = "/testform")
-	public String testform(ModelMap model,HttpSession session, HttpServletResponse response) {
+	@RequestMapping(value="/testpaperprint")
+	public String testpaperprint(ModelMap model, HttpSession session, HttpServletResponse response, TestPaperVO testpaperVO) {
+		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		if (member == null)
+			return null;
 		
+		String testId = testpaperVO.getTestPaperIDNum();
+
+		testpaperVO = questionService.getTestPaper_one(testId);
+		model.addAttribute("testpaperVO", testpaperVO);
+		
+		return "print";
+		//Util.sendRedirect(response, "print");
+	}
+
+	@RequestMapping(value = "/testform")
+	public String testform(ModelMap model, HttpSession session, HttpServletResponse response) {
+
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
 		if (member == null)
 			return null;
 
 		ArrayList<TestPaperVO> testList = this.questionService.getTestPaper(member.getEmail());
 		model.addAttribute("testList", Util.toJson(testList));
-		
+
 		TestPaperVO testpaperVO = new TestPaperVO();
-		model.addAttribute("testpaperVO",testpaperVO);
+		model.addAttribute("testpaperVO", testpaperVO);
 
 		return "testform";
 	}
-	
-	@RequestMapping(value="/test_download")
+
+	@RequestMapping(value = "/test_download")
 	public void test_download() {
-		
+
 	}
-	
+
 	public static String getUuid() {
 		return UUID.randomUUID().toString().replaceAll("-", "");
 	}

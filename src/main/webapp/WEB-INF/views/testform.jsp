@@ -47,8 +47,15 @@
 				style="width: 1000px; height: 580px; padding: 55px;">
 				<div>
 					<a id="a_download" download>
+
 						<button id="btn_download" class="btn-download">다운로드</button>
+
 					</a>
+					
+					<div>
+							<button id="btn_download" class="btn-download"
+						onclick="testformsubmit(0)">다운로드</button>
+						</div>
 				</div>
 
 				<div class="row">
@@ -89,15 +96,16 @@
 						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 			</div>
-			<form:form modelAttribute="testpaperVO" action="edittestform"
-				method="POST" onSubmit="return Validate()" name="infos"
+			<form modelAttribute="testpaperVO" 
+				method="POST"  name="infos"
 				enctype="multipart/form-data" id="sendform">
-				<form:input id="testPaperIDNum" path="TestPaperIDNum" name="testPaperIDNum"
-					autofocus="" required=""></form:input>
+				<input id="testPaperIDNum" path="TestPaperIDNum"
+					name="testPaperIDNum" autofocus="" required="" type="hidden"></input>
 				<div>
-					<button id="btn_adj" class="btn-adj" onclick="document.getElementById('sendform').submit()">수정</button>
+					<button id="btn_adj" class="btn-adj"
+						onclick="testformsubmit(1)">수정</button>
 				</div>
-			</form:form>
+			</form>
 		</div>
 	</section>
 </body>
@@ -106,6 +114,18 @@
 assignTest(${testList});
 loadTestList();
 /*---------------------------------------------여기 다시 수정하면 돼---------------------------------------------*/
+
+function testformsubmit(mode){
+	
+	if(mode == 0){
+		
+		$("#sendform").attr("action", "testpaperprint");
+	}
+	else if(mode == 1){
+		$("#sendform").attr("action", "edittestform");
+	}
+	$("#sendform").submit();
+}
 </script>
 <script>function nclick(){$("#testPaperIDNum").submit();}</script>
 <style>
@@ -357,14 +377,14 @@ transform: translateY(3px);
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */
+		format('embedded-opentype'), /* IE 6 ~ 8 */ 
 		                           
        
       
 		 
 		 
 		 
-		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */    
        
       
