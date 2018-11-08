@@ -46,9 +46,6 @@
 			<div class="container-fluid surB"
 				style="width: 1000px; height: 580px; padding: 55px;">
 				<div>
-					<button id="btn_adj" class="btn-adj">수정</button>
-				</div>
-				<div>
 					<a id="a_download" download>
 						<button id="btn_download" class="btn-download">다운로드</button>
 					</a>
@@ -92,6 +89,15 @@
 						class="col-lg-2 col-md-2 col-sm-2 col-xs-2 div-img"></div>
 				</div>
 			</div>
+			<form:form modelAttribute="testpaperVO" action="edittestform"
+				method="POST" onSubmit="return Validate()" name="infos"
+				enctype="multipart/form-data" id="sendform">
+				<form:input id="testPaperIDNum" path="TestPaperIDNum" name="testPaperIDNum"
+					autofocus="" required=""></form:input>
+				<div>
+					<button id="btn_adj" class="btn-adj" onclick="document.getElementById('sendform').submit()">수정</button>
+				</div>
+			</form:form>
 		</div>
 	</section>
 </body>
@@ -101,25 +107,7 @@ assignTest(${testList});
 loadTestList();
 /*---------------------------------------------여기 다시 수정하면 돼---------------------------------------------*/
 </script>
-<script>$(document).ready(function() {
-
-    $('.image-popup-no-margins').magnificPopup({
-type: 'image',
-closeOnContentClick: true,
-closeBtnInside: false,
-fixedContentPos: true,
-mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-image: {
-  verticalFit: true
-},
-zoom: {
-  enabled: true,
-  duration: 300 // don't foget to change the duration also in CSS
-  
-}
-});
-});
-}</script>
+<script>function nclick(){$("#testPaperIDNum").submit();}</script>
 <style>
 /*초기화 코드*/
 * {
@@ -157,29 +145,29 @@ img {
 	height: 150px;
 }
 
-.img-add:active{
-filter: drop-shadow(10px 10px 3px rgb(175,171,171));
-transform: translate(3px, 3px);
+.img-add:active {
+	filter: drop-shadow(10px 10px 3px rgb(175, 171, 171));
+	transform: translate(3px, 3px);
 }
 
 .btn-download:active {
-box-shadow: 2px 2px 1px rgb(118, 113, 113);
-transform: translateY(4px);
+	box-shadow: 2px 2px 1px rgb(118, 113, 113);
+	transform: translateY(4px);
 }
 
 .btn-adj:active {
-box-shadow: 2px 2px 1px rgb(118, 113, 113);
-transform: translateY(4px);
+	box-shadow: 2px 2px 1px rgb(118, 113, 113);
+	transform: translateY(4px);
 }
 
 .btn-home:active {
-text-shadow: 2px 2px 2px rgb(47, 51, 63);
-transform: translateY(3px);
+	text-shadow: 2px 2px 2px rgb(47, 51, 63);
+	transform: translateY(3px);
 }
 
 .btn-logout:active {
-text-shadow: 2px 2px 2px rgb(47, 51, 63);
-transform: translateY(3px);
+	text-shadow: 2px 2px 2px rgb(47, 51, 63);
+	transform: translateY(3px);
 }
 
 .img-add {
@@ -330,11 +318,14 @@ transform: translateY(3px);
 	src: url(typoSMB.eot); /* IE 호환성 보기 */
 	src:
 		url('${pageContext.request.contextPath}/resources/font/typoSMB.eot')
-		format('embedded-opentype'), /* IE 6 ~ 8 */                          
+		format('embedded-opentype'), /* IE 6 ~ 8 */
+		                           
        
       
 		 
-		 url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
+		 
+		 
+		url('${pageContext.request.contextPath}/resources/font/typoSMB.woff')
 		format('woff'), /* 모던 브라우저 */    
        
       

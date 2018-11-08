@@ -49,20 +49,14 @@ public class QuestionServiceImpl implements QuestionService {
    }
 
    @Override
-   public ArrayList<QuestionVO> getTestPaper(int testPaperID) {
+   public TestPaperVO getTestPaper_one(String testPaperID) {
 
       //시험지 존재 검사.
       TestPaperVO targetTestPaper = this.testPaperDAO.findOne("testPaperIDNum", testPaperID);
       if (targetTestPaper == null)
          return null;
 
-      //시험지에 포함된 문항가져오기.
-      ArrayList<Long> IDList = targetTestPaper.getTestInfo();
-      ArrayList<QuestionVO> questionList  = new ArrayList<QuestionVO>();
-      for(Long questionID : IDList)
-         questionList.add(this.questionDAO.findOne("questionIDNum", questionID));
-      
-      return questionList;
+      return targetTestPaper;
    }
    
    @Override

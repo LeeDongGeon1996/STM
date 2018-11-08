@@ -13,14 +13,14 @@ function loadTestList() {
 		var mkimg = "";
 		mkimg = mkimg + "<img />";
 		console.log(test);
-		setTimeout(appendChild(test, n), 2000);
+		setTimeout(appendChild(test, n), 200);
 		n++;
 	}
 	console.log(n);
 	for (var i = 0; i < n; i++) {
 		var test = jsonTestList[i].captestLink;
 		console.log(i);
-		setTimeout(appendChild_hover(test, i), 4000);
+		setTimeout(appendChild_hover(test, i), 400);
 	}
 }
 
@@ -39,6 +39,11 @@ function appendChild(test, n) {
 			//다운 경로생성
 			$("#a_download").removeAttr("href");
 			$("#a_download").attr("href",$('input:radio[name="test-radio"]:checked').val());
+			//수정 값 넣어주기.
+			var idx_no=$('input:radio[name="test-radio"]:checked').val();
+			$("#testPaperIDNum").removeAttr("text");
+			console.log(jsonTestList[idx_no].testPaperIDNum);
+			$("#testPaperIDNum").attr("value", jsonTestList[idx_no].testPaperIDNum);
 		}
 	}
 	img.classList.add("image-popup-no-margins");
@@ -79,7 +84,7 @@ function appendChild_hover(test, n) {
 	radio.id = "radio-" + n;
 	radio.name = "test-radio";
 	radio.classList.add("checker");
-	radio.value = jsonTestList[n].captestLink;
+	radio.value = n;
 	div.append(radio);
 	$(".checker").hide();//안보이는 jquery
 }

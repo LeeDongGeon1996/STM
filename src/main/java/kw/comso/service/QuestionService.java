@@ -9,7 +9,7 @@ public interface QuestionService {
    
    QuestionVO getQuestion(int questionID);
    ArrayList<QuestionVO> getQuestion(String memberID);
-   ArrayList<QuestionVO> getTestPaper(int testPaperID);
+   TestPaperVO getTestPaper_one(String testPaperID);
    ArrayList<TestPaperVO> getTestPaper(String memberID);
    boolean registerQuestion(String memberID, QuestionVO question);
    boolean deleteQuestion(Long questionID);

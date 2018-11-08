@@ -33,6 +33,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kw.comso.dto.AuthMemberInfoVO;
 import kw.comso.dto.QuestionVO;
 import kw.comso.dto.TestPaperVO;
+import kw.comso.dao.TestPaperDAO;
+import kw.comso.dao.impl.TestPaperDAOImpl;
 import kw.comso.service.MemberService;
 import kw.comso.service.QuestionService;
 import kw.comso.util.Util;
@@ -63,20 +65,27 @@ public class TestPaperController {
 		//������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
 	}
-	@RequestMapping(value="/edittestform", method= RequestMethod.GET)
-	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response) {
+	
+	@Autowired
+	   private TestPaperDAO testPaperDAO;
+	
+	@RequestMapping(value="/edittestform")
+	public String editOldTestPaper(ModelMap model, HttpSession session, HttpServletResponse response, TestPaperVO testpaperVO) {
 		
 		//�α��� Ȯ��
 		AuthMemberInfoVO member = memberService.checkAuth(session, response);
+		
 		if (member == null)
 			return null;
+		System.out.println("hello"+testpaperVO.getTestPaperIDNum()+"hihi");
+		String testId = testpaperVO.getTestPaperIDNum();
 		
-		//�α����� ȸ���� ��� ���� �˻�
+		testpaperVO=questionService.getTestPaper_one(testId);
+		model.addAttribute("testpaperVO",testpaperVO);
+		
 		ArrayList<QuestionVO> questionList = this.questionService.getQuestion(member.getEmail());
 		model.addAttribute("questionList", Util.toJson(questionList));
 		
-		TestPaperVO testpaperVO = new TestPaperVO();
-		model.addAttribute("testpaperVO",testpaperVO);
 		
 		//������������������ jsp�� ��ȯ�Ѵ�.
 		return "addTestform";
@@ -176,6 +185,9 @@ public class TestPaperController {
 
 		ArrayList<TestPaperVO> testList = this.questionService.getTestPaper(member.getEmail());
 		model.addAttribute("testList", Util.toJson(testList));
+		
+		TestPaperVO testpaperVO = new TestPaperVO();
+		model.addAttribute("testpaperVO",testpaperVO);
 
 		return "testform";
 	}
