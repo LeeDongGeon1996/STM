@@ -4,8 +4,7 @@
 
 WYSIWYG Editor를 사용하여 시험지를 One-click 제작. 📃
 <br>
-
-![logo]()
+<img src="https://user-images.githubusercontent.com/38756230/120101342-a3063600-c180-11eb-83e9-00e25cb66704.png" width=300 align=right>
 
 
 **개발 프로젝트명: STM**
@@ -42,14 +41,14 @@ WYSIWYG Editor를 사용하여 시험지를 One-click 제작. 📃
 
  
 # 서버 구조
-![server]()
+<img src="https://user-images.githubusercontent.com/38756230/120101311-810cb380-c180-11eb-88bf-854f043144b0.png" width=600 >
 
 
 # Demo
 
 [![Youtube](https://i.imgur.com/FfhxaRa.jpg)](https://www.youtube.com/watch?v=YyDl2aqG6u8)
 
-# 스크린샷
+# Samples
 
 프로젝트 포스터             |
 :-------------------------:|
