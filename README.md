@@ -7,7 +7,8 @@ WYSIWYG Editor를 사용하여 시험지를 One-click 제작. 📃
 <img src="https://user-images.githubusercontent.com/38756230/120101342-a3063600-c180-11eb-83e9-00e25cb66704.png" width=300 align=right>
 
 
-**개발 프로젝트명: STM**
+**개발 프로젝트명**: STM<br>
+**프로젝트 기간**: 2018.06~2018.11(약 5개월)
 <br><br>
 
 # 기술 스택
